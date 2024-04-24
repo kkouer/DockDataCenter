@@ -15,6 +15,8 @@ namespace droneDockDataCenter.Modle
         public  PointLatLng Position  { get; set; }
         public List<PointLatLng> WayPoints { get; set; }
 
+        public float Speed { get; set; }
+        public float Alt { get; set; }
 
 
     }

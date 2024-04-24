@@ -21,7 +21,7 @@ namespace droneDockDataCenter.Modle
         public bool SwitchOpened { get; set; }
         public Drone theDrone { get; set; } = null;
 
-
+        public bool OnLine { get; set; }
 
 
     }

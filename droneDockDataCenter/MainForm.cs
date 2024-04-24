@@ -102,6 +102,8 @@ namespace droneDockDataCenter
                 .WithPayload(payload)
                 .WithTopic(topic)
                 .Build();
+            if (mqttClient == null || !mqttClient.IsConnected)
+                return;
             Task<MqttClientPublishResult> task = mqttClient.PublishAsync(applicationMessage);
             task.Wait();
         }

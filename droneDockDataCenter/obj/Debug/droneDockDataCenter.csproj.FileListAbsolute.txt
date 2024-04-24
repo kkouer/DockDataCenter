@@ -13,3 +13,5 @@ D:\droneDock\droneDockDataCenter\droneDockDataCenter\obj\Debug\droneDockDataCent
 D:\droneDock\droneDockDataCenter\droneDockDataCenter\bin\Debug\GMap.NET.Core.dll
 D:\droneDock\droneDockDataCenter\droneDockDataCenter\bin\Debug\GMap.NET.WindowsForms.dll
 D:\droneDock\droneDockDataCenter\droneDockDataCenter\obj\Debug\droneDockDataCenter.MainForm.resources
+D:\droneDock\droneDockDataCenter\droneDockDataCenter\obj\Debug\droneDockDataCenter.DockDetailPanel.resources
+D:\droneDock\droneDockDataCenter\droneDockDataCenter\obj\Debug\droneDockDataCenter.DocksList.resources
