@@ -1,23 +1,32 @@
 ﻿using GMap.NET;
-using System;
+using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace droneDockDataCenter.Modle
 {
     public class Drone
     {
         public Drone() { }
+        [JsonProperty("id")]
         public int Id { get; set; }
-        public string Name { get; set; }
-        public  PointLatLng Position  { get; set; }
-        public List<PointLatLng> WayPoints { get; set; }
+        [JsonProperty("location")]
+        public Location Position  { get; set; }
 
+        [JsonProperty("groundSpeed")]
         public float Speed { get; set; }
+        [JsonProperty("altitude")]
         public float Alt { get; set; }
 
 
     }
+
+    public class Location
+    {
+        [JsonProperty("latitude")]
+        public double Latitude { get; set; }
+        [JsonProperty("longitude")]
+        public double Longitude { get; set; }
+    }
+
+
 }

@@ -9,15 +9,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using droneDockDataCenter.Modle;
+using System.Runtime.CompilerServices;
 
 namespace droneDockDataCenter
 {
     public partial class DockDetailPanel : UserControl
     {
-        public DockDetailPanel()
+        Dock dock1 = null;
+
+        public event EventHandler DeleteRequested;
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            // 触发DeleteRequested事件
+            DeleteRequested?.Invoke(this, EventArgs.Empty);
+        }
+
+        public DockDetailPanel(Dock dock)
         {
             InitializeComponent();
             initMapcontrol();
+            dock1 = dock;
         }
 
         private void initMapcontrol()

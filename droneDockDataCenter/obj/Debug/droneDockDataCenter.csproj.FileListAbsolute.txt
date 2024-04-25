@@ -15,3 +15,5 @@ D:\droneDock\droneDockDataCenter\droneDockDataCenter\bin\Debug\GMap.NET.WindowsF
 D:\droneDock\droneDockDataCenter\droneDockDataCenter\obj\Debug\droneDockDataCenter.MainForm.resources
 D:\droneDock\droneDockDataCenter\droneDockDataCenter\obj\Debug\droneDockDataCenter.DockDetailPanel.resources
 D:\droneDock\droneDockDataCenter\droneDockDataCenter\obj\Debug\droneDockDataCenter.DocksList.resources
+D:\droneDock\droneDockDataCenter\droneDockDataCenter\bin\Debug\Newtonsoft.Json.dll
+D:\droneDock\droneDockDataCenter\droneDockDataCenter\bin\Debug\Newtonsoft.Json.xml
