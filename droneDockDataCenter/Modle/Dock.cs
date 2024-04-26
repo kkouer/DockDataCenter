@@ -27,7 +27,7 @@ namespace droneDockDataCenter.Modle
         // 更新Dock实例的方法
         public void UpdateFromJson(string json)
         {
-            var root = JsonConvert.DeserializeObject<Root>(json);
+            var root = JsonConvert.DeserializeObject<DockJsonRoot>(json);
 
             if (root != null && root.Data != null)
             {

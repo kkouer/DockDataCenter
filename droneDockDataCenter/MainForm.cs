@@ -15,19 +15,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using droneDockDataCenter.Modle;
 using System.Text.RegularExpressions;
+using droneDockDataCenter.Controls;
 
 namespace droneDockDataCenter
 {
-    public partial class MainForm : Form
+    public partial class MainForm : DSkin.Forms.DSkinForm
     {
         public IMqttClient mqttClient;
         public MqttClientOptions mqttClientOptions;
 
         public MqttFactory mqttFactory;
 
-        public Dock currentDock=null;
-
         public DockManager dockManager = new DockManager();
+
+        public DroneManager droneManager = new DroneManager();
 
         public MainForm()
         {
@@ -39,12 +40,19 @@ namespace droneDockDataCenter
         private void initDockList()
         {
             docksList1.DockItemDoubleClick += DocksList1_DockItemDoubleClick;
+            docksList1.DockItemClick += DocksList1_DockItemClick;
+        }
+
+        private void DocksList1_DockItemClick(Dock obj)
+        {
+            dockManager.CurrentDock = obj;
+            this.docksList1.UpdateDockManager(dockManager);
         }
 
         //点击机库进入详情
         private void DocksList1_DockItemDoubleClick(Dock obj)
         {
-            //MessageBox.Show(obj.Id);
+            
             AddDockDetalPage(obj);
         }
 
@@ -80,6 +88,10 @@ namespace droneDockDataCenter
                 if (!mqttClient.IsConnected)
                 {
                     await mqttClient.ConnectAsync(mqttClientOptions);
+
+                    subscribeTopic($"dock/+/status");
+
+                    subscribeTopic($"drone/+/status");
                 }
                 else
                 {
@@ -196,9 +208,14 @@ namespace droneDockDataCenter
             return null;
         }
 
-        private void HandleDroneMessage(string dockId, string message)
+        private void HandleDroneMessage(string droneId, string message)
         {
             // 处理drone相关的消息，例如更新dock的状态等
+            JsonMessage message1 = new JsonMessage { Id = droneId, JsonData = message };
+            // 处理dock相关的消息，例如更新dock的状态等
+            droneManager.UpdateOrAddDrone(message1);
+
+
         }
 
         private void HandleDockMessage(string dockId, string message)
@@ -230,6 +247,7 @@ namespace droneDockDataCenter
         }
 
         
+        //推送订阅消息
         private void publishCommand(string topic, string payload)
         {
             var applicationMessage = new MqttApplicationMessageBuilder()
@@ -256,10 +274,5 @@ namespace droneDockDataCenter
         }
 
 
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            subscribeTopic($"dock/+/status");
-        }
     }
 }

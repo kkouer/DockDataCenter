@@ -11,6 +11,9 @@ namespace droneDockDataCenter.Modle
     {
         public List<Dock> docks = new List<Dock>();
 
+        public Dock CurrentDock { get; set; }
+
+
         // 更新或添加Dock实例的方法
         public void UpdateOrAddDock(JsonMessage message)
         {
@@ -26,12 +29,16 @@ namespace droneDockDataCenter.Modle
                 docks.Add(newDock); // 添加到列表
             }
 
+        }
 
+        public void UpdateDroneStatus(JsonMessage message)
+        {
+            
         }
     }
 
     // 解析JSON数据的根对象
-    public class Root
+    public class DockJsonRoot
     {
         [JsonProperty("protocol_version")]
         public string ProtocolVersion { get; set; }

@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DSkin">
+      <HintPath>Libs\DSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="DSkin.Design">
+      <HintPath>Libs\DSkin.Design.dll</HintPath>
+    </Reference>
     <Reference Include="GMap.NET.Core, Version=1.7.5.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
       <HintPath>..\packages\GMap.NET.WindowsForms.1.7.5\lib\net40\GMap.NET.Core.dll</HintPath>
     </Reference>
@@ -58,19 +64,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DockDetailPanel.cs">
+    <Compile Include="Controls\DockDetailPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DockDetailPanel.Designer.cs">
+    <Compile Include="Controls\DockDetailPanel.Designer.cs">
       <DependentUpon>DockDetailPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="DocksList.cs">
+    <Compile Include="Controls\DocksList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DocksList.Designer.cs">
+    <Compile Include="Controls\DocksList.Designer.cs">
       <DependentUpon>DocksList.cs</DependentUpon>
     </Compile>
-    <Compile Include="HUDControl.cs">
+    <Compile Include="Controls\HUDControl.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="MainForm.cs">
@@ -79,16 +85,18 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modle\AsyncTcpClient.cs" />
     <Compile Include="Modle\Dock.cs" />
     <Compile Include="Modle\DockManager.cs" />
     <Compile Include="Modle\Drone.cs" />
+    <Compile Include="Modle\DroneManager.cs" />
     <Compile Include="Modle\Gimbal.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="DockDetailPanel.resx">
+    <EmbeddedResource Include="Controls\DockDetailPanel.resx">
       <DependentUpon>DockDetailPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DocksList.resx">
+    <EmbeddedResource Include="Controls\DocksList.resx">
       <DependentUpon>DocksList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
@@ -123,6 +131,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\dock_online.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\planetracker.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,177 @@
+﻿using droneDockDataCenter.Modle;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace droneDockDataCenter.Controls
+{
+    public partial class DocksList : UserControl
+    {
+        List<Dock> docks = new List<Dock>();
+        public DocksList()
+        {
+            InitializeComponent();
+            initListView();
+        }
+
+        public event Action<Dock> DockItemDoubleClick;
+        public event Action<Dock> DockItemClick;
+
+        public void listview1_DoubleClick(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = listView1.SelectedItems[0];
+                string dockId = selectedItem.Text;
+
+                Dock selectedDock = docks.FirstOrDefault(d => d.Id == dockId);
+                if (selectedDock != null)
+                {
+                    DockItemDoubleClick?.Invoke(selectedDock);
+                }
+            }
+        }
+
+        private void listView1_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = listView1.SelectedItems[0];
+                string dockId = selectedItem.Text;
+
+                Dock selectedDock = docks.FirstOrDefault(d => d.Id == dockId);
+                if (selectedDock != null)
+                {
+                    DockItemClick?.Invoke(selectedDock);
+                }
+            }
+        }
+
+
+
+        private void initListView()
+        {
+            listView1.Columns.Add("Dock ID", 100, HorizontalAlignment.Center);
+            listView1.Columns.Add("连接状态", 100, HorizontalAlignment.Center);
+
+            // 添加图标到 ImageList
+            imageList1.Images.Add("dock_offline", Properties.Resources.dock);
+            imageList1.Images.Add("dock_online", Properties.Resources.dock_online);
+
+            listView1.SmallImageList = imageList1;
+
+            foreach (var dock in docks)
+            {
+                ListViewItem item = new ListViewItem(dock.Id); // 添加 Dock ID
+                item.SubItems.Add(dock.IsOnLine() ? "连接" : "断开"); // 添加连接状态
+                item.ImageKey = dock.IsOnLine() ? "dock_online" : "dock_offline";
+                listView1.Items.Add(item); // 添加项到 ListView
+            }
+
+        }
+
+        
+        public void UpdateDockManager(DockManager dockManager)
+        {
+            this.docks = dockManager.docks;
+            UpdateListView();
+
+            updateDockInfoText(dockManager);
+        }
+
+        private void updateDockInfoText(DockManager manager)
+        {
+            if(manager != null && manager.CurrentDock != null)
+            {
+                TBDockId = "ID:" + manager.CurrentDock.Id;
+                TBDockCover = "Cover:" + manager.CurrentDock.CoverStatus;
+                TBDockTime = "Time:" + manager.CurrentDock.LastUpdated.ToString();
+                TBDockWeaterWindSpeed = "Wind speed:" + manager.CurrentDock.WeatherData.WindSpeed.ToString();
+                TBDockWeaterTemperature = "Temperature:" + manager.CurrentDock.WeatherData.Temperature.ToString();
+            }
+        }
+
+        public string TBDockId
+        {
+
+            set { dSkinLabel1.Text = value; }
+
+        }
+        public string TBDockCover
+        {
+
+            set { dSkinLabel2.Text = value; }
+
+        }
+
+        public string TBDockTime
+        {
+
+            set { dSkinLabel3.Text = value; }
+
+        }
+        public string TBDockWeaterWindSpeed
+        {
+
+            set { dSkinLabel4.Text = value; }
+
+        }
+        public string TBDockWeaterTemperature
+        {
+
+            set { dSkinLabel5.Text = value; }
+
+        }
+
+
+
+        //private void StartRefreshThread()
+        //{
+        //    Task.Run(async () =>
+        //    {
+        //        while (true)
+        //        {
+        //            await Task.Delay(2000); // 2秒刷新一次
+
+        //            // 刷新ListView
+        //            UpdateListView();
+        //        }
+        //    });
+        //}
+
+
+        private void UpdateListView()
+        {
+            if (listView1.InvokeRequired)
+            {
+                listView1.Invoke(new MethodInvoker(UpdateListView));
+                return;
+            }
+            int selectedIndex = listView1.SelectedIndices.Count > 0 ? listView1.SelectedIndices[0] : -1;
+
+            listView1.Items.Clear();
+
+            foreach (var dock in docks)
+            {
+                ListViewItem item = new ListViewItem(dock.Id); // 添加 Dock ID
+                item.SubItems.Add(dock.IsOnLine() ? "连接" : "断开"); // 添加连接状态
+                item.ImageKey = dock.IsOnLine() ? "dock_online" : "dock_offline";
+                listView1.Items.Add(item); // 添加项到 ListView
+            }
+            if (selectedIndex != -1 && selectedIndex < listView1.Items.Count)
+            {
+                listView1.Items[selectedIndex].Selected = true;
+            }
+        }
+
+        private void DocksList_Load(object sender, EventArgs e)
+        {
+            // 启动刷新线程
+            //StartRefreshThread();
+        }
+
+        
+    }
+}
