@@ -54,7 +54,7 @@ namespace droneDockDataCenter.Controls
         private void initListView()
         {
             listView1.Columns.Add("Dock ID", 100, HorizontalAlignment.Center);
-            listView1.Columns.Add("连接状态", 100, HorizontalAlignment.Center);
+            listView1.Columns.Add("Alive", 100, HorizontalAlignment.Center);
 
             // 添加图标到 ImageList
             imageList1.Images.Add("dock_offline", Properties.Resources.dock);

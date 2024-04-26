@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Threading;
 
 namespace droneDockDataCenter.Modle
 {
     public class Gimbal
     {
         //TCP客户端
-        public AsyncTcpClient AsyncTcpClient1 = new AsyncTcpClient();
+        public AsyncTcpClient AsyncTcpClient1;
 
-        public Gimbal() { }
+        public Gimbal() 
+        {
+            AsyncTcpClient1 = new AsyncTcpClient();
+        }
 
         public string ControlIP { get; set; } = "127.0.0.1";
         public int ControlPort { get; set; } = 2000;

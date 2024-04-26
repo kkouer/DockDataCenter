@@ -19,3 +19,5 @@ D:\droneDock\droneDockDataCenter\droneDockDataCenter\obj\Debug\droneDockDataCent
 D:\droneDock\droneDockDataCenter\droneDockDataCenter\obj\Debug\droneDockDataCenter.Controls.DocksList.resources
 D:\droneDock\droneDockDataCenter\droneDockDataCenter\bin\Debug\DSkin.Design.dll
 D:\droneDock\droneDockDataCenter\droneDockDataCenter\bin\Debug\DSkin.dll
+D:\droneDock\droneDockDataCenter\droneDockDataCenter\bin\Debug\FFmpeg.AutoGen.dll
+D:\droneDock\droneDockDataCenter\droneDockDataCenter\bin\Debug\FFmpeg.AutoGen.xml

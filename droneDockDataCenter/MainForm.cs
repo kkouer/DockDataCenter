@@ -1,14 +1,6 @@
-﻿using GMap.NET.MapProviders;
-using GMap.NET;
-using MQTTnet;
+﻿using MQTTnet;
 using MQTTnet.Client;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -136,7 +128,7 @@ namespace droneDockDataCenter
             {
                 if (arg.ClientWasConnected)
                 {
-                    this.textBox1.Text = "连接断开";
+                    this.textBox1.Text = "Disconnected";
                     button1.Text = "Connect";
                 }
             }));
@@ -231,7 +223,7 @@ namespace droneDockDataCenter
         {
             this.BeginInvoke(new Action(() =>
             {
-                this.textBox1.Text = arg.ConnectResult.ResultCode.ToString();
+                this.textBox1.Text = "Connected";//arg.ConnectResult.ResultCode.ToString();
                 button1.Text = "Disconnect";
             }));
             return Task.CompletedTask;
