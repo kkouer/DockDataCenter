@@ -14,6 +14,8 @@ namespace droneDockDataCenter.Modle
         public Dock CurrentDock { get; set; }
 
 
+
+
         // 更新或添加Dock实例的方法
         public void UpdateOrAddDock(JsonMessage message)
         {
@@ -31,10 +33,6 @@ namespace droneDockDataCenter.Modle
 
         }
 
-        public void UpdateDroneStatus(JsonMessage message)
-        {
-            
-        }
     }
 
     // 解析JSON数据的根对象
@@ -48,7 +46,6 @@ namespace droneDockDataCenter.Modle
         public Dock Data { get; set; }
     }
    
-
 
 
     // 模拟收到的JSON消息

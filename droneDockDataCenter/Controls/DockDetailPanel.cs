@@ -7,6 +7,7 @@ using droneDockDataCenter.FFMpeg;
 using System.Threading;
 using System.Text;
 using System.Drawing;
+using GMap.NET.WindowsForms;
 
 namespace droneDockDataCenter.Controls
 {
@@ -23,9 +24,16 @@ namespace droneDockDataCenter.Controls
             DeleteRequested?.Invoke(this, EventArgs.Empty);
         }
 
-        public DockDetailPanel(Dock dock)
+
+        GMapMarker droneIcon;
+
+        GMapOverlay marksOverlay = new GMapOverlay("marks");
+
+
+        public DockDetailPanel()
         {
             InitializeComponent();
+
             initMapcontrol();
 
             initGimbalControl();
@@ -51,6 +59,8 @@ namespace droneDockDataCenter.Controls
             gMapControl1.ShowCenter = false;
             gMapControl1.Position = new PointLatLng(22, 113);
             gMapControl1.MapScaleInfoEnabled = false;
+
+            gMapControl1.Overlays.Add(marksOverlay);
         }
 
         private void dSkinButton2_Click(object sender, EventArgs e)
@@ -65,7 +75,7 @@ namespace droneDockDataCenter.Controls
                     thPlayer = null;
                     //controlHostVideoPanel.Visible = false;
                     dSkinButton2.Enabled = true;
-                    dSkinButton2.Text = "开始播放";
+                    dSkinButton2.Text = "Play";
                     rtmp = null;
                 }
                 else
@@ -75,7 +85,7 @@ namespace droneDockDataCenter.Controls
                     thPlayer.IsBackground = true;
                     thPlayer.Priority = ThreadPriority.Highest;
                     thPlayer.Start();
-                    dSkinButton2.Text = "停止播放";
+                    dSkinButton2.Text = "Stop";
                     dSkinButton2.Enabled = false;
 
                 }
@@ -124,10 +134,75 @@ namespace droneDockDataCenter.Controls
                 Console.WriteLine("DeCoding exit");
                 this.Invoke(new MethodInvoker(() =>
                 {
-                    dSkinButton2.Text = "开始播放";
+                    dSkinButton2.Text = "Play";
                     dSkinButton2.Enabled = true;
                 }));
             }
+        }
+
+
+        public string TBDroneId
+        {
+
+            set { dSkinLabel1.Text = value; }
+
+        }
+        public string TBDroneBattery
+        {
+
+            set { dSkinLabel2.Text = value; }
+
+        }
+        public string TBDroneMode
+        {
+
+            set { dSkinLabel3.Text = value; }
+
+        }
+        public string TBDroneThrottle
+        {
+
+            set { dSkinLabel4.Text = value; }
+
+        }
+
+        public string TBDroneGroundSpeed
+        {
+
+            set { dSkinLabel5.Text = value; }
+
+        }
+
+        public void UpdateDroneInfoOnView(DroneManager droneManager)
+        {
+            if(droneManager == null || droneManager.CurrentDrone == null)
+            {
+                return;
+            }
+            TBDroneId = "ID: "+droneManager.CurrentDrone.Id;
+            TBDroneBattery = "Battery: " + droneManager.CurrentDrone.Battery;
+            TBDroneMode = "Flight mode: " +droneManager.CurrentDrone.Mode;
+            TBDroneThrottle = "Throttle: "+droneManager.CurrentDrone.Throttle;
+            TBDroneGroundSpeed = "Ground Speed: " + droneManager.CurrentDrone.GroundSpeed;
+
+            this.hudControl1.Airspeed = (int)droneManager.CurrentDrone.AirSpeed;
+            this.hudControl1.RollAngle = droneManager.CurrentDrone.Attitude.Roll;
+            this.hudControl1.YawAngle = droneManager.CurrentDrone.Attitude.Heading;
+            this.hudControl1.PitchAngle = droneManager.CurrentDrone.Attitude.Pitch;
+            this.hudControl1.Altitude = (int)droneManager.CurrentDrone.Alt_rel;
+
+
+            //update droneIcon
+
+            PointLatLng dronePoint = new PointLatLng(droneManager.CurrentDrone.Position.Latitude,droneManager.CurrentDrone.Position.Longitude);
+            float yaw = droneManager.CurrentDrone.Attitude.Heading;
+
+
+            droneIcon = new GMapMarkerDrone(dronePoint, yaw, 0, 0, 0);
+            //droneIcon.Tag = dronePoint.Lng.ToString("0.000000") + " " + dronePoint.Lat.ToString("0.000000");
+            marksOverlay.Markers.Clear();
+            marksOverlay.Markers.Add(droneIcon);
+            gMapControl1.ZoomAndCenterMarkers("marks");
         }
 
     }

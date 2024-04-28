@@ -33,11 +33,11 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.dSkinGroupBox1 = new DSkin.Controls.DSkinGroupBox();
-            this.dSkinLabel1 = new DSkin.Controls.DSkinLabel();
-            this.dSkinLabel2 = new DSkin.Controls.DSkinLabel();
-            this.dSkinLabel3 = new DSkin.Controls.DSkinLabel();
-            this.dSkinLabel4 = new DSkin.Controls.DSkinLabel();
             this.dSkinLabel5 = new DSkin.Controls.DSkinLabel();
+            this.dSkinLabel4 = new DSkin.Controls.DSkinLabel();
+            this.dSkinLabel3 = new DSkin.Controls.DSkinLabel();
+            this.dSkinLabel2 = new DSkin.Controls.DSkinLabel();
+            this.dSkinLabel1 = new DSkin.Controls.DSkinLabel();
             this.dSkinGroupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,6 +46,9 @@
             this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView1.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.listView1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.listView1.ForeColor = System.Drawing.Color.White;
             this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(4, 13);
@@ -75,57 +78,74 @@
             this.dSkinGroupBox1.Controls.Add(this.dSkinLabel2);
             this.dSkinGroupBox1.Controls.Add(this.dSkinLabel1);
             this.dSkinGroupBox1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinGroupBox1.ForeColor = System.Drawing.Color.White;
             this.dSkinGroupBox1.Location = new System.Drawing.Point(531, 3);
             this.dSkinGroupBox1.Name = "dSkinGroupBox1";
+            this.dSkinGroupBox1.Radius = 20;
             this.dSkinGroupBox1.RightBottom = ((System.Drawing.Image)(resources.GetObject("dSkinGroupBox1.RightBottom")));
-            this.dSkinGroupBox1.Size = new System.Drawing.Size(200, 212);
+            this.dSkinGroupBox1.Size = new System.Drawing.Size(213, 212);
             this.dSkinGroupBox1.TabIndex = 2;
             this.dSkinGroupBox1.Text = "Dock Status";
             // 
-            // dSkinLabel1
-            // 
-            this.dSkinLabel1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dSkinLabel1.Location = new System.Drawing.Point(23, 31);
-            this.dSkinLabel1.Name = "dSkinLabel1";
-            this.dSkinLabel1.Size = new System.Drawing.Size(24, 21);
-            this.dSkinLabel1.TabIndex = 0;
-            this.dSkinLabel1.Text = "ID:";
-            // 
-            // dSkinLabel2
-            // 
-            this.dSkinLabel2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dSkinLabel2.Location = new System.Drawing.Point(23, 66);
-            this.dSkinLabel2.Name = "dSkinLabel2";
-            this.dSkinLabel2.Size = new System.Drawing.Size(94, 21);
-            this.dSkinLabel2.TabIndex = 0;
-            this.dSkinLabel2.Text = "Cover status:";
-            // 
-            // dSkinLabel3
-            // 
-            this.dSkinLabel3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dSkinLabel3.Location = new System.Drawing.Point(23, 101);
-            this.dSkinLabel3.Name = "dSkinLabel3";
-            this.dSkinLabel3.Size = new System.Drawing.Size(71, 21);
-            this.dSkinLabel3.TabIndex = 0;
-            this.dSkinLabel3.Text = "Last time:";
-            // 
-            // dSkinLabel4
-            // 
-            this.dSkinLabel4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dSkinLabel4.Location = new System.Drawing.Point(23, 136);
-            this.dSkinLabel4.Name = "dSkinLabel4";
-            this.dSkinLabel4.Size = new System.Drawing.Size(91, 21);
-            this.dSkinLabel4.TabIndex = 0;
-            this.dSkinLabel4.Text = "Wind speed:";
-            // 
             // dSkinLabel5
             // 
+            this.dSkinLabel5.EffectValue = 1;
             this.dSkinLabel5.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinLabel5.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.dSkinLabel5.Location = new System.Drawing.Point(23, 171);
             this.dSkinLabel5.Name = "dSkinLabel5";
             this.dSkinLabel5.Size = new System.Drawing.Size(97, 21);
             this.dSkinLabel5.TabIndex = 0;
             this.dSkinLabel5.Text = "Temperature:";
+            this.dSkinLabel5.TextEffect = DSkin.DirectUI.TextEffects.Shadow;
+            // 
+            // dSkinLabel4
+            // 
+            this.dSkinLabel4.EffectValue = 1;
+            this.dSkinLabel4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinLabel4.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.dSkinLabel4.Location = new System.Drawing.Point(23, 136);
+            this.dSkinLabel4.Name = "dSkinLabel4";
+            this.dSkinLabel4.Size = new System.Drawing.Size(91, 21);
+            this.dSkinLabel4.TabIndex = 0;
+            this.dSkinLabel4.Text = "Wind speed:";
+            this.dSkinLabel4.TextEffect = DSkin.DirectUI.TextEffects.Shadow;
+            // 
+            // dSkinLabel3
+            // 
+            this.dSkinLabel3.EffectValue = 1;
+            this.dSkinLabel3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinLabel3.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.dSkinLabel3.Location = new System.Drawing.Point(23, 101);
+            this.dSkinLabel3.Name = "dSkinLabel3";
+            this.dSkinLabel3.Size = new System.Drawing.Size(71, 21);
+            this.dSkinLabel3.TabIndex = 0;
+            this.dSkinLabel3.Text = "Last time:";
+            this.dSkinLabel3.TextEffect = DSkin.DirectUI.TextEffects.Shadow;
+            // 
+            // dSkinLabel2
+            // 
+            this.dSkinLabel2.EffectValue = 1;
+            this.dSkinLabel2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinLabel2.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.dSkinLabel2.Location = new System.Drawing.Point(23, 66);
+            this.dSkinLabel2.Name = "dSkinLabel2";
+            this.dSkinLabel2.Size = new System.Drawing.Size(94, 21);
+            this.dSkinLabel2.TabIndex = 0;
+            this.dSkinLabel2.Text = "Cover status:";
+            this.dSkinLabel2.TextEffect = DSkin.DirectUI.TextEffects.Shadow;
+            // 
+            // dSkinLabel1
+            // 
+            this.dSkinLabel1.EffectValue = 1;
+            this.dSkinLabel1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinLabel1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.dSkinLabel1.Location = new System.Drawing.Point(23, 31);
+            this.dSkinLabel1.Name = "dSkinLabel1";
+            this.dSkinLabel1.Size = new System.Drawing.Size(24, 21);
+            this.dSkinLabel1.TabIndex = 0;
+            this.dSkinLabel1.Text = "ID:";
+            this.dSkinLabel1.TextEffect = DSkin.DirectUI.TextEffects.Shadow;
             // 
             // DocksList
             // 

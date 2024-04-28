@@ -8,6 +8,9 @@ using System.Windows.Forms;
 using droneDockDataCenter.Modle;
 using System.Text.RegularExpressions;
 using droneDockDataCenter.Controls;
+using System.Collections.Generic;
+using System.Xml;
+using System.IO;
 
 namespace droneDockDataCenter
 {
@@ -22,11 +25,156 @@ namespace droneDockDataCenter
 
         public DroneManager droneManager = new DroneManager();
 
+        public DockDetailPanel dockDetailPanel = null;
+
+        public string MqttServerAddress { get; set; } = "s567e716.ala.cn-hangzhou.emqxsl.cn";
+        public string MqttServerPort { get; set; } = "8883";
+        public string MqttServerUserName { get; set; } = "admin";
+        public string MqttServerPassword { get; set; } = "123456";
+
+        AppSettingInfo appSetting = new AppSettingInfo();
+
+
+        void readAppConfig()
+        {
+            //读取配置
+            xmlConfigFile(false, System.AppDomain.CurrentDomain.BaseDirectory + "config.xml");
+
+            if (!string.IsNullOrEmpty(appSetting.MQTTServerAddress))
+            {
+                MqttServerAddress = appSetting.MQTTServerAddress;
+            }
+            if (!string.IsNullOrEmpty(appSetting.MQTTServerPort))
+            {
+                MqttServerPort = appSetting.MQTTServerPort;
+            }
+            if (!string.IsNullOrEmpty(appSetting.MQTTServerUserName))
+            {
+                MqttServerUserName = appSetting.MQTTServerUserName;
+            }
+            if (!string.IsNullOrEmpty(appSetting.MQTTServerPassword))
+            {
+                MqttServerPassword = appSetting.MQTTServerPassword;
+            }
+
+        }
+
+        void saveAppConfig()
+        {
+            appSetting.MQTTServerAddress = MqttServerAddress;
+            appSetting.MQTTServerPort = MqttServerPort;
+            appSetting.MQTTServerUserName = MqttServerUserName;
+            appSetting.MQTTServerPassword = MqttServerPassword;
+
+            xmlConfigFile(true, System.AppDomain.CurrentDomain.BaseDirectory + "config.xml");
+        }
+        private void xmlConfigFile(bool write, string filename)
+        {
+            bool exists = File.Exists(filename);
+
+            if (write || !exists)
+            {
+                try
+                {
+                    XmlTextWriter xmlwriter = new XmlTextWriter(filename, Encoding.UTF8);
+                    xmlwriter.Formatting = Formatting.Indented;
+
+                    xmlwriter.WriteStartDocument();
+
+                    xmlwriter.WriteStartElement("AppSetting");
+                    try
+                    {
+                        xmlwriter.WriteStartElement("Config");
+                        xmlwriter.WriteElementString("MQTTServerAddress", appSetting.MQTTServerAddress);
+                        xmlwriter.WriteElementString("MQTTServerPort", appSetting.MQTTServerPort);
+                        xmlwriter.WriteElementString("MQTTServerUserName", appSetting.MQTTServerUserName);
+                        xmlwriter.WriteElementString("MQTTServerPassword", appSetting.MQTTServerPassword);
+
+
+                        xmlwriter.WriteEndElement();
+                    }
+                    catch { }
+
+
+                    xmlwriter.WriteEndElement();
+
+                    xmlwriter.WriteEndDocument();
+                    xmlwriter.Close();
+
+                }
+                catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+            }
+            else
+            {
+                try
+                {
+                    using (XmlTextReader xmlreader = new XmlTextReader(filename))
+                    {
+                        while (xmlreader.Read())
+                        {
+                            xmlreader.MoveToElement();
+                            try
+                            {
+                                switch (xmlreader.Name)
+                                {
+                                    case "Config":
+                                        {
+                                            AppSettingInfo settingInfo = new AppSettingInfo();
+                                            while (xmlreader.Read())
+                                            {
+                                                bool dobreak = false;
+                                                xmlreader.MoveToElement();
+                                                switch (xmlreader.Name)
+                                                {
+                                                    case "MQTTServerAddress":
+                                                        settingInfo.MQTTServerAddress = xmlreader.ReadString();
+                                                        break;
+                                                    case "MQTTServerPort":
+                                                        settingInfo.MQTTServerPort = xmlreader.ReadString();
+                                                        break;
+                                                    case "MQTTServerUserName":
+                                                        settingInfo.MQTTServerUserName = xmlreader.ReadString();
+                                                        break;
+                                                    case "MQTTServerPassword":
+                                                        settingInfo.MQTTServerPassword = xmlreader.ReadString();
+                                                        break;
+
+                                                    case "Config":
+                                                        appSetting = settingInfo;
+                                                        break;
+
+                                                }
+                                                if (dobreak)
+                                                    break;
+                                            }
+                                            string temp = xmlreader.ReadString();
+                                        }
+                                        break;
+                                    case "xml":
+                                        break;
+                                    default:
+                                        if (xmlreader.Name == "") // line feeds
+                                            break;
+                                        break;
+                                }
+                            }
+                            catch (Exception ee) { Console.WriteLine(ee.Message); } // silent fail on bad entry
+                        }
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine("Bad Appsetting File: " + ex.ToString()); } // bad config file
+
+
+            }
+        }
+
+
         public MainForm()
         {
             InitializeComponent();
             initMqttClient();
             initDockList();
+            readAppConfig();
         }
 
         private void initDockList()
@@ -51,8 +199,11 @@ namespace droneDockDataCenter
         //进入详情页面
         private void AddDockDetalPage(Dock dock)
         {
+            if (dockDetailPanel != null && !docksList1.Visible)
+                return;
+
             docksList1.Visible = false;
-            DockDetailPanel dockDetailPanel = new DockDetailPanel(dock);
+            dockDetailPanel = new DockDetailPanel();
             dockDetailPanel.Dock = DockStyle.Fill;
             dockDetailPanel.DeleteRequested += DockDetailPanel_DeleteRequested;
             this.panel1.Controls.Add(dockDetailPanel);
@@ -110,8 +261,8 @@ namespace droneDockDataCenter
 
             mqttClientOptions = new MqttClientOptionsBuilder()
                 .WithClientId("dataCenter")
-                .WithTcpServer("s567e716.ala.cn-hangzhou.emqxsl.cn", 8883) // 这里替换成你的broker地址和端口
-                .WithCredentials("admin", "123456")   // 如果需要用户名和密码认证
+                .WithTcpServer(MqttServerAddress, int.Parse(MqttServerPort)) // 这里替换成你的broker地址和端口
+                .WithCredentials(MqttServerUserName, MqttServerPassword)   // 如果需要用户名和密码认证
                 .WithTlsOptions(tlsOptions)
                 .Build();
 
@@ -206,8 +357,8 @@ namespace droneDockDataCenter
             JsonMessage message1 = new JsonMessage { Id = droneId, JsonData = message };
             // 处理dock相关的消息，例如更新dock的状态等
             droneManager.UpdateOrAddDrone(message1);
-
-
+            if (dockDetailPanel != null)
+                this.dockDetailPanel.UpdateDroneInfoOnView(droneManager);
         }
 
         private void HandleDockMessage(string dockId, string message)
@@ -231,11 +382,11 @@ namespace droneDockDataCenter
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string payload = "dangerous";
-            string topic = "test";
+            //string payload = "dangerous";
+            //string topic = "test";
 
-            publishCommand(topic, payload);
-            
+            //publishCommand(topic, payload);
+            AddDockDetalPage(null);
         }
 
         
@@ -265,6 +416,11 @@ namespace droneDockDataCenter
             mqttClient.SubscribeAsync(mqttSubscribeOptions, CancellationToken.None);
         }
 
+        
 
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            saveAppConfig();
+        }
     }
 }

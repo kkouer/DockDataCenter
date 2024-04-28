@@ -85,11 +85,11 @@ namespace droneDockDataCenter.Controls
         {
             if(manager != null && manager.CurrentDock != null)
             {
-                TBDockId = "ID:" + manager.CurrentDock.Id;
-                TBDockCover = "Cover:" + manager.CurrentDock.CoverStatus;
-                TBDockTime = "Time:" + manager.CurrentDock.LastUpdated.ToString();
-                TBDockWeaterWindSpeed = "Wind speed:" + manager.CurrentDock.WeatherData.WindSpeed.ToString();
-                TBDockWeaterTemperature = "Temperature:" + manager.CurrentDock.WeatherData.Temperature.ToString();
+                TBDockId = "ID: " + manager.CurrentDock.Id;
+                TBDockCover = "Cover: " + manager.CurrentDock.CoverStatus;
+                TBDockTime = "Time: " + manager.CurrentDock.LastUpdated.ToString();
+                TBDockWeaterWindSpeed = "Wind speed: " + manager.CurrentDock.WeatherData.WindSpeed.ToString();
+                TBDockWeaterTemperature = "Temperature: " + manager.CurrentDock.WeatherData.Temperature.ToString();
             }
         }
 
