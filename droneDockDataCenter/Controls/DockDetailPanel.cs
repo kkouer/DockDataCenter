@@ -8,6 +8,8 @@ using System.Threading;
 using System.Text;
 using System.Drawing;
 using GMap.NET.WindowsForms;
+using GMap.NET.WindowsPresentation;
+using DSkin.Forms;
 
 namespace droneDockDataCenter.Controls
 {
@@ -16,6 +18,29 @@ namespace droneDockDataCenter.Controls
 
         public string rtspAddress = @"https://mvvideo5.meitudata.com/571090934cea5517.mp4";
         public event EventHandler DeleteRequested;
+        public event EventHandler TakeoffCommand;
+        public event EventHandler RTLCommand;
+        public event GotoCommandHandler GotoCommand;
+        
+        
+        public delegate void GotoCommandHandler(object  sender, GotoCommandEventArgs e);
+
+        // 定义指点飞行事件参数类
+        public class GotoCommandEventArgs : EventArgs
+        {
+            public double Lat { get; }
+            public double Long { get; }
+
+            public double Alt { get; set; }
+
+            public GotoCommandEventArgs(double lat, double lon, double alt)
+            {
+                Lat = lat;
+                Long = lon;
+                Alt = alt;
+            }
+        }
+
 
         Gimbal gimbal;
         private void btnDelete_Click(object sender, EventArgs e)
@@ -25,7 +50,7 @@ namespace droneDockDataCenter.Controls
         }
 
 
-        GMapMarker droneIcon;
+        GMap.NET.WindowsForms.GMapMarker droneIcon;
 
         GMapOverlay marksOverlay = new GMapOverlay("marks");
 
@@ -48,6 +73,7 @@ namespace droneDockDataCenter.Controls
             
         }
 
+        private DSkin.Controls.DSkinContextMenuStrip DSkinContextMenuStrip;
         private void initMapcontrol()
         {
             gMapControl1.Manager.Mode = AccessMode.ServerAndCache;
@@ -61,6 +87,37 @@ namespace droneDockDataCenter.Controls
             gMapControl1.MapScaleInfoEnabled = false;
 
             gMapControl1.Overlays.Add(marksOverlay);
+
+            DSkinContextMenuStrip = new DSkin.Controls.DSkinContextMenuStrip();
+            DSkinContextMenuStrip.Items.Add("Fly to here");
+            DSkinContextMenuStrip.Items[0].Click += FlyToHereCommand_Click;
+            gMapControl1.MouseDown += GMapControl1_MouseDown;
+        }
+        PointLatLng GotoCommandLocation;
+        private void GMapControl1_MouseDown(object sender, MouseEventArgs e)
+        {
+            // 检查是否是鼠标右击事件
+            if (e.Button == MouseButtons.Right)
+            {
+                // 获取鼠标在地图上的经纬度坐标
+                PointLatLng point = gMapControl1.FromLocalToLatLng(e.X, e.Y);
+                GotoCommandLocation = point;
+
+                // 在指定位置显示上下文菜单
+                DSkinContextMenuStrip.Show(gMapControl1, e.Location);
+            }
+        }
+
+        private void FlyToHereCommand_Click(object sender, EventArgs e)
+        {
+            if (GotoCommandLocation != null)
+            {
+               if( DSkinMessageBox.Show("Fly to Lng:"+ GotoCommandLocation.Lng + " Lat:" + GotoCommandLocation.Lat +" ?", "Confirm",MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    // 触发DeleteRequested事件
+                    GotoCommand?.Invoke(this, new GotoCommandEventArgs(GotoCommandLocation.Lat,GotoCommandLocation.Lng,20));
+                }
+            }
         }
 
         private void dSkinButton2_Click(object sender, EventArgs e)
@@ -205,5 +262,16 @@ namespace droneDockDataCenter.Controls
             gMapControl1.ZoomAndCenterMarkers("marks");
         }
 
+        private void dSkinButtonTkoff_Click(object sender, EventArgs e)
+        {
+            // 触发DeleteRequested事件
+            TakeoffCommand?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void dSkinButtonRTL_Click(object sender, EventArgs e)
+        {
+            // 触发DeleteRequested事件
+            RTLCommand?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

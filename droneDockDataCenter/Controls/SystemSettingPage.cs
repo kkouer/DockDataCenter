@@ -20,7 +20,7 @@ namespace droneDockDataCenter.Controls
             InitializeComponent();
         }
 
-        void initConfig(AppSettingInfo appSetting)
+        public void initConfig(AppSettingInfo appSetting)
         {
             if (!string.IsNullOrEmpty(appSetting.MQTTServerAddress))
             {

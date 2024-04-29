@@ -11,6 +11,7 @@ using droneDockDataCenter.Controls;
 using System.Collections.Generic;
 using System.Xml;
 using System.IO;
+using DSkin.Forms;
 
 namespace droneDockDataCenter
 {
@@ -181,6 +182,28 @@ namespace droneDockDataCenter
         {
             docksList1.DockItemDoubleClick += DocksList1_DockItemDoubleClick;
             docksList1.DockItemClick += DocksList1_DockItemClick;
+            docksList1.DockCoverCloseCommand += DocksList1_DockCoverCloseCommand;
+            docksList1.DockCoverOpenCommand += DocksList1_DockCoverOpenCommand;
+        }
+
+        private void DocksList1_DockCoverOpenCommand(object sender, EventArgs e)
+        {
+            if (dockManager.CurrentDock == null)
+                return;
+            string payload = DockCommandGenerator.GenerateCommand(dockManager.CurrentDock.Id, "cover", "open");
+            string topic = "dock/" + dockManager.CurrentDock.Id + "/command";
+
+            publishCommand(topic, payload);
+        }
+
+        private void DocksList1_DockCoverCloseCommand(object sender, EventArgs e)
+        {
+            if (dockManager.CurrentDock == null)
+                return;
+            string payload = DockCommandGenerator.GenerateCommand(dockManager.CurrentDock.Id, "cover", "close");
+            string topic = "dock/" + dockManager.CurrentDock.Id + "/command";
+
+            publishCommand(topic, payload);
         }
 
         private void DocksList1_DockItemClick(Dock obj)
@@ -206,7 +229,40 @@ namespace droneDockDataCenter
             dockDetailPanel = new DockDetailPanel();
             dockDetailPanel.Dock = DockStyle.Fill;
             dockDetailPanel.DeleteRequested += DockDetailPanel_DeleteRequested;
+            dockDetailPanel.TakeoffCommand += DockDetailPanel_TakeoffCommand;
+            dockDetailPanel.RTLCommand += DockDetailPanel_RTLCommand;
+            dockDetailPanel.GotoCommand += DockDetailPanel_GotoCommand;
             this.panel1.Controls.Add(dockDetailPanel);
+        }
+
+        private void DockDetailPanel_GotoCommand(object sender, DockDetailPanel.GotoCommandEventArgs e)
+        {
+            if (droneManager.CurrentDrone == null)
+                return;
+            string payload = UAVCommandGenerator.GenerateCommand(droneManager.CurrentDrone.Id, "goto", e.Long, e.Lat,e.Alt);
+            string topic = "drone/" + droneManager.CurrentDrone.Id + "/command";
+
+            publishCommand(topic, payload);
+        }
+
+        private void DockDetailPanel_RTLCommand(object sender, EventArgs e)
+        {
+            if (droneManager.CurrentDrone == null)
+                return;
+            string payload = UAVCommandGenerator.GenerateCommand(droneManager.CurrentDrone.Id, "rtl", 0, 0, 0);
+            string topic = "drone/" + droneManager.CurrentDrone.Id + "/command";
+
+            publishCommand(topic, payload);
+        }
+
+        private void DockDetailPanel_TakeoffCommand(object sender, EventArgs e)
+        {
+            if (droneManager.CurrentDrone == null)
+                return;
+            string payload = UAVCommandGenerator.GenerateCommand(droneManager.CurrentDrone.Id, "takeoff", 0, 0, 0);
+            string topic = "drone/" + droneManager.CurrentDrone.Id + "/command";
+
+            publishCommand(topic, payload);
         }
 
         private void DockDetailPanel_DeleteRequested(object sender, EventArgs e)
@@ -220,7 +276,7 @@ namespace droneDockDataCenter
             this.docksList1.Visible = true;
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private async void buttonConnAndSubscribe_Click(object sender, EventArgs e)
         {
             if(mqttClient == null)
             {
@@ -235,6 +291,10 @@ namespace droneDockDataCenter
                     subscribeTopic($"dock/+/status");
 
                     subscribeTopic($"drone/+/status");
+
+                    subscribeTopic($"dock/+/response");
+
+                    subscribeTopic($"drone/+/response");
                 }
                 else
                 {
@@ -243,7 +303,7 @@ namespace droneDockDataCenter
             }
             catch (Exception ex)
             {
-                this.textBox1.Text = ($"连接到Broker失败：{ex.Message}");
+                this.textBoxStatus.Text = ($"连接到Broker失败：{ex.Message}");
             }
         }
 
@@ -279,7 +339,7 @@ namespace droneDockDataCenter
             {
                 if (arg.ClientWasConnected)
                 {
-                    this.textBox1.Text = "Disconnected";
+                    this.textBoxStatus.Text = "Disconnected";
                     button1.Text = "Connect";
                 }
             }));
@@ -295,7 +355,7 @@ namespace droneDockDataCenter
                 string QoS = arg.ApplicationMessage.QualityOfServiceLevel.ToString();
                 string Retained = arg.ApplicationMessage.Retain.ToString();
                 
-                this.textBox1.Text = $"[接收] >> Topic:{Topic} QoS:{QoS} Retained:{Retained} json:{json}";
+                this.textBoxStatus.Text = $"[接收] >> Topic:{Topic} QoS:{QoS} Retained:{Retained} json:{json}";
 
                 HandleMessage(Topic, json);
             }));
@@ -374,7 +434,7 @@ namespace droneDockDataCenter
         {
             this.BeginInvoke(new Action(() =>
             {
-                this.textBox1.Text = "Connected";//arg.ConnectResult.ResultCode.ToString();
+                this.textBoxStatus.Text = "Connected";//arg.ConnectResult.ResultCode.ToString();
                 button1.Text = "Disconnect";
             }));
             return Task.CompletedTask;
@@ -421,6 +481,34 @@ namespace droneDockDataCenter
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             saveAppConfig();
+        }
+
+        SystemSettingPage settingPage;
+        private void dSkinButton2_Click(object sender, EventArgs e)
+        {
+            if (settingPage == null)
+            {
+                settingPage = new SystemSettingPage();
+                settingPage.Dock = DockStyle.Fill;
+                settingPage.SaveConfigRequested += SettingPage_SaveConfigRequested;
+                this.panel1.Controls.Add(settingPage);
+                settingPage.BringToFront();
+
+                settingPage.initConfig(appSetting);
+            }
+            else
+            {
+                settingPage.Visible = true;
+                settingPage.BringToFront();
+            }
+        }
+
+        private void SettingPage_SaveConfigRequested(object sender, EventArgs e)
+        {
+            saveAppConfig();
+            DSkinMessageBox.Show("Setting saved successfully");
+            settingPage.Visible = false;
+            settingPage.SendToBack();
         }
     }
 }

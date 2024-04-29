@@ -37,23 +37,31 @@
             this.dSkinLabel3 = new DSkin.Controls.DSkinLabel();
             this.dSkinTextBox4 = new DSkin.Controls.DSkinTextBox();
             this.dSkinLabel4 = new DSkin.Controls.DSkinLabel();
+            this.dSkinLabel5 = new DSkin.Controls.DSkinLabel();
             this.SuspendLayout();
             // 
             // dSkinLabel1
             // 
+            this.dSkinLabel1.EffectValue = 1;
+            this.dSkinLabel1.ForeColor = System.Drawing.Color.White;
             this.dSkinLabel1.Location = new System.Drawing.Point(63, 39);
             this.dSkinLabel1.Name = "dSkinLabel1";
             this.dSkinLabel1.Size = new System.Drawing.Size(151, 21);
             this.dSkinLabel1.TabIndex = 2;
             this.dSkinLabel1.Text = "MQTT server address";
+            this.dSkinLabel1.TextEffect = DSkin.DirectUI.TextEffects.Shadow;
             // 
             // dSkinTextBox2
             // 
+            this.dSkinTextBox2.BackColor = System.Drawing.Color.LightSkyBlue;
             this.dSkinTextBox2.BitmapCache = false;
+            this.dSkinTextBox2.BorderColor = System.Drawing.Color.Gainsboro;
+            this.dSkinTextBox2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinTextBox2.ForeColor = System.Drawing.Color.White;
             this.dSkinTextBox2.Location = new System.Drawing.Point(243, 39);
             this.dSkinTextBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dSkinTextBox2.Name = "dSkinTextBox2";
-            this.dSkinTextBox2.Size = new System.Drawing.Size(406, 21);
+            this.dSkinTextBox2.Size = new System.Drawing.Size(406, 29);
             this.dSkinTextBox2.TabIndex = 1;
             this.dSkinTextBox2.TransparencyKey = System.Drawing.Color.Empty;
             this.dSkinTextBox2.WaterFont = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -70,14 +78,14 @@
             this.dSkinButton1.ForeColor = System.Drawing.Color.White;
             this.dSkinButton1.HoverColor = System.Drawing.Color.Empty;
             this.dSkinButton1.HoverImage = null;
-            this.dSkinButton1.Location = new System.Drawing.Point(803, 160);
+            this.dSkinButton1.Location = new System.Drawing.Point(803, 182);
             this.dSkinButton1.Name = "dSkinButton1";
             this.dSkinButton1.NormalImage = null;
             this.dSkinButton1.PressColor = System.Drawing.Color.Empty;
             this.dSkinButton1.PressedImage = null;
             this.dSkinButton1.Radius = 10;
             this.dSkinButton1.ShowButtonBorder = true;
-            this.dSkinButton1.Size = new System.Drawing.Size(108, 62);
+            this.dSkinButton1.Size = new System.Drawing.Size(108, 40);
             this.dSkinButton1.TabIndex = 6;
             this.dSkinButton1.Text = "Save";
             this.dSkinButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -86,11 +94,15 @@
             // 
             // dSkinTextBox1
             // 
+            this.dSkinTextBox1.BackColor = System.Drawing.Color.LightSkyBlue;
             this.dSkinTextBox1.BitmapCache = false;
+            this.dSkinTextBox1.BorderColor = System.Drawing.Color.Gainsboro;
+            this.dSkinTextBox1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinTextBox1.ForeColor = System.Drawing.Color.White;
             this.dSkinTextBox1.Location = new System.Drawing.Point(243, 78);
             this.dSkinTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dSkinTextBox1.Name = "dSkinTextBox1";
-            this.dSkinTextBox1.Size = new System.Drawing.Size(406, 21);
+            this.dSkinTextBox1.Size = new System.Drawing.Size(406, 29);
             this.dSkinTextBox1.TabIndex = 1;
             this.dSkinTextBox1.TransparencyKey = System.Drawing.Color.Empty;
             this.dSkinTextBox1.WaterFont = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -99,19 +111,26 @@
             // 
             // dSkinLabel2
             // 
+            this.dSkinLabel2.EffectValue = 1;
+            this.dSkinLabel2.ForeColor = System.Drawing.Color.White;
             this.dSkinLabel2.Location = new System.Drawing.Point(63, 78);
             this.dSkinLabel2.Name = "dSkinLabel2";
             this.dSkinLabel2.Size = new System.Drawing.Size(127, 21);
             this.dSkinLabel2.TabIndex = 2;
             this.dSkinLabel2.Text = "MQTT server port";
+            this.dSkinLabel2.TextEffect = DSkin.DirectUI.TextEffects.Shadow;
             // 
             // dSkinTextBox3
             // 
+            this.dSkinTextBox3.BackColor = System.Drawing.Color.LightSkyBlue;
             this.dSkinTextBox3.BitmapCache = false;
+            this.dSkinTextBox3.BorderColor = System.Drawing.Color.Gainsboro;
+            this.dSkinTextBox3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinTextBox3.ForeColor = System.Drawing.Color.White;
             this.dSkinTextBox3.Location = new System.Drawing.Point(243, 118);
             this.dSkinTextBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dSkinTextBox3.Name = "dSkinTextBox3";
-            this.dSkinTextBox3.Size = new System.Drawing.Size(406, 21);
+            this.dSkinTextBox3.Size = new System.Drawing.Size(406, 29);
             this.dSkinTextBox3.TabIndex = 1;
             this.dSkinTextBox3.TransparencyKey = System.Drawing.Color.Empty;
             this.dSkinTextBox3.WaterFont = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -120,19 +139,26 @@
             // 
             // dSkinLabel3
             // 
+            this.dSkinLabel3.EffectValue = 1;
+            this.dSkinLabel3.ForeColor = System.Drawing.Color.White;
             this.dSkinLabel3.Location = new System.Drawing.Point(63, 118);
             this.dSkinLabel3.Name = "dSkinLabel3";
             this.dSkinLabel3.Size = new System.Drawing.Size(170, 21);
             this.dSkinLabel3.TabIndex = 2;
             this.dSkinLabel3.Text = "MQTT server user name";
+            this.dSkinLabel3.TextEffect = DSkin.DirectUI.TextEffects.Shadow;
             // 
             // dSkinTextBox4
             // 
+            this.dSkinTextBox4.BackColor = System.Drawing.Color.LightSkyBlue;
             this.dSkinTextBox4.BitmapCache = false;
+            this.dSkinTextBox4.BorderColor = System.Drawing.Color.Gainsboro;
+            this.dSkinTextBox4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinTextBox4.ForeColor = System.Drawing.Color.White;
             this.dSkinTextBox4.Location = new System.Drawing.Point(243, 158);
             this.dSkinTextBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dSkinTextBox4.Name = "dSkinTextBox4";
-            this.dSkinTextBox4.Size = new System.Drawing.Size(406, 21);
+            this.dSkinTextBox4.Size = new System.Drawing.Size(406, 29);
             this.dSkinTextBox4.TabIndex = 1;
             this.dSkinTextBox4.TransparencyKey = System.Drawing.Color.Empty;
             this.dSkinTextBox4.WaterFont = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -141,16 +167,31 @@
             // 
             // dSkinLabel4
             // 
+            this.dSkinLabel4.EffectValue = 1;
+            this.dSkinLabel4.ForeColor = System.Drawing.Color.White;
             this.dSkinLabel4.Location = new System.Drawing.Point(63, 158);
             this.dSkinLabel4.Name = "dSkinLabel4";
             this.dSkinLabel4.Size = new System.Drawing.Size(163, 21);
             this.dSkinLabel4.TabIndex = 2;
             this.dSkinLabel4.Text = "MQTT server password";
+            this.dSkinLabel4.TextEffect = DSkin.DirectUI.TextEffects.Shadow;
+            // 
+            // dSkinLabel5
+            // 
+            this.dSkinLabel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dSkinLabel5.ForeColor = System.Drawing.Color.OrangeRed;
+            this.dSkinLabel5.Location = new System.Drawing.Point(63, 204);
+            this.dSkinLabel5.Name = "dSkinLabel5";
+            this.dSkinLabel5.Size = new System.Drawing.Size(164, 21);
+            this.dSkinLabel5.TabIndex = 7;
+            this.dSkinLabel5.Text = "修改参数后重启软件生效";
+            this.dSkinLabel5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // SystemSettingPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.dSkinLabel5);
             this.Controls.Add(this.dSkinButton1);
             this.Controls.Add(this.dSkinLabel4);
             this.Controls.Add(this.dSkinTextBox4);
@@ -180,5 +221,6 @@
         private DSkin.Controls.DSkinLabel dSkinLabel3;
         private DSkin.Controls.DSkinTextBox dSkinTextBox4;
         private DSkin.Controls.DSkinLabel dSkinLabel4;
+        private DSkin.Controls.DSkinLabel dSkinLabel5;
     }
 }

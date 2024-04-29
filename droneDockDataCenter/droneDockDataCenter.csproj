@@ -125,6 +125,8 @@
     <Compile Include="Controls\SystemSettingPage.Designer.cs">
       <DependentUpon>SystemSettingPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modle\DockCommandGenerator.cs" />
+    <Compile Include="Modle\UAVCommandGenerator.cs" />
     <Compile Include="FFmpeg\FFmpegBinariesHelper.cs" />
     <Compile Include="FFmpeg\tstRtmp.cs" />
     <Compile Include="MainForm.cs">

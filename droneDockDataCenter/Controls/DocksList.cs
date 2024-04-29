@@ -10,6 +10,9 @@ namespace droneDockDataCenter.Controls
     public partial class DocksList : UserControl
     {
         List<Dock> docks = new List<Dock>();
+
+        public event EventHandler DockCoverCloseCommand;
+        public event EventHandler DockCoverOpenCommand;
         public DocksList()
         {
             InitializeComponent();
@@ -172,6 +175,14 @@ namespace droneDockDataCenter.Controls
             //StartRefreshThread();
         }
 
-        
+        private void dSkinButton2_Click(object sender, EventArgs e)
+        {
+            DockCoverOpenCommand?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void dSkinButton1_Click(object sender, EventArgs e)
+        {
+            DockCoverCloseCommand?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

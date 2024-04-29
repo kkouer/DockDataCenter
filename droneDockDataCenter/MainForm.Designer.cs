@@ -30,32 +30,39 @@ namespace droneDockDataCenter
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new DSkin.Controls.DSkinTextBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.textBoxStatus = new DSkin.Controls.DSkinTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.controlHost1 = new DSkin.Controls.ControlHost();
+            this.dSkinButton2 = new DSkin.Controls.DSkinButton();
             this.dSkinButton1 = new DSkin.Controls.DSkinButton();
             this.button1 = new DSkin.Controls.DSkinButton();
+            this.dSkinGroupBox1 = new DSkin.Controls.DSkinGroupBox();
             this.docksList1 = new droneDockDataCenter.Controls.DocksList();
             this.panel1.SuspendLayout();
             this.controlHost1.SuspendLayout();
+            this.dSkinGroupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox1
+            // textBoxStatus
             // 
-            this.textBox1.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.textBox1.BitmapCache = false;
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox1.ForeColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(0, 532);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(954, 23);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.TransparencyKey = System.Drawing.Color.Empty;
-            this.textBox1.WaterFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox1.WaterText = "";
-            this.textBox1.WaterTextOffset = new System.Drawing.Point(0, 0);
+            this.textBoxStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxStatus.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.textBoxStatus.BitmapCache = false;
+            this.textBoxStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxStatus.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBoxStatus.ForeColor = System.Drawing.Color.White;
+            this.textBoxStatus.Location = new System.Drawing.Point(4, 540);
+            this.textBoxStatus.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxStatus.Name = "textBoxStatus";
+            this.textBoxStatus.Size = new System.Drawing.Size(950, 16);
+            this.textBoxStatus.TabIndex = 1;
+            this.textBoxStatus.TabStop = false;
+            this.textBoxStatus.TransparencyKey = System.Drawing.Color.Empty;
+            this.textBoxStatus.WaterFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBoxStatus.WaterText = "Info";
+            this.textBoxStatus.WaterTextOffset = new System.Drawing.Point(5, 0);
             // 
             // panel1
             // 
@@ -70,9 +77,8 @@ namespace droneDockDataCenter
             // 
             // controlHost1
             // 
-            this.controlHost1.Controls.Add(this.dSkinButton1);
-            this.controlHost1.Controls.Add(this.button1);
-            this.controlHost1.Controls.Add(this.textBox1);
+            this.controlHost1.Controls.Add(this.dSkinGroupBox1);
+            this.controlHost1.Controls.Add(this.textBoxStatus);
             this.controlHost1.Controls.Add(this.panel1);
             this.controlHost1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.controlHost1.Location = new System.Drawing.Point(4, 34);
@@ -81,6 +87,30 @@ namespace droneDockDataCenter
             this.controlHost1.TabIndex = 4;
             this.controlHost1.Text = "controlHost1";
             this.controlHost1.TransparencyKey = System.Drawing.Color.Empty;
+            // 
+            // dSkinButton2
+            // 
+            this.dSkinButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dSkinButton2.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButton2.ButtonBorderWidth = 1;
+            this.dSkinButton2.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButton2.Font = new System.Drawing.Font("微软雅黑", 14.25F);
+            this.dSkinButton2.ForeColor = System.Drawing.Color.White;
+            this.dSkinButton2.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButton2.HoverImage = null;
+            this.dSkinButton2.Location = new System.Drawing.Point(6, 439);
+            this.dSkinButton2.Name = "dSkinButton2";
+            this.dSkinButton2.NormalImage = null;
+            this.dSkinButton2.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButton2.PressedImage = null;
+            this.dSkinButton2.Radius = 10;
+            this.dSkinButton2.ShowButtonBorder = true;
+            this.dSkinButton2.Size = new System.Drawing.Size(121, 34);
+            this.dSkinButton2.TabIndex = 6;
+            this.dSkinButton2.Text = "Settings";
+            this.dSkinButton2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButton2.TextPadding = 0;
+            this.dSkinButton2.Click += new System.EventHandler(this.dSkinButton2_Click);
             // 
             // dSkinButton1
             // 
@@ -92,14 +122,14 @@ namespace droneDockDataCenter
             this.dSkinButton1.ForeColor = System.Drawing.Color.White;
             this.dSkinButton1.HoverColor = System.Drawing.Color.Empty;
             this.dSkinButton1.HoverImage = null;
-            this.dSkinButton1.Location = new System.Drawing.Point(802, 461);
+            this.dSkinButton1.Location = new System.Drawing.Point(6, 493);
             this.dSkinButton1.Name = "dSkinButton1";
             this.dSkinButton1.NormalImage = null;
             this.dSkinButton1.PressColor = System.Drawing.Color.Empty;
             this.dSkinButton1.PressedImage = null;
             this.dSkinButton1.Radius = 10;
             this.dSkinButton1.ShowButtonBorder = true;
-            this.dSkinButton1.Size = new System.Drawing.Size(152, 64);
+            this.dSkinButton1.Size = new System.Drawing.Size(121, 34);
             this.dSkinButton1.TabIndex = 5;
             this.dSkinButton1.Text = "Detail";
             this.dSkinButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -116,19 +146,47 @@ namespace droneDockDataCenter
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.HoverColor = System.Drawing.Color.Empty;
             this.button1.HoverImage = null;
-            this.button1.Location = new System.Drawing.Point(802, 16);
+            this.button1.Location = new System.Drawing.Point(6, 37);
             this.button1.Name = "button1";
             this.button1.NormalImage = null;
             this.button1.PressColor = System.Drawing.Color.Empty;
             this.button1.PressedImage = null;
             this.button1.Radius = 10;
             this.button1.ShowButtonBorder = true;
-            this.button1.Size = new System.Drawing.Size(152, 64);
+            this.button1.Size = new System.Drawing.Size(121, 34);
             this.button1.TabIndex = 4;
             this.button1.Text = "Connect";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.button1.TextPadding = 0;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.buttonConnAndSubscribe_Click);
+            // 
+            // dSkinGroupBox1
+            // 
+            this.dSkinGroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dSkinGroupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.dSkinGroupBox1.BorderColor = System.Drawing.Color.Transparent;
+            this.dSkinGroupBox1.Borders.AllColor = System.Drawing.Color.White;
+            this.dSkinGroupBox1.Borders.AllWidth = 0;
+            this.dSkinGroupBox1.Borders.BottomColor = System.Drawing.Color.White;
+            this.dSkinGroupBox1.Borders.BottomWidth = 0;
+            this.dSkinGroupBox1.Borders.LeftColor = System.Drawing.Color.White;
+            this.dSkinGroupBox1.Borders.LeftWidth = 2;
+            this.dSkinGroupBox1.Borders.RightColor = System.Drawing.Color.White;
+            this.dSkinGroupBox1.Borders.RightWidth = 0;
+            this.dSkinGroupBox1.Borders.TopColor = System.Drawing.Color.White;
+            this.dSkinGroupBox1.Borders.TopWidth = 0;
+            this.dSkinGroupBox1.Controls.Add(this.dSkinButton2);
+            this.dSkinGroupBox1.Controls.Add(this.button1);
+            this.dSkinGroupBox1.Controls.Add(this.dSkinButton1);
+            this.dSkinGroupBox1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinGroupBox1.ForeColor = System.Drawing.Color.White;
+            this.dSkinGroupBox1.Location = new System.Drawing.Point(816, 3);
+            this.dSkinGroupBox1.Name = "dSkinGroupBox1";
+            this.dSkinGroupBox1.RightBottom = ((System.Drawing.Image)(resources.GetObject("dSkinGroupBox1.RightBottom")));
+            this.dSkinGroupBox1.Size = new System.Drawing.Size(135, 530);
+            this.dSkinGroupBox1.TabIndex = 7;
+            this.dSkinGroupBox1.Text = "Control Panel";
             // 
             // docksList1
             // 
@@ -171,17 +229,20 @@ namespace droneDockDataCenter
             this.panel1.ResumeLayout(false);
             this.controlHost1.ResumeLayout(false);
             this.controlHost1.PerformLayout();
+            this.dSkinGroupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private DSkin.Controls.DSkinTextBox textBox1;
+        private DSkin.Controls.DSkinTextBox textBoxStatus;
         private DocksList docksList1;
         private System.Windows.Forms.Panel panel1;
         private DSkin.Controls.ControlHost controlHost1;
         private DSkin.Controls.DSkinButton button1;
         private DSkin.Controls.DSkinButton dSkinButton1;
+        private DSkin.Controls.DSkinButton dSkinButton2;
+        private DSkin.Controls.DSkinGroupBox dSkinGroupBox1;
     }
 }
 
