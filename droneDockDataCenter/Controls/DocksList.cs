@@ -1,4 +1,5 @@
 ﻿using droneDockDataCenter.Modle;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace droneDockDataCenter.Controls
 {
     public partial class DocksList : UserControl
     {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(DocksList));
         List<Dock> docks = new List<Dock>();
 
         public event EventHandler DockCoverCloseCommand;
@@ -72,7 +74,7 @@ namespace droneDockDataCenter.Controls
                 item.ImageKey = dock.IsOnLine() ? "dock_online" : "dock_offline";
                 listView1.Items.Add(item); // 添加项到 ListView
             }
-
+            logger.Info("initListView");
         }
 
         
@@ -167,6 +169,7 @@ namespace droneDockDataCenter.Controls
             {
                 listView1.Items[selectedIndex].Selected = true;
             }
+            logger.Info("UpdateListView");
         }
 
         private void DocksList_Load(object sender, EventArgs e)
@@ -178,11 +181,15 @@ namespace droneDockDataCenter.Controls
         private void dSkinButton2_Click(object sender, EventArgs e)
         {
             DockCoverOpenCommand?.Invoke(this, EventArgs.Empty);
+            logger.Info("DockCoverOpenCommand");
+
         }
 
         private void dSkinButton1_Click(object sender, EventArgs e)
         {
             DockCoverCloseCommand?.Invoke(this, EventArgs.Empty);
+            logger.Info("DockCoverCloseCommand");
+
         }
     }
 }

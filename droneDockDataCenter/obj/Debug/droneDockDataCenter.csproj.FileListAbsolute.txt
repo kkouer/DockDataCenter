@@ -35,3 +35,5 @@ D:\droneDock\droneDockDataCenter\droneDockDataCenter\bin\Debug\EntityFramework.x
 D:\droneDock\droneDockDataCenter\droneDockDataCenter\bin\Debug\EntityFramework.SqlServer.xml
 D:\droneDock\droneDockDataCenter\droneDockDataCenter\bin\Debug\System.Data.SQLite.xml
 D:\droneDock\droneDockDataCenter\droneDockDataCenter\obj\Debug\droneDockDataCenter.Controls.SystemSettingPage.resources
+D:\droneDock\droneDockDataCenter\droneDockDataCenter\bin\Debug\log4net.dll
+D:\droneDock\droneDockDataCenter\droneDockDataCenter\bin\Debug\log4net.xml

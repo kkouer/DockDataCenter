@@ -10,11 +10,13 @@ using System.Drawing;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsPresentation;
 using DSkin.Forms;
+using log4net;
 
 namespace droneDockDataCenter.Controls
 {
     public partial class DockDetailPanel : UserControl
     {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(DockDetailPanel));
 
         public string rtspAddress = @"https://mvvideo5.meitudata.com/571090934cea5517.mp4";
         public event EventHandler DeleteRequested;
@@ -47,6 +49,7 @@ namespace droneDockDataCenter.Controls
         {
             // 触发DeleteRequested事件
             DeleteRequested?.Invoke(this, EventArgs.Empty);
+            logger.Info("exit dockDetailPanel");
         }
 
 
@@ -70,7 +73,7 @@ namespace droneDockDataCenter.Controls
         private void initGimbalControl()
         {
             gimbal = new Gimbal();
-            
+            logger.Info("init gimbal");
         }
 
         private DSkin.Controls.DSkinContextMenuStrip DSkinContextMenuStrip;
@@ -92,6 +95,7 @@ namespace droneDockDataCenter.Controls
             DSkinContextMenuStrip.Items.Add("Fly to here");
             DSkinContextMenuStrip.Items[0].Click += FlyToHereCommand_Click;
             gMapControl1.MouseDown += GMapControl1_MouseDown;
+            logger.Info("init map");
         }
         PointLatLng GotoCommandLocation;
         private void GMapControl1_MouseDown(object sender, MouseEventArgs e)
@@ -116,6 +120,7 @@ namespace droneDockDataCenter.Controls
                 {
                     // 触发DeleteRequested事件
                     GotoCommand?.Invoke(this, new GotoCommandEventArgs(GotoCommandLocation.Lat,GotoCommandLocation.Lng,20));
+                    logger.Info("Fly to here click");
                 }
             }
         }
@@ -134,6 +139,7 @@ namespace droneDockDataCenter.Controls
                     dSkinButton2.Enabled = true;
                     dSkinButton2.Text = "Play";
                     rtmp = null;
+                    logger.Info("Stop rtsp video");
                 }
                 else
                 {
@@ -144,10 +150,15 @@ namespace droneDockDataCenter.Controls
                     thPlayer.Start();
                     dSkinButton2.Text = "Stop";
                     dSkinButton2.Enabled = false;
+                    logger.Info("Play rtsp video");
 
                 }
             }
-            catch (Exception x) { MessageBox.Show(x.Message, "Error"); }
+            catch (Exception x) 
+            { 
+                MessageBox.Show(x.Message, "Error"); 
+                logger.Error(x.Message);
+            }
             finally { }
         }
         private unsafe void DeCoding()
@@ -260,6 +271,9 @@ namespace droneDockDataCenter.Controls
             marksOverlay.Markers.Clear();
             marksOverlay.Markers.Add(droneIcon);
             gMapControl1.ZoomAndCenterMarkers("marks");
+
+            logger.Info("UpdateDroneInfoOnView");
+
         }
 
         private void dSkinButtonTkoff_Click(object sender, EventArgs e)

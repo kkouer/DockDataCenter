@@ -12,11 +12,14 @@ using System.Collections.Generic;
 using System.Xml;
 using System.IO;
 using DSkin.Forms;
+using log4net;
 
 namespace droneDockDataCenter
 {
     public partial class MainForm : DSkin.Forms.DSkinForm
     {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(MainForm));
+
         public IMqttClient mqttClient;
         public MqttClientOptions mqttClientOptions;
 
@@ -176,6 +179,7 @@ namespace droneDockDataCenter
             initMqttClient();
             initDockList();
             readAppConfig();
+            logger.Info("MainForm init");
         }
 
         private void initDockList()
@@ -304,6 +308,7 @@ namespace droneDockDataCenter
             catch (Exception ex)
             {
                 this.textBoxStatus.Text = ($"连接到Broker失败：{ex.Message}");
+                logger.Error( ex );
             }
         }
 

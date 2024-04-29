@@ -1,4 +1,5 @@
 ﻿using droneDockDataCenter.Modle;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,9 @@ namespace droneDockDataCenter.Controls
 {
     public partial class SystemSettingPage : UserControl
     {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(SystemSettingPage));
+
+
         public event EventHandler SaveConfigRequested;
 
         public SystemSettingPage()
@@ -38,12 +42,15 @@ namespace droneDockDataCenter.Controls
             {
                 dSkinTextBox4.Text = appSetting.MQTTServerPassword;
             }
+            logger.Info("initConfig");
+
         }
 
         private void dSkinButtonSaveConfig_Click(object sender, EventArgs e)
         {
             // 触发DeleteRequested事件
             SaveConfigRequested?.Invoke(this, EventArgs.Empty);
+            logger.Info("SaveConfigRequested");
         }
     }
 }
