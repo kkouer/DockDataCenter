@@ -11,6 +11,9 @@ using GMap.NET.WindowsForms;
 using GMap.NET.WindowsPresentation;
 using DSkin.Forms;
 using log4net;
+using System.IO;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace droneDockDataCenter.Controls
 {
@@ -18,7 +21,7 @@ namespace droneDockDataCenter.Controls
     {
         private static readonly ILog logger = LogManager.GetLogger(typeof(DockDetailPanel));
 
-        public string rtspAddress = @"https://mvvideo5.meitudata.com/571090934cea5517.mp4";
+        public string rtspAddress = @"rtmp://liteavapp.qcloud.com/live/liteavdemoplayerstreamid";
         public event EventHandler DeleteRequested;
         public event EventHandler TakeoffCommand;
         public event EventHandler RTLCommand;
@@ -134,9 +137,8 @@ namespace droneDockDataCenter.Controls
                 {
                     rtmp.Stop();
                     //thPlayer.Abort();
-                    thPlayer = null;
+                    //thPlayer = null;
                     //controlHostVideoPanel.Visible = false;
-                    dSkinButton2.Enabled = true;
                     dSkinButton2.Text = "Play";
                     rtmp = null;
                     logger.Info("Stop rtsp video");
@@ -149,7 +151,6 @@ namespace droneDockDataCenter.Controls
                     thPlayer.Priority = ThreadPriority.Highest;
                     thPlayer.Start();
                     dSkinButton2.Text = "Stop";
-                    dSkinButton2.Enabled = false;
                     logger.Info("Play rtsp video");
 
                 }
@@ -161,6 +162,9 @@ namespace droneDockDataCenter.Controls
             }
             finally { }
         }
+
+        
+
         private unsafe void DeCoding()
         {
             try
@@ -170,13 +174,12 @@ namespace droneDockDataCenter.Controls
 
                 Bitmap oldBmp = null;
 
-
+                
                 // 更新图片显示
-                tstRtmp.ShowBitmap show = (bmp) =>
+                tstRtmp.ShowBitmapDelegate show = (bmp) =>
                 {
                     this.Invoke(new MethodInvoker(() =>
                     {
-
                         pictureBox1.Image = bmp;
                         if (oldBmp != null)
                         {
@@ -286,6 +289,74 @@ namespace droneDockDataCenter.Controls
         {
             // 触发DeleteRequested事件
             RTLCommand?.Invoke(this, EventArgs.Empty);
+        }
+
+        private Process _ffmpegProcess;
+        private bool _isRecording;
+        private string _outputFileName;
+
+        public void StartRecording(string rtspUrl, string outputFileName)
+        {
+            if (_ffmpegProcess != null && !_ffmpegProcess.HasExited)
+                throw new InvalidOperationException("Recording is already in progress.");
+
+            _outputFileName = outputFileName; // Save the output file name
+
+            string arguments = $"-i {rtspUrl} -c copy {_outputFileName}";
+
+            _ffmpegProcess = new Process();
+            _ffmpegProcess.StartInfo.FileName = "FFMpeg/ffmpeg.exe";
+            _ffmpegProcess.StartInfo.Arguments = arguments;
+            _ffmpegProcess.ErrorDataReceived += Ffmpeg_ErrorDataReceived;
+            _ffmpegProcess.StartInfo.UseShellExecute = false;
+            _ffmpegProcess.StartInfo.RedirectStandardOutput = true;
+            _ffmpegProcess.StartInfo.CreateNoWindow = true;
+
+            _ffmpegProcess.Start();
+
+            _isRecording = true;
+        }
+
+        private void Ffmpeg_ErrorDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            Console.WriteLine(e.Data);
+        }
+
+        public void StopRecording()
+        {
+            if (!_isRecording)
+                return;
+
+            _isRecording = false;
+
+            if (_ffmpegProcess != null && !_ffmpegProcess.HasExited)
+            {
+                GenerateConsoleCtrlEvent(0, (uint)_ffmpegProcess.SessionId);
+                _ffmpegProcess.WaitForExit();
+            }
+        }
+
+        // 导入 Windows API 函数
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool GenerateConsoleCtrlEvent(uint dwCtrlEvent, uint dwProcessGroupId);
+
+        bool isREC = false;
+        private void dSkinButton3_Click(object sender, EventArgs e)
+        {
+            _outputFileName = $"record_{DateTime.Now:yyyyMMddHHmmss}.mp4";
+            if (!_isRecording)
+            {
+
+                StartRecording(rtspAddress, _outputFileName);
+                dSkinButton3.Text = "Stop Rec";
+            }
+            else
+            {
+                StopRecording();
+                dSkinButton3.Text = "Start Rec";
+
+            }
         }
     }
 }

@@ -48,6 +48,7 @@
             this.hudControl1 = new droneDockDataCenter.Controls.HUDControl();
             this.dSkinTabPage2 = new DSkin.Controls.DSkinTabPage();
             this.pictureBox1 = new DSkin.Controls.DSkinPictureBox();
+            this.dSkinButton3 = new DSkin.Controls.DSkinButton();
             this.dSkinGroupBox1.SuspendLayout();
             this.dSkinTableLayoutPanel1.SuspendLayout();
             this.dSkinTabControl1.SuspendLayout();
@@ -365,6 +366,7 @@
             // dSkinTabPage2
             // 
             this.dSkinTabPage2.BackColor = System.Drawing.Color.Transparent;
+            this.dSkinTabPage2.Controls.Add(this.dSkinButton3);
             this.dSkinTabPage2.Controls.Add(this.dSkinButton2);
             this.dSkinTabPage2.Controls.Add(this.pictureBox1);
             this.dSkinTabPage2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -389,6 +391,30 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.Text = "dSkinPictureBox1";
+            // 
+            // dSkinButton3
+            // 
+            this.dSkinButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dSkinButton3.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButton3.ButtonBorderWidth = 1;
+            this.dSkinButton3.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButton3.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton3.ForeColor = System.Drawing.Color.White;
+            this.dSkinButton3.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButton3.HoverImage = null;
+            this.dSkinButton3.Location = new System.Drawing.Point(679, 482);
+            this.dSkinButton3.Name = "dSkinButton3";
+            this.dSkinButton3.NormalImage = null;
+            this.dSkinButton3.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButton3.PressedImage = null;
+            this.dSkinButton3.Radius = 10;
+            this.dSkinButton3.ShowButtonBorder = true;
+            this.dSkinButton3.Size = new System.Drawing.Size(96, 36);
+            this.dSkinButton3.TabIndex = 8;
+            this.dSkinButton3.Text = "REC";
+            this.dSkinButton3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButton3.TextPadding = 0;
+            this.dSkinButton3.Click += new System.EventHandler(this.dSkinButton3_Click);
             // 
             // DockDetailPanel
             // 
@@ -431,5 +457,6 @@
         private DSkin.Controls.DSkinPen dSkinPen1;
         private DSkin.Controls.DSkinButton dSkinButtonTkoff;
         private DSkin.Controls.DSkinButton dSkinButtonRTL;
+        private DSkin.Controls.DSkinButton dSkinButton3;
     }
 }

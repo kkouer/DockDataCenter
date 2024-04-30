@@ -1,13 +1,10 @@
-﻿using FFmpeg.AutoGen;
+﻿using DSkin;
+using FFmpeg.AutoGen;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace droneDockDataCenter.FFMpeg
 {
@@ -17,7 +14,8 @@ namespace droneDockDataCenter.FFMpeg
         /// 显示图片委托
         /// </summary>
         /// <param name="bitmap"></param>
-        public delegate void ShowBitmap(Bitmap bitmap);
+        public delegate void ShowBitmapDelegate(Bitmap bitmap);
+
         /// <summary>
         /// 执行控制变量
         /// </summary>
@@ -27,7 +25,7 @@ namespace droneDockDataCenter.FFMpeg
         /// </summary>
         /// <param name="show">解码完成回调函数</param>
         /// <param name="url">播放地址，也可以是本地文件地址</param>
-        public unsafe void Start(ShowBitmap show, string url)
+        public unsafe void Start(ShowBitmapDelegate show, string url)
         {
             CanRun = true;
 
@@ -228,6 +226,7 @@ namespace droneDockDataCenter.FFMpeg
 
             #endregion
         }
+
 
         /// <summary>
         /// 获取ffmpeg错误信息
