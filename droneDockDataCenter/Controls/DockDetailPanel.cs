@@ -14,6 +14,7 @@ using log4net;
 using System.IO;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
 namespace droneDockDataCenter.Controls
 {
@@ -309,12 +310,14 @@ namespace droneDockDataCenter.Controls
             _ffmpegProcess.StartInfo.Arguments = arguments;
             _ffmpegProcess.ErrorDataReceived += Ffmpeg_ErrorDataReceived;
             _ffmpegProcess.StartInfo.UseShellExecute = false;
-            _ffmpegProcess.StartInfo.RedirectStandardOutput = true;
+            _ffmpegProcess.StartInfo.RedirectStandardError = true;
+            _ffmpegProcess.StartInfo.RedirectStandardInput = true;
             _ffmpegProcess.StartInfo.CreateNoWindow = true;
-
             _ffmpegProcess.Start();
+            _ffmpegProcess.BeginErrorReadLine();
 
             _isRecording = true;
+            
         }
 
         private void Ffmpeg_ErrorDataReceived(object sender, DataReceivedEventArgs e)
@@ -327,28 +330,23 @@ namespace droneDockDataCenter.Controls
             if (!_isRecording)
                 return;
 
-            _isRecording = false;
-
             if (_ffmpegProcess != null && !_ffmpegProcess.HasExited)
             {
-                GenerateConsoleCtrlEvent(0, (uint)_ffmpegProcess.SessionId);
-                _ffmpegProcess.WaitForExit();
+                _ffmpegProcess.StandardInput.WriteLine("q");
+                _ffmpegProcess.Close();
+                _ffmpegProcess.Dispose();
             }
+            _isRecording = false;
         }
 
-        // 导入 Windows API 函数
-        [DllImport("kernel32.dll", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool GenerateConsoleCtrlEvent(uint dwCtrlEvent, uint dwProcessGroupId);
 
-        bool isREC = false;
         private void dSkinButton3_Click(object sender, EventArgs e)
         {
             _outputFileName = $"record_{DateTime.Now:yyyyMMddHHmmss}.mp4";
             if (!_isRecording)
             {
 
-                StartRecording(rtspAddress, _outputFileName);
+                 StartRecording(rtspAddress, _outputFileName);
                 dSkinButton3.Text = "Stop Rec";
             }
             else
