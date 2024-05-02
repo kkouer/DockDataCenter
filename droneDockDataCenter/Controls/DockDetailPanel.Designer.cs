@@ -15,6 +15,10 @@
         {
             if (disposing && (components != null))
             {
+                if (_isRecording)
+                {
+                    StopRecording().Wait(); // 等待停止录制完成
+                }
                 components.Dispose();
             }
             base.Dispose(disposing);

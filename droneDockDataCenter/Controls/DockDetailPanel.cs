@@ -15,6 +15,8 @@ using System.IO;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using System.Diagnostics.Eventing.Reader;
+using System.Collections.Concurrent;
 
 namespace droneDockDataCenter.Controls
 {
@@ -53,6 +55,7 @@ namespace droneDockDataCenter.Controls
         {
             // 触发DeleteRequested事件
             DeleteRequested?.Invoke(this, EventArgs.Empty);
+            //checkFormClosing();
             logger.Info("exit dockDetailPanel");
         }
 
@@ -69,7 +72,29 @@ namespace droneDockDataCenter.Controls
             initMapcontrol();
 
             initGimbalControl();
+
         }
+
+
+
+        public void checkFormClosing()
+        {
+            if (thPlayer != null)
+            {
+                rtmp.Stop();
+                thPlayer.Abort();
+                thPlayer = null;
+                rtmp = null;
+                logger.Info("formclosing stop play video");
+            }
+
+            if (!_isRecording) 
+            { 
+                StopRecording();
+                logger.Info("formclosing stop rec video");
+            }
+        }
+
         tstRtmp rtmp;// = new tstRtmp();
         Thread thPlayer;
 
@@ -137,8 +162,8 @@ namespace droneDockDataCenter.Controls
                 if (thPlayer != null)
                 {
                     rtmp.Stop();
-                    //thPlayer.Abort();
-                    //thPlayer = null;
+                    thPlayer.Abort();
+                    thPlayer = null;
                     //controlHostVideoPanel.Visible = false;
                     dSkinButton2.Text = "Play";
                     rtmp = null;
@@ -164,38 +189,45 @@ namespace droneDockDataCenter.Controls
             finally { }
         }
 
-        
+
+
 
         private unsafe void DeCoding()
         {
             try
             {
                 Console.WriteLine("DeCoding run...");
-
-
                 Bitmap oldBmp = null;
 
-                
                 // 更新图片显示
                 tstRtmp.ShowBitmapDelegate show = (bmp) =>
                 {
-                    this.Invoke(new MethodInvoker(() =>
+                    try
                     {
-                        pictureBox1.Image = bmp;
-                        if (oldBmp != null)
+                        this.Invoke(new MethodInvoker(() =>
                         {
-
-                            oldBmp.Dispose();
-                            oldBmp = null;
-                        }
-                        oldBmp = bmp;
-
-                    }));
+                            try
+                            {
+                                pictureBox1.Image = bmp;
+                                if (oldBmp != null)
+                                {
+                                    oldBmp.Dispose();
+                                }
+                                oldBmp = bmp;
+                            }
+                            catch (ObjectDisposedException)
+                            {
+                                // PictureBox 控件已释放，不执行任何操作
+                            }
+                        }));
+                    }
+                    catch (ObjectDisposedException)
+                    {
+                        // UserControl 已释放，不执行任何操作
+                    }
                 };
 
                 rtmp.Start(show, rtspAddress);
-
-
             }
             catch (Exception ex)
             {
@@ -204,13 +236,19 @@ namespace droneDockDataCenter.Controls
             finally
             {
                 Console.WriteLine("DeCoding exit");
-                this.Invoke(new MethodInvoker(() =>
+
+                if (!dSkinButton2.IsDisposed)
                 {
-                    dSkinButton2.Text = "Play";
-                    dSkinButton2.Enabled = true;
-                }));
+                    this.Invoke(new MethodInvoker(() =>
+                    {
+                        dSkinButton2.Text = "Play";
+                        dSkinButton2.Enabled = true;
+                    }));
+                }
             }
         }
+
+
 
 
         public string TBDroneId
@@ -295,13 +333,28 @@ namespace droneDockDataCenter.Controls
         private Process _ffmpegProcess;
         private bool _isRecording;
         private string _outputFileName;
+        string directoryPath = "Records";
 
         public void StartRecording(string rtspUrl, string outputFileName)
         {
             if (_ffmpegProcess != null && !_ffmpegProcess.HasExited)
-                throw new InvalidOperationException("Recording is already in progress.");
+            {
+                logger.Error("Recording is already in progress.");
+            }
 
-            _outputFileName = outputFileName; // Save the output file name
+            
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+                logger.Info("Records created.");
+            }
+            else
+            {
+                logger.Info("Records 存在.");
+            }
+
+            _outputFileName =  directoryPath + Path.DirectorySeparatorChar + outputFileName; // Save the output file name
 
             string arguments = $"-i {rtspUrl} -c copy {_outputFileName}";
 
@@ -325,7 +378,7 @@ namespace droneDockDataCenter.Controls
             Console.WriteLine(e.Data);
         }
 
-        public void StopRecording()
+        public async Task StopRecording()
         {
             if (!_isRecording)
                 return;
@@ -335,8 +388,11 @@ namespace droneDockDataCenter.Controls
                 _ffmpegProcess.StandardInput.WriteLine("q");
                 _ffmpegProcess.Close();
                 _ffmpegProcess.Dispose();
+                _ffmpegProcess = null;
             }
             _isRecording = false;
+
+            await Task.FromResult(true);
         }
 
 

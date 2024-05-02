@@ -60,7 +60,7 @@ namespace droneDockDataCenter
             {
                 MqttServerPassword = appSetting.MQTTServerPassword;
             }
-
+            logger.Info("read app config");
         }
 
         void saveAppConfig()
@@ -71,6 +71,7 @@ namespace droneDockDataCenter
             appSetting.MQTTServerPassword = MqttServerPassword;
 
             xmlConfigFile(true, System.AppDomain.CurrentDomain.BaseDirectory + "config.xml");
+            logger.Info("save app config");
         }
         private void xmlConfigFile(bool write, string filename)
         {
@@ -221,6 +222,7 @@ namespace droneDockDataCenter
         {
             
             AddDockDetalPage(obj);
+            logger.Info("double click on item id:"+obj.Id);
         }
 
         //进入详情页面
@@ -458,6 +460,7 @@ namespace droneDockDataCenter
         //推送订阅消息
         private void publishCommand(string topic, string payload)
         {
+            logger.Info("send command topic:" + topic);
             var applicationMessage = new MqttApplicationMessageBuilder()
                 .WithPayload(payload)
                 .WithTopic(topic)
@@ -479,6 +482,7 @@ namespace droneDockDataCenter
                 .Build();
 
             mqttClient.SubscribeAsync(mqttSubscribeOptions, CancellationToken.None);
+            logger.Info($"subscribe topic:{topic}");
         }
 
         
