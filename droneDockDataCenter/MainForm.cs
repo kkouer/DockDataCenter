@@ -8,7 +8,6 @@ using System.Windows.Forms;
 using droneDockDataCenter.Modle;
 using System.Text.RegularExpressions;
 using droneDockDataCenter.Controls;
-using System.Collections.Generic;
 using System.Xml;
 using System.IO;
 using DSkin.Forms;
@@ -28,6 +27,8 @@ namespace droneDockDataCenter
         public DockManager dockManager = new DockManager();
 
         public DroneManager droneManager = new DroneManager();
+
+        public Response currentResponse = new Response();
 
         public DockDetailPanel dockDetailPanel = null;
 
@@ -176,11 +177,35 @@ namespace droneDockDataCenter
 
         public MainForm()
         {
+            SetWelcomeformVisible(true);
             InitializeComponent();
             initMqttClient();
             initDockList();
             readAppConfig();
             logger.Info("MainForm init");
+        }
+        welcomeForm wf;
+        void SetWelcomeformVisible(bool visible)
+        {
+            if (visible)
+            {
+                if (wf == null || wf.IsDisposed)
+                {
+                    wf = new welcomeForm();
+                    wf.ShowDialog();
+                    this.Refresh();
+                }
+                else
+                    wf.Activate();
+            }
+            else
+            {
+                if (wf != null)
+                {
+                    wf.Close();
+                }
+            }
+
         }
 
         private void initDockList()
@@ -237,8 +262,19 @@ namespace droneDockDataCenter
             dockDetailPanel.DeleteRequested += DockDetailPanel_DeleteRequested;
             dockDetailPanel.TakeoffCommand += DockDetailPanel_TakeoffCommand;
             dockDetailPanel.RTLCommand += DockDetailPanel_RTLCommand;
+            dockDetailPanel.GetWPsCommand += DockDetailPanel_GetWPsCommand;
             dockDetailPanel.GotoCommand += DockDetailPanel_GotoCommand;
             this.panel1.Controls.Add(dockDetailPanel);
+        }
+
+        private void DockDetailPanel_GetWPsCommand(object sender, EventArgs e)
+        {
+            if (droneManager.CurrentDrone == null)
+                return;
+            string payload = UAVCommandGenerator.GenerateCommand(droneManager.CurrentDrone.Id, "get_route", 0, 0, 0);
+            string topic = "drone/" + droneManager.CurrentDrone.Id + "/command";
+
+            publishCommand(topic, payload);
         }
 
         private void DockDetailPanel_GotoCommand(object sender, DockDetailPanel.GotoCommandEventArgs e)
@@ -402,6 +438,15 @@ namespace droneDockDataCenter
                     Console.WriteLine("Unknown entity type.");
                     break;
             }
+
+            //处理response
+            if (topic != null && topic.Split('/').Length > 2)
+            {
+                if (topic.Split('/')[2].Equals("response"))
+                {
+                    HandleResponseMessage(topic.Split('/')[0], message);
+                }
+            }
         }
 
         private string ExtractDockIdFromTopic(string entity, string topic)
@@ -420,21 +465,72 @@ namespace droneDockDataCenter
 
         private void HandleDroneMessage(string droneId, string message)
         {
-            // 处理drone相关的消息，例如更新dock的状态等
-            JsonMessage message1 = new JsonMessage { Id = droneId, JsonData = message };
-            // 处理dock相关的消息，例如更新dock的状态等
-            droneManager.UpdateOrAddDrone(message1);
-            if (dockDetailPanel != null)
-                this.dockDetailPanel.UpdateDroneInfoOnView(droneManager);
+            try
+            {
+                // 处理drone相关的消息，例如更新dock的状态等
+                JsonMessage message1 = new JsonMessage { Id = droneId, JsonData = message };
+                // 处理dock相关的消息，例如更新dock的状态等
+                droneManager.UpdateOrAddDrone(message1);
+                if (dockDetailPanel != null)
+                    this.dockDetailPanel.UpdateDroneInfoOnView(droneManager);
+            }
+            catch (Exception ex)
+            {
+
+                logger.Error("Handle Drone Message error: " + ex);
+            }
+            
         }
 
         private void HandleDockMessage(string dockId, string message)
         {
-            JsonMessage message1 = new JsonMessage { Id = dockId, JsonData = message };
-            // 处理dock相关的消息，例如更新dock的状态等
-            dockManager.UpdateOrAddDock(message1);
+            try
+            {
+                JsonMessage message1 = new JsonMessage { Id = dockId, JsonData = message };
+                // 处理dock相关的消息，例如更新dock的状态等
+                dockManager.UpdateOrAddDock(message1);
 
-            this.docksList1.UpdateDockManager(dockManager);
+                this.docksList1.UpdateDockManager(dockManager);
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Handle Dock Message error: " + ex);
+            }
+            
+        }
+
+        private void HandleResponseMessage(string type, string message)
+        {
+            try
+            {
+                // 处理response相关的消息
+                currentResponse.UpdateFromJson(message);
+                switch (type)
+                {
+                    case "dock":
+                        break;
+                    case "drone":
+                        
+                        if (currentResponse.Command == "get_route" )
+                        {
+                            //droneManager.CurrentDrone.Routes = currentResponse.Routes;
+                            if (dockDetailPanel != null)
+                                this.dockDetailPanel.UpdateDroneRouterOnMap(currentResponse.Routes);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
+                this.textBoxStatus.Text = $"[响应] >> Type:{type} ID:{currentResponse.Id} Message:{currentResponse.Message} time: {DateTime.Now.ToString("HH:mm:ss")}";
+            }
+            catch (Exception ex)
+            {
+
+                logger.Error("Handle Response Message error: " + ex);
+            }
+            
+
         }
 
         private Task MqttClient_ConnectedAsync(MqttClientConnectedEventArgs arg)

@@ -17,6 +17,9 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Diagnostics.Eventing.Reader;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
+using GMapRoute = GMap.NET.WindowsForms.GMapRoute;
+using GMapMarker = GMap.NET.WindowsForms.GMapMarker;
 
 namespace droneDockDataCenter.Controls
 {
@@ -27,11 +30,12 @@ namespace droneDockDataCenter.Controls
         public string rtspAddress = @"rtmp://liteavapp.qcloud.com/live/liteavdemoplayerstreamid";
         public event EventHandler DeleteRequested;
         public event EventHandler TakeoffCommand;
+        public event EventHandler GetWPsCommand;
         public event EventHandler RTLCommand;
         public event GotoCommandHandler GotoCommand;
-        
-        
-        public delegate void GotoCommandHandler(object  sender, GotoCommandEventArgs e);
+
+
+        public delegate void GotoCommandHandler(object sender, GotoCommandEventArgs e);
 
         // 定义指点飞行事件参数类
         public class GotoCommandEventArgs : EventArgs
@@ -64,6 +68,12 @@ namespace droneDockDataCenter.Controls
 
         GMapOverlay marksOverlay = new GMapOverlay("marks");
 
+        GMapOverlay linesOverlay = new GMapOverlay("lines");
+
+        GMapRoute flightlines = new GMapRoute("flightlines");
+        List<PointLatLng> WPPoints = new List<PointLatLng>();
+
+        GMapMarker areaMarker;
 
         public DockDetailPanel()
         {
@@ -75,25 +85,6 @@ namespace droneDockDataCenter.Controls
 
         }
 
-
-
-        public void checkFormClosing()
-        {
-            if (thPlayer != null)
-            {
-                rtmp.Stop();
-                thPlayer.Abort();
-                thPlayer = null;
-                rtmp = null;
-                logger.Info("formclosing stop play video");
-            }
-
-            if (!_isRecording) 
-            { 
-                StopRecording();
-                logger.Info("formclosing stop rec video");
-            }
-        }
 
         tstRtmp rtmp;// = new tstRtmp();
         Thread thPlayer;
@@ -119,11 +110,17 @@ namespace droneDockDataCenter.Controls
             gMapControl1.MapScaleInfoEnabled = false;
 
             gMapControl1.Overlays.Add(marksOverlay);
-
+            gMapControl1.Overlays.Add(linesOverlay);
             DSkinContextMenuStrip = new DSkin.Controls.DSkinContextMenuStrip();
             DSkinContextMenuStrip.Items.Add("Fly to here");
             DSkinContextMenuStrip.Items[0].Click += FlyToHereCommand_Click;
             gMapControl1.MouseDown += GMapControl1_MouseDown;
+
+            //规划路线
+            flightlines = new GMapRoute(WPPoints, "flightlines");
+            flightlines.Stroke = new Pen(Color.FromArgb(150, Color.Red), 3);
+            linesOverlay.Routes.Add(flightlines);
+
             logger.Info("init map");
         }
         PointLatLng GotoCommandLocation;
@@ -145,10 +142,10 @@ namespace droneDockDataCenter.Controls
         {
             if (GotoCommandLocation != null)
             {
-               if( DSkinMessageBox.Show("Fly to Lng:"+ GotoCommandLocation.Lng + " Lat:" + GotoCommandLocation.Lat +" ?", "Confirm",MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (DSkinMessageBox.Show("Fly to Lng:" + GotoCommandLocation.Lng + " Lat:" + GotoCommandLocation.Lat + " ?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     // 触发DeleteRequested事件
-                    GotoCommand?.Invoke(this, new GotoCommandEventArgs(GotoCommandLocation.Lat,GotoCommandLocation.Lng,20));
+                    GotoCommand?.Invoke(this, new GotoCommandEventArgs(GotoCommandLocation.Lat, GotoCommandLocation.Lng, 20));
                     logger.Info("Fly to here click");
                 }
             }
@@ -181,9 +178,9 @@ namespace droneDockDataCenter.Controls
 
                 }
             }
-            catch (Exception x) 
-            { 
-                MessageBox.Show(x.Message, "Error"); 
+            catch (Exception x)
+            {
+                MessageBox.Show(x.Message, "Error");
                 logger.Error(x.Message);
             }
             finally { }
@@ -283,16 +280,30 @@ namespace droneDockDataCenter.Controls
 
         }
 
+        public void UpdateDroneRouterOnMap(List<route_data> routes)
+        {
+            linesOverlay.Markers.Clear();
+            flightlines.Points.Clear();
+            foreach (route_data route in routes)
+            {
+                areaMarker = new GMapMarkerPoint(new PointLatLng(route.Latitude, route.Longitude), 
+                    GMap.NET.WindowsForms.Markers.GMarkerGoogleType.yellow, route.WaypointIndex.ToString()); ;
+                linesOverlay.Markers.Add(areaMarker);
+                flightlines.Points.Add(new PointLatLng(route.Latitude,route.Longitude));
+            }
+            gMapControl1.ZoomAndCenterMarkers("lines");
+        }
+
         public void UpdateDroneInfoOnView(DroneManager droneManager)
         {
-            if(droneManager == null || droneManager.CurrentDrone == null)
+            if (droneManager == null || droneManager.CurrentDrone == null)
             {
                 return;
             }
-            TBDroneId = "ID: "+droneManager.CurrentDrone.Id;
+            TBDroneId = "ID: " + droneManager.CurrentDrone.Id;
             TBDroneBattery = "Battery: " + droneManager.CurrentDrone.Battery;
-            TBDroneMode = "Flight mode: " +droneManager.CurrentDrone.Mode;
-            TBDroneThrottle = "Throttle: "+droneManager.CurrentDrone.Throttle;
+            TBDroneMode = "Flight mode: " + droneManager.CurrentDrone.Mode;
+            TBDroneThrottle = "Throttle: " + droneManager.CurrentDrone.Throttle;
             TBDroneGroundSpeed = "Ground Speed: " + droneManager.CurrentDrone.GroundSpeed;
 
             this.hudControl1.Airspeed = (int)droneManager.CurrentDrone.AirSpeed;
@@ -304,7 +315,7 @@ namespace droneDockDataCenter.Controls
 
             //update droneIcon
 
-            PointLatLng dronePoint = new PointLatLng(droneManager.CurrentDrone.Position.Latitude,droneManager.CurrentDrone.Position.Longitude);
+            PointLatLng dronePoint = new PointLatLng(droneManager.CurrentDrone.Position.Latitude, droneManager.CurrentDrone.Position.Longitude);
             float yaw = droneManager.CurrentDrone.Attitude.Heading;
 
 
@@ -320,13 +331,13 @@ namespace droneDockDataCenter.Controls
 
         private void dSkinButtonTkoff_Click(object sender, EventArgs e)
         {
-            // 触发DeleteRequested事件
+            // 触发TakeoffCommand事件
             TakeoffCommand?.Invoke(this, EventArgs.Empty);
         }
 
         private void dSkinButtonRTL_Click(object sender, EventArgs e)
         {
-            // 触发DeleteRequested事件
+            // 触发RTLCommand事件
             RTLCommand?.Invoke(this, EventArgs.Empty);
         }
 
@@ -342,7 +353,7 @@ namespace droneDockDataCenter.Controls
                 logger.Error("Recording is already in progress.");
             }
 
-            
+
 
             if (!Directory.Exists(directoryPath))
             {
@@ -354,7 +365,7 @@ namespace droneDockDataCenter.Controls
                 logger.Info("Records 存在.");
             }
 
-            _outputFileName =  directoryPath + Path.DirectorySeparatorChar + outputFileName; // Save the output file name
+            _outputFileName = directoryPath + Path.DirectorySeparatorChar + outputFileName; // Save the output file name
 
             string arguments = $"-i {rtspUrl} -c copy {_outputFileName}";
 
@@ -370,7 +381,7 @@ namespace droneDockDataCenter.Controls
             _ffmpegProcess.BeginErrorReadLine();
 
             _isRecording = true;
-            
+
         }
 
         private void Ffmpeg_ErrorDataReceived(object sender, DataReceivedEventArgs e)
@@ -378,7 +389,7 @@ namespace droneDockDataCenter.Controls
             Console.WriteLine(e.Data);
         }
 
-        public async Task StopRecording()
+        public void StopRecording()
         {
             if (!_isRecording)
                 return;
@@ -392,7 +403,6 @@ namespace droneDockDataCenter.Controls
             }
             _isRecording = false;
 
-            await Task.FromResult(true);
         }
 
 
@@ -402,7 +412,7 @@ namespace droneDockDataCenter.Controls
             if (!_isRecording)
             {
 
-                 StartRecording(rtspAddress, _outputFileName);
+                StartRecording(rtspAddress, _outputFileName);
                 dSkinButton3.Text = "Stop Rec";
             }
             else
@@ -411,6 +421,11 @@ namespace droneDockDataCenter.Controls
                 dSkinButton3.Text = "Start Rec";
 
             }
+        }
+
+        private void dSkinButton4_Click(object sender, EventArgs e)
+        {
+            GetWPsCommand?.Invoke(this, EventArgs.Empty);
         }
     }
 }

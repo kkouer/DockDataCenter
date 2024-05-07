@@ -37,6 +37,9 @@
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>zh.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DSkin">
       <HintPath>Libs\DSkin.dll</HintPath>
@@ -121,6 +124,7 @@
       <DependentUpon>DocksList.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\GMapMarkDrone.cs" />
+    <Compile Include="Controls\GMapMarkerPoint.cs" />
     <Compile Include="Controls\HUDControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -131,6 +135,7 @@
       <DependentUpon>SystemSettingPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Modle\DockCommandGenerator.cs" />
+    <Compile Include="Modle\Response.cs" />
     <Compile Include="Modle\UAVCommandGenerator.cs" />
     <Compile Include="FFmpeg\FFmpegBinariesHelper.cs" />
     <Compile Include="FFmpeg\tstRtmp.cs" />
@@ -149,6 +154,12 @@
     <Compile Include="Modle\Gimbal.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="welcomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="welcomeForm.Designer.cs">
+      <DependentUpon>welcomeForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Controls\DockDetailPanel.resx">
       <DependentUpon>DockDetailPanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -171,6 +182,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="welcomeForm.resx">
+      <DependentUpon>welcomeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -325,6 +339,8 @@
     <Content Include="FFmpeg\include\libswresample\version.h" />
     <Content Include="FFmpeg\include\libswscale\swscale.h" />
     <Content Include="FFmpeg\include\libswscale\version.h" />
+    <None Include="Resources\welcome.jpg" />
+    <Content Include="zh.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

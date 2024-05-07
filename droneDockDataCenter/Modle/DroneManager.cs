@@ -15,6 +15,7 @@ namespace droneDockDataCenter.Modle
         // 更新或添加Dock实例的方法
         public void UpdateOrAddDrone(JsonMessage message)
         {
+            
             Drone existingDrone = drones.Find(d => d.Id == message.Id);
             if (existingDrone != null)
             {

@@ -31,12 +31,15 @@ namespace droneDockDataCenter.Modle
 
             if (root != null && root.Data != null)
             {
-                this.Id = root.Data.Id;
-                this.FirmwareVersion = root.Data.FirmwareVersion;
-                this.LastUpdated = DateTime.Parse(root.Data.LastUpdated.ToString("yyyy-MM-ddTHH:mm:ssZ"));
-                this.CoverStatus = root.Data.CoverStatus;
-                this.ChargingStatus = root.Data.ChargingStatus;
-                this.WeatherData = root.Data.WeatherData;
+                if (root.Type.Equals("status"))
+                {
+                    this.Id = root.Data.Id;
+                    this.FirmwareVersion = root.Data.FirmwareVersion;
+                    this.LastUpdated = DateTime.Parse(root.Data.LastUpdated.ToString("yyyy-MM-ddTHH:mm:ssZ"));
+                    this.CoverStatus = root.Data.CoverStatus;
+                    this.ChargingStatus = root.Data.ChargingStatus;
+                    this.WeatherData = root.Data.WeatherData;
+                }
             }
         }
 

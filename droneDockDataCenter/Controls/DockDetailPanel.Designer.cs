@@ -17,7 +17,7 @@
             {
                 if (_isRecording)
                 {
-                    StopRecording().Wait(); // 等待停止录制完成
+                    StopRecording(); // 等待停止录制完成
                 }
                 components.Dispose();
             }
@@ -51,8 +51,9 @@
             this.dSkinTabPage1 = new DSkin.Controls.DSkinTabPage();
             this.hudControl1 = new droneDockDataCenter.Controls.HUDControl();
             this.dSkinTabPage2 = new DSkin.Controls.DSkinTabPage();
-            this.pictureBox1 = new DSkin.Controls.DSkinPictureBox();
             this.dSkinButton3 = new DSkin.Controls.DSkinButton();
+            this.pictureBox1 = new DSkin.Controls.DSkinPictureBox();
+            this.dSkinButton4 = new DSkin.Controls.DSkinButton();
             this.dSkinGroupBox1.SuspendLayout();
             this.dSkinTableLayoutPanel1.SuspendLayout();
             this.dSkinTabControl1.SuspendLayout();
@@ -247,6 +248,7 @@
             this.dSkinTableLayoutPanel1.Controls.Add(this.dSkinButton1, 1, 3);
             this.dSkinTableLayoutPanel1.Controls.Add(this.dSkinButtonRTL, 1, 0);
             this.dSkinTableLayoutPanel1.Controls.Add(this.dSkinButtonTkoff, 0, 0);
+            this.dSkinTableLayoutPanel1.Controls.Add(this.dSkinButton4, 0, 1);
             this.dSkinTableLayoutPanel1.Location = new System.Drawing.Point(784, 229);
             this.dSkinTableLayoutPanel1.Name = "dSkinTableLayoutPanel1";
             this.dSkinTableLayoutPanel1.RightBottom = ((System.Drawing.Image)(resources.GetObject("dSkinTableLayoutPanel1.RightBottom")));
@@ -382,20 +384,6 @@
             this.dSkinTabPage2.TabItemImage = null;
             this.dSkinTabPage2.Text = "Video Preview";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Silver;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = null;
-            this.pictureBox1.Images = new System.Drawing.Image[] {
-        null};
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(775, 563);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.Text = "dSkinPictureBox1";
-            // 
             // dSkinButton3
             // 
             this.dSkinButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -419,6 +407,43 @@
             this.dSkinButton3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.dSkinButton3.TextPadding = 0;
             this.dSkinButton3.Click += new System.EventHandler(this.dSkinButton3_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Silver;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = null;
+            this.pictureBox1.Images = new System.Drawing.Image[] {
+        null};
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(775, 563);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.Text = "dSkinPictureBox1";
+            // 
+            // dSkinButton4
+            // 
+            this.dSkinButton4.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButton4.ButtonBorderWidth = 1;
+            this.dSkinButton4.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButton4.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton4.ForeColor = System.Drawing.Color.White;
+            this.dSkinButton4.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButton4.HoverImage = null;
+            this.dSkinButton4.Location = new System.Drawing.Point(3, 94);
+            this.dSkinButton4.Name = "dSkinButton4";
+            this.dSkinButton4.NormalImage = null;
+            this.dSkinButton4.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButton4.PressedImage = null;
+            this.dSkinButton4.Radius = 10;
+            this.dSkinButton4.ShowButtonBorder = true;
+            this.dSkinButton4.Size = new System.Drawing.Size(98, 34);
+            this.dSkinButton4.TabIndex = 7;
+            this.dSkinButton4.Text = "Get WPs";
+            this.dSkinButton4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButton4.TextPadding = 0;
+            this.dSkinButton4.Click += new System.EventHandler(this.dSkinButton4_Click);
             // 
             // DockDetailPanel
             // 
@@ -462,5 +487,6 @@
         private DSkin.Controls.DSkinButton dSkinButtonTkoff;
         private DSkin.Controls.DSkinButton dSkinButtonRTL;
         private DSkin.Controls.DSkinButton dSkinButton3;
+        private DSkin.Controls.DSkinButton dSkinButton4;
     }
 }
