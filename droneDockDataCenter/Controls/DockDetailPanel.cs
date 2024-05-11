@@ -27,11 +27,13 @@ namespace droneDockDataCenter.Controls
     {
         private static readonly ILog logger = LogManager.GetLogger(typeof(DockDetailPanel));
 
-        public string rtspAddress = @"rtmp://liteavapp.qcloud.com/live/liteavdemoplayerstreamid";
+        public string rtspAddress { get; set; } = @"rtmp://liteavapp.qcloud.com/live/liteavdemoplayerstreamid";
+        //public string rtspAddress = @"rtmp://liteavapp.qcloud.com/live/liteavdemop";
         public event EventHandler DeleteRequested;
         public event EventHandler TakeoffCommand;
         public event EventHandler GetWPsCommand;
         public event EventHandler RTLCommand;
+        public event EventHandler GetRTSPUrlCommand;
         public event GotoCommandHandler GotoCommand;
 
 
@@ -54,7 +56,7 @@ namespace droneDockDataCenter.Controls
         }
 
 
-        Gimbal gimbal;
+        public Gimbal gimbal { get; set; }
         private void btnDelete_Click(object sender, EventArgs e)
         {
             // 触发DeleteRequested事件
@@ -86,7 +88,7 @@ namespace droneDockDataCenter.Controls
         }
 
 
-        tstRtmp rtmp;// = new tstRtmp();
+        RtspPlayer videoPlayer;
         Thread thPlayer;
 
         //初始化云台相关
@@ -97,10 +99,13 @@ namespace droneDockDataCenter.Controls
         }
 
         private DSkin.Controls.DSkinContextMenuStrip DSkinContextMenuStrip;
-        private void initMapcontrol()
+        private async void initMapcontrol()
         {
             gMapControl1.Manager.Mode = AccessMode.ServerAndCache;
-            gMapControl1.MapProvider = GMapProviders.BingHybridMap;
+            await Task.Run(() =>
+            {
+                gMapControl1.MapProvider = GMapProviders.BingHybridMap;
+            });
             gMapControl1.MinZoom = 0;
             gMapControl1.MaxZoom = 21;
             gMapControl1.Zoom = 8;
@@ -151,31 +156,33 @@ namespace droneDockDataCenter.Controls
             }
         }
 
+
+        private CancellationTokenSource cancellationTokenSource;
         private void dSkinButton2_Click(object sender, EventArgs e)
         {
             try
             {
-
-                if (thPlayer != null)
+                if (videoPlayer == null)
                 {
-                    rtmp.Stop();
-                    thPlayer.Abort();
-                    thPlayer = null;
-                    //controlHostVideoPanel.Visible = false;
-                    dSkinButton2.Text = "Play";
-                    rtmp = null;
-                    logger.Info("Stop rtsp video");
+                    cancellationTokenSource = new CancellationTokenSource();
+                    videoPlayer = new RtspPlayer();
+                    videoPlayer.ShowBitmap += Rtmp_ShowBitmap;
+                    Task.Run(() =>
+                    {
+                        videoPlayer.Start(rtspAddress);
+                    }, cancellationTokenSource.Token);
+                    dSkinButton2.Text = "Stop";
+                    logger.Info("Play rtsp video");
                 }
                 else
                 {
-                    rtmp = new tstRtmp();
-                    thPlayer = new Thread(DeCoding);
-                    thPlayer.IsBackground = true;
-                    thPlayer.Priority = ThreadPriority.Highest;
-                    thPlayer.Start();
-                    dSkinButton2.Text = "Stop";
-                    logger.Info("Play rtsp video");
-
+                    videoPlayer.ShowBitmap -= Rtmp_ShowBitmap;
+                    cancellationTokenSource?.Cancel();
+                    videoPlayer.Stop();
+                    pictureBox1.Image = null;
+                    videoPlayer = null;
+                    dSkinButton2.Text = "Play";
+                    logger.Info("Stop rtsp video");
                 }
             }
             catch (Exception x)
@@ -183,69 +190,39 @@ namespace droneDockDataCenter.Controls
                 MessageBox.Show(x.Message, "Error");
                 logger.Error(x.Message);
             }
-            finally { }
         }
 
-
-
-
-        private unsafe void DeCoding()
+        private void Rtmp_ShowBitmap(Bitmap bitmap)
         {
             try
             {
-                Console.WriteLine("DeCoding run...");
-                Bitmap oldBmp = null;
-
-                // 更新图片显示
-                tstRtmp.ShowBitmapDelegate show = (bmp) =>
+                if (pictureBox1.InvokeRequired)
                 {
-                    try
+                    pictureBox1.Invoke(new Action(() =>
                     {
-                        this.Invoke(new MethodInvoker(() =>
-                        {
-                            try
-                            {
-                                pictureBox1.Image = bmp;
-                                if (oldBmp != null)
-                                {
-                                    oldBmp.Dispose();
-                                }
-                                oldBmp = bmp;
-                            }
-                            catch (ObjectDisposedException)
-                            {
-                                // PictureBox 控件已释放，不执行任何操作
-                            }
-                        }));
-                    }
-                    catch (ObjectDisposedException)
-                    {
-                        // UserControl 已释放，不执行任何操作
-                    }
-                };
-
-                rtmp.Start(show, rtspAddress);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-            finally
-            {
-                Console.WriteLine("DeCoding exit");
-
-                if (!dSkinButton2.IsDisposed)
-                {
-                    this.Invoke(new MethodInvoker(() =>
-                    {
-                        dSkinButton2.Text = "Play";
-                        dSkinButton2.Enabled = true;
+                        SetBitmap(bitmap);
                     }));
                 }
+                else
+                {
+                    SetBitmap(bitmap);
+                }
+            }
+            catch (ObjectDisposedException)
+            {
+                // PictureBox 控件已释放，不执行任何操作
             }
         }
 
+        private void SetBitmap(Bitmap bitmap)
+        {
+            if (pictureBox1.Image != null)
+            {
+                pictureBox1.Image.Dispose(); // 释放之前的图像资源
+            }
+            pictureBox1.Image = bitmap;
 
+        }
 
 
         public string TBDroneId
@@ -426,6 +403,98 @@ namespace droneDockDataCenter.Controls
         private void dSkinButton4_Click(object sender, EventArgs e)
         {
             GetWPsCommand?.Invoke(this, EventArgs.Empty);
+        }
+
+
+        private void dSkinTabControl1_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (dSkinTabControl1.SelectedIndex == 0)
+            {
+                dSkinGroupBoxDroneStatus.Visible = true;
+                dSkinTableLayoutPanelDroneCMD.Visible = true;
+                dSkinTableLayoutPanelGimbal.Visible = false;
+            }
+            else if (dSkinTabControl1.SelectedIndex == 1)
+            {
+                dSkinGroupBoxDroneStatus.Visible = false;
+                dSkinTableLayoutPanelDroneCMD.Visible = false;
+                dSkinTableLayoutPanelGimbal.Visible = true;
+            }
+        }
+
+        private void dSkinButton10_Click(object sender, EventArgs e)
+        {
+            GetRTSPUrlCommand?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void dSkinButton5_MouseDown(object sender, MouseEventArgs e)
+        {
+            gimbal.ControlUp();
+            logger.Info("gimbal up");
+
+        }
+
+        private void StopMove_MouseUp(object sender, MouseEventArgs e)
+        {
+            gimbal.ControlStop();
+            logger.Info("gimbal stop");
+
+        }
+
+        private void dSkinButton8_MouseDown(object sender, MouseEventArgs e)
+        {
+            gimbal.ControlRight();
+            logger.Info("gimbal right");
+
+        }
+
+        private void dSkinButton7_MouseDown(object sender, MouseEventArgs e)
+        {
+            gimbal.ControlLeft();
+            logger.Info("gimbal left");
+
+        }
+
+        private void dSkinButton6_MouseDown(object sender, MouseEventArgs e)
+        {
+            gimbal.ControlDown();
+            logger.Info("gimbal down");
+
+        }
+
+        private void dSkinButton9_MouseDown(object sender, MouseEventArgs e)
+        {
+            gimbal.ControlCenter();
+            logger.Info("gimbal center");
+        }
+
+        private void dSkinButton11_Click(object sender, EventArgs e)
+        {
+            if (gimbal!=null && !gimbal.IsConnected)
+            {
+                gimbal.connectViaTCP();
+            }
+            else
+            {
+                gimbal.disconnectViaTCP();
+            }
+
+            if (gimbal.IsConnected)
+                dSkinButton11.Text = "Dis Conn";
+            else
+                dSkinButton11.Text = "Conn";
+        }
+
+        private void dSkinButton12_MouseDown(object sender, MouseEventArgs e)
+        {
+            gimbal.ControlZoomIn();
+            logger.Info("gimbal zoom in");
+        }
+
+        private void dSkinButton13_MouseDown(object sender, MouseEventArgs e)
+        {
+            gimbal.ControlZoomOut();
+            logger.Info("gimbal zoom out");
         }
     }
 }

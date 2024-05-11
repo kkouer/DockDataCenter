@@ -1,10 +1,15 @@
-﻿using System;
+﻿using droneDockDataCenter.Controls;
+using log4net;
+using log4net.Repository.Hierarchy;
+using System;
 using System.Threading;
 
 namespace droneDockDataCenter.Modle
 {
     public class Gimbal
     {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(DockDetailPanel));
+
         //TCP客户端
         public AsyncTcpClient AsyncTcpClient1;
 
@@ -16,13 +21,29 @@ namespace droneDockDataCenter.Modle
         public string ControlIP { get; set; } = "127.0.0.1";
         public int ControlPort { get; set; } = 2000;
 
-        public void connectViaTCP(string ip)
+        public bool TCPisConneted { get { return AsyncTcpClient1.Connected; } }
+
+
+        public void connectViaTCP()
         {
             if (!AsyncTcpClient1.Connected)
             {
                 AsyncTcpClient1.Connect(ControlIP, ControlPort);
                 AsyncTcpClient1.DataReceived += AsyncTcpClient1_MessageReceived;
                 AsyncTcpClient1.ISConnected += AsyncTcpClient1_ISConnected;
+                logger.Info($"Connect via TCP address:{ControlIP} port:{ControlPort}");
+            }
+        }
+
+        public void disconnectViaTCP()
+        {
+            if (AsyncTcpClient1.Connected)
+            {
+                AsyncTcpClient1.DataReceived -= AsyncTcpClient1_MessageReceived;
+                AsyncTcpClient1.ISConnected -= AsyncTcpClient1_ISConnected;
+                AsyncTcpClient1.Disconnect();
+                logger.Info($"Disconnect via TCP");
+
             }
         }
         public void ControlUp()
@@ -84,9 +105,9 @@ namespace droneDockDataCenter.Modle
 
 
         public bool IsConnected { get; set; }
-        private void AsyncTcpClient1_ISConnected(object sender, EventArgs e)
+        private void AsyncTcpClient1_ISConnected(object sender, bool e)
         {
-            IsConnected = true;
+            IsConnected = e;
         }
 
         private void AsyncTcpClient1_MessageReceived(object sender, byte[] message)

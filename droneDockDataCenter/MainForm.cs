@@ -264,7 +264,18 @@ namespace droneDockDataCenter
             dockDetailPanel.RTLCommand += DockDetailPanel_RTLCommand;
             dockDetailPanel.GetWPsCommand += DockDetailPanel_GetWPsCommand;
             dockDetailPanel.GotoCommand += DockDetailPanel_GotoCommand;
+            dockDetailPanel.GetRTSPUrlCommand += DockDetailPanel_GetRTSPUrlCommand;
             this.panel1.Controls.Add(dockDetailPanel);
+        }
+
+        private void DockDetailPanel_GetRTSPUrlCommand(object sender, EventArgs e)
+        {
+            if (droneManager.CurrentDrone == null)
+                return;
+            string payload = UAVCommandGenerator.GenerateCommand(droneManager.CurrentDrone.Id, "Get_Gimbal_Info", 0, 0, 0);
+            string topic = "drone/" + droneManager.CurrentDrone.Id + "/command";
+
+            publishCommand(topic, payload);
         }
 
         private void DockDetailPanel_GetWPsCommand(object sender, EventArgs e)
@@ -510,12 +521,25 @@ namespace droneDockDataCenter
                     case "dock":
                         break;
                     case "drone":
-                        
-                        if (currentResponse.Command == "get_route" )
+
+                        switch (currentResponse.Command)
                         {
-                            //droneManager.CurrentDrone.Routes = currentResponse.Routes;
-                            if (dockDetailPanel != null)
-                                this.dockDetailPanel.UpdateDroneRouterOnMap(currentResponse.Routes);
+                            case "get_route":
+                                //droneManager.CurrentDrone.Routes = currentResponse.Routes;
+                                if (dockDetailPanel != null)
+                                    this.dockDetailPanel.UpdateDroneRouterOnMap(currentResponse.Routes);
+                                break;
+
+                            case "Get_Gimbal_Info":
+                                if (dockDetailPanel != null)
+                                {
+                                    this.dockDetailPanel.gimbal.ControlPort = currentResponse.ControlPort;
+                                    this.dockDetailPanel.gimbal.ControlIP = currentResponse.ControlIP;
+                                    this.dockDetailPanel.rtspAddress = currentResponse.RTSPAddress; 
+                                }
+                                break;
+                            default:
+                                break;
                         }
                         break;
                     default:

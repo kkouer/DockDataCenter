@@ -5,16 +5,19 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
+using System.Web;
 
 namespace droneDockDataCenter.FFMpeg
 {
-    public unsafe class tstRtmp
+    public unsafe class RtspPlayer
     {
         /// <summary>
         /// 显示图片委托
         /// </summary>
         /// <param name="bitmap"></param>
         public delegate void ShowBitmapDelegate(Bitmap bitmap);
+
+        public event ShowBitmapDelegate ShowBitmap;
 
         /// <summary>
         /// 执行控制变量
@@ -25,7 +28,7 @@ namespace droneDockDataCenter.FFMpeg
         /// </summary>
         /// <param name="show">解码完成回调函数</param>
         /// <param name="url">播放地址，也可以是本地文件地址</param>
-        public unsafe void Start(ShowBitmapDelegate show, string url)
+        public unsafe void Start(/*ShowBitmapDelegate show,*/ string url)
         {
             CanRun = true;
 
@@ -204,13 +207,15 @@ namespace droneDockDataCenter.FFMpeg
                 // 封装Bitmap图片
                 var bitmap = new Bitmap(width, height, dstLinesize[0], PixelFormat.Format24bppRgb, convertedFrameBufferPtr);
                 // 回调
-                show(bitmap);
+                //show(bitmap);
+                ShowBitmap?.Invoke(bitmap);
                 //bitmap.Save(AppDomain.CurrentDomain.BaseDirectory + "\\264\\frame.buffer."+ frameNumber + ".jpg", ImageFormat.Jpeg);
 
                 frameNumber++;
             }
             //播放完置空播放图片 
-            show(null);
+            //show(null);
+            ShowBitmap?.Invoke(null);
 
             #endregion
 

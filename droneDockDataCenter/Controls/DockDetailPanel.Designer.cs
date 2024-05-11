@@ -37,28 +37,39 @@
             this.gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
             this.dSkinButton2 = new DSkin.Controls.DSkinButton();
             this.dSkinButton1 = new DSkin.Controls.DSkinButton();
-            this.dSkinGroupBox1 = new DSkin.Controls.DSkinGroupBox();
+            this.dSkinGroupBoxDroneStatus = new DSkin.Controls.DSkinGroupBox();
             this.dSkinPen1 = new DSkin.Controls.DSkinPen(this.components);
             this.dSkinLabel5 = new DSkin.Controls.DSkinLabel();
             this.dSkinLabel4 = new DSkin.Controls.DSkinLabel();
             this.dSkinLabel3 = new DSkin.Controls.DSkinLabel();
             this.dSkinLabel2 = new DSkin.Controls.DSkinLabel();
             this.dSkinLabel1 = new DSkin.Controls.DSkinLabel();
-            this.dSkinTableLayoutPanel1 = new DSkin.Controls.DSkinTableLayoutPanel();
+            this.dSkinTableLayoutPanelDroneCMD = new DSkin.Controls.DSkinTableLayoutPanel();
             this.dSkinButtonRTL = new DSkin.Controls.DSkinButton();
             this.dSkinButtonTkoff = new DSkin.Controls.DSkinButton();
+            this.dSkinButton4 = new DSkin.Controls.DSkinButton();
             this.dSkinTabControl1 = new DSkin.Controls.DSkinTabControl();
             this.dSkinTabPage1 = new DSkin.Controls.DSkinTabPage();
             this.hudControl1 = new droneDockDataCenter.Controls.HUDControl();
             this.dSkinTabPage2 = new DSkin.Controls.DSkinTabPage();
-            this.dSkinButton3 = new DSkin.Controls.DSkinButton();
             this.pictureBox1 = new DSkin.Controls.DSkinPictureBox();
-            this.dSkinButton4 = new DSkin.Controls.DSkinButton();
-            this.dSkinGroupBox1.SuspendLayout();
-            this.dSkinTableLayoutPanel1.SuspendLayout();
+            this.dSkinButton3 = new DSkin.Controls.DSkinButton();
+            this.dSkinTableLayoutPanelGimbal = new DSkin.Controls.DSkinTableLayoutPanel();
+            this.dSkinButton5 = new DSkin.Controls.DSkinButton();
+            this.dSkinButton6 = new DSkin.Controls.DSkinButton();
+            this.dSkinButton7 = new DSkin.Controls.DSkinButton();
+            this.dSkinButton8 = new DSkin.Controls.DSkinButton();
+            this.dSkinButton9 = new DSkin.Controls.DSkinButton();
+            this.dSkinButton10 = new DSkin.Controls.DSkinButton();
+            this.dSkinButton11 = new DSkin.Controls.DSkinButton();
+            this.dSkinButton12 = new DSkin.Controls.DSkinButton();
+            this.dSkinButton13 = new DSkin.Controls.DSkinButton();
+            this.dSkinGroupBoxDroneStatus.SuspendLayout();
+            this.dSkinTableLayoutPanelDroneCMD.SuspendLayout();
             this.dSkinTabControl1.SuspendLayout();
             this.dSkinTabPage1.SuspendLayout();
             this.dSkinTabPage2.SuspendLayout();
+            this.dSkinTableLayoutPanelGimbal.SuspendLayout();
             this.SuspendLayout();
             // 
             // gMapControl1
@@ -99,14 +110,14 @@
             this.dSkinButton2.ForeColor = System.Drawing.Color.White;
             this.dSkinButton2.HoverColor = System.Drawing.Color.Empty;
             this.dSkinButton2.HoverImage = null;
-            this.dSkinButton2.Location = new System.Drawing.Point(676, 524);
+            this.dSkinButton2.Location = new System.Drawing.Point(148, 459);
             this.dSkinButton2.Name = "dSkinButton2";
             this.dSkinButton2.NormalImage = null;
             this.dSkinButton2.PressColor = System.Drawing.Color.Empty;
             this.dSkinButton2.PressedImage = null;
             this.dSkinButton2.Radius = 10;
             this.dSkinButton2.ShowButtonBorder = true;
-            this.dSkinButton2.Size = new System.Drawing.Size(96, 36);
+            this.dSkinButton2.Size = new System.Drawing.Size(68, 36);
             this.dSkinButton2.TabIndex = 6;
             this.dSkinButton2.Text = "Play";
             this.dSkinButton2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -136,30 +147,30 @@
             this.dSkinButton1.TextPadding = 0;
             this.dSkinButton1.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // dSkinGroupBox1
+            // dSkinGroupBoxDroneStatus
             // 
-            this.dSkinGroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dSkinGroupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.dSkinGroupBox1.BorderColor = System.Drawing.Color.Transparent;
-            this.dSkinGroupBox1.Borders.AllWidth = 0;
-            this.dSkinGroupBox1.Borders.BottomPen = this.dSkinPen1;
-            this.dSkinGroupBox1.Borders.BottomWidth = 3;
-            this.dSkinGroupBox1.Borders.LeftWidth = 0;
-            this.dSkinGroupBox1.Borders.RightWidth = 0;
-            this.dSkinGroupBox1.Borders.TopWidth = 0;
-            this.dSkinGroupBox1.Controls.Add(this.dSkinLabel5);
-            this.dSkinGroupBox1.Controls.Add(this.dSkinLabel4);
-            this.dSkinGroupBox1.Controls.Add(this.dSkinLabel3);
-            this.dSkinGroupBox1.Controls.Add(this.dSkinLabel2);
-            this.dSkinGroupBox1.Controls.Add(this.dSkinLabel1);
-            this.dSkinGroupBox1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold);
-            this.dSkinGroupBox1.ForeColor = System.Drawing.Color.White;
-            this.dSkinGroupBox1.Location = new System.Drawing.Point(784, 11);
-            this.dSkinGroupBox1.Name = "dSkinGroupBox1";
-            this.dSkinGroupBox1.RightBottom = ((System.Drawing.Image)(resources.GetObject("dSkinGroupBox1.RightBottom")));
-            this.dSkinGroupBox1.Size = new System.Drawing.Size(219, 212);
-            this.dSkinGroupBox1.TabIndex = 7;
-            this.dSkinGroupBox1.Text = "Drone Status";
+            this.dSkinGroupBoxDroneStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dSkinGroupBoxDroneStatus.BackColor = System.Drawing.Color.Transparent;
+            this.dSkinGroupBoxDroneStatus.BorderColor = System.Drawing.Color.Transparent;
+            this.dSkinGroupBoxDroneStatus.Borders.AllWidth = 0;
+            this.dSkinGroupBoxDroneStatus.Borders.BottomPen = this.dSkinPen1;
+            this.dSkinGroupBoxDroneStatus.Borders.BottomWidth = 3;
+            this.dSkinGroupBoxDroneStatus.Borders.LeftWidth = 0;
+            this.dSkinGroupBoxDroneStatus.Borders.RightWidth = 0;
+            this.dSkinGroupBoxDroneStatus.Borders.TopWidth = 0;
+            this.dSkinGroupBoxDroneStatus.Controls.Add(this.dSkinLabel5);
+            this.dSkinGroupBoxDroneStatus.Controls.Add(this.dSkinLabel4);
+            this.dSkinGroupBoxDroneStatus.Controls.Add(this.dSkinLabel3);
+            this.dSkinGroupBoxDroneStatus.Controls.Add(this.dSkinLabel2);
+            this.dSkinGroupBoxDroneStatus.Controls.Add(this.dSkinLabel1);
+            this.dSkinGroupBoxDroneStatus.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold);
+            this.dSkinGroupBoxDroneStatus.ForeColor = System.Drawing.Color.White;
+            this.dSkinGroupBoxDroneStatus.Location = new System.Drawing.Point(784, 11);
+            this.dSkinGroupBoxDroneStatus.Name = "dSkinGroupBoxDroneStatus";
+            this.dSkinGroupBoxDroneStatus.RightBottom = ((System.Drawing.Image)(resources.GetObject("dSkinGroupBoxDroneStatus.RightBottom")));
+            this.dSkinGroupBoxDroneStatus.Size = new System.Drawing.Size(219, 212);
+            this.dSkinGroupBoxDroneStatus.TabIndex = 7;
+            this.dSkinGroupBoxDroneStatus.Text = "Drone Status";
             // 
             // dSkinPen1
             // 
@@ -228,38 +239,38 @@
             this.dSkinLabel1.Text = "ID:";
             this.dSkinLabel1.TextEffect = DSkin.DirectUI.TextEffects.Shadow;
             // 
-            // dSkinTableLayoutPanel1
+            // dSkinTableLayoutPanelDroneCMD
             // 
-            this.dSkinTableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dSkinTableLayoutPanelDroneCMD.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dSkinTableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.dSkinTableLayoutPanel1.BitmapCache = false;
-            this.dSkinTableLayoutPanel1.Borders.AllColor = System.Drawing.Color.White;
-            this.dSkinTableLayoutPanel1.Borders.BottomColor = System.Drawing.Color.White;
-            this.dSkinTableLayoutPanel1.Borders.LeftColor = System.Drawing.Color.White;
-            this.dSkinTableLayoutPanel1.Borders.LeftWidth = 0;
-            this.dSkinTableLayoutPanel1.Borders.RightColor = System.Drawing.Color.White;
-            this.dSkinTableLayoutPanel1.Borders.RightWidth = 0;
-            this.dSkinTableLayoutPanel1.Borders.TopColor = System.Drawing.Color.White;
-            this.dSkinTableLayoutPanel1.Borders.TopWidth = 0;
-            this.dSkinTableLayoutPanel1.ColumnCount = 2;
-            this.dSkinTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.dSkinTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.dSkinTableLayoutPanel1.Controls.Add(this.dSkinButton1, 1, 3);
-            this.dSkinTableLayoutPanel1.Controls.Add(this.dSkinButtonRTL, 1, 0);
-            this.dSkinTableLayoutPanel1.Controls.Add(this.dSkinButtonTkoff, 0, 0);
-            this.dSkinTableLayoutPanel1.Controls.Add(this.dSkinButton4, 0, 1);
-            this.dSkinTableLayoutPanel1.Location = new System.Drawing.Point(784, 229);
-            this.dSkinTableLayoutPanel1.Name = "dSkinTableLayoutPanel1";
-            this.dSkinTableLayoutPanel1.RightBottom = ((System.Drawing.Image)(resources.GetObject("dSkinTableLayoutPanel1.RightBottom")));
-            this.dSkinTableLayoutPanel1.RowCount = 4;
-            this.dSkinTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.dSkinTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.dSkinTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.dSkinTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.dSkinTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.dSkinTableLayoutPanel1.Size = new System.Drawing.Size(219, 367);
-            this.dSkinTableLayoutPanel1.TabIndex = 4;
+            this.dSkinTableLayoutPanelDroneCMD.BackColor = System.Drawing.Color.Transparent;
+            this.dSkinTableLayoutPanelDroneCMD.BitmapCache = false;
+            this.dSkinTableLayoutPanelDroneCMD.Borders.AllColor = System.Drawing.Color.White;
+            this.dSkinTableLayoutPanelDroneCMD.Borders.BottomColor = System.Drawing.Color.White;
+            this.dSkinTableLayoutPanelDroneCMD.Borders.LeftColor = System.Drawing.Color.White;
+            this.dSkinTableLayoutPanelDroneCMD.Borders.LeftWidth = 0;
+            this.dSkinTableLayoutPanelDroneCMD.Borders.RightColor = System.Drawing.Color.White;
+            this.dSkinTableLayoutPanelDroneCMD.Borders.RightWidth = 0;
+            this.dSkinTableLayoutPanelDroneCMD.Borders.TopColor = System.Drawing.Color.White;
+            this.dSkinTableLayoutPanelDroneCMD.Borders.TopWidth = 0;
+            this.dSkinTableLayoutPanelDroneCMD.ColumnCount = 2;
+            this.dSkinTableLayoutPanelDroneCMD.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.dSkinTableLayoutPanelDroneCMD.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.dSkinTableLayoutPanelDroneCMD.Controls.Add(this.dSkinButton1, 1, 3);
+            this.dSkinTableLayoutPanelDroneCMD.Controls.Add(this.dSkinButtonRTL, 1, 0);
+            this.dSkinTableLayoutPanelDroneCMD.Controls.Add(this.dSkinButtonTkoff, 0, 0);
+            this.dSkinTableLayoutPanelDroneCMD.Controls.Add(this.dSkinButton4, 0, 1);
+            this.dSkinTableLayoutPanelDroneCMD.Location = new System.Drawing.Point(784, 229);
+            this.dSkinTableLayoutPanelDroneCMD.Name = "dSkinTableLayoutPanelDroneCMD";
+            this.dSkinTableLayoutPanelDroneCMD.RightBottom = ((System.Drawing.Image)(resources.GetObject("dSkinTableLayoutPanelDroneCMD.RightBottom")));
+            this.dSkinTableLayoutPanelDroneCMD.RowCount = 4;
+            this.dSkinTableLayoutPanelDroneCMD.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.dSkinTableLayoutPanelDroneCMD.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.dSkinTableLayoutPanelDroneCMD.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.dSkinTableLayoutPanelDroneCMD.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.dSkinTableLayoutPanelDroneCMD.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.dSkinTableLayoutPanelDroneCMD.Size = new System.Drawing.Size(219, 367);
+            this.dSkinTableLayoutPanelDroneCMD.TabIndex = 4;
             // 
             // dSkinButtonRTL
             // 
@@ -307,6 +318,29 @@
             this.dSkinButtonTkoff.TextPadding = 0;
             this.dSkinButtonTkoff.Click += new System.EventHandler(this.dSkinButtonTkoff_Click);
             // 
+            // dSkinButton4
+            // 
+            this.dSkinButton4.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButton4.ButtonBorderWidth = 1;
+            this.dSkinButton4.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButton4.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton4.ForeColor = System.Drawing.Color.White;
+            this.dSkinButton4.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButton4.HoverImage = null;
+            this.dSkinButton4.Location = new System.Drawing.Point(3, 94);
+            this.dSkinButton4.Name = "dSkinButton4";
+            this.dSkinButton4.NormalImage = null;
+            this.dSkinButton4.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButton4.PressedImage = null;
+            this.dSkinButton4.Radius = 10;
+            this.dSkinButton4.ShowButtonBorder = true;
+            this.dSkinButton4.Size = new System.Drawing.Size(98, 34);
+            this.dSkinButton4.TabIndex = 7;
+            this.dSkinButton4.Text = "Get WPs";
+            this.dSkinButton4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButton4.TextPadding = 0;
+            this.dSkinButton4.Click += new System.EventHandler(this.dSkinButton4_Click);
+            // 
             // dSkinTabControl1
             // 
             this.dSkinTabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -340,6 +374,7 @@
             this.dSkinTabControl1.UpdownBtnArrowPressColor = System.Drawing.Color.Gray;
             this.dSkinTabControl1.UpdownBtnBackColor = System.Drawing.Color.White;
             this.dSkinTabControl1.UpdownBtnBorderColor = System.Drawing.Color.Black;
+            this.dSkinTabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.dSkinTabControl1_Selecting);
             // 
             // dSkinTabPage1
             // 
@@ -372,8 +407,6 @@
             // dSkinTabPage2
             // 
             this.dSkinTabPage2.BackColor = System.Drawing.Color.Transparent;
-            this.dSkinTabPage2.Controls.Add(this.dSkinButton3);
-            this.dSkinTabPage2.Controls.Add(this.dSkinButton2);
             this.dSkinTabPage2.Controls.Add(this.pictureBox1);
             this.dSkinTabPage2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dSkinTabPage2.ForeColor = System.Drawing.Color.WhiteSmoke;
@@ -383,30 +416,6 @@
             this.dSkinTabPage2.TabIndex = 1;
             this.dSkinTabPage2.TabItemImage = null;
             this.dSkinTabPage2.Text = "Video Preview";
-            // 
-            // dSkinButton3
-            // 
-            this.dSkinButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.dSkinButton3.BaseColor = System.Drawing.Color.SkyBlue;
-            this.dSkinButton3.ButtonBorderWidth = 1;
-            this.dSkinButton3.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.dSkinButton3.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dSkinButton3.ForeColor = System.Drawing.Color.White;
-            this.dSkinButton3.HoverColor = System.Drawing.Color.Empty;
-            this.dSkinButton3.HoverImage = null;
-            this.dSkinButton3.Location = new System.Drawing.Point(679, 482);
-            this.dSkinButton3.Name = "dSkinButton3";
-            this.dSkinButton3.NormalImage = null;
-            this.dSkinButton3.PressColor = System.Drawing.Color.Empty;
-            this.dSkinButton3.PressedImage = null;
-            this.dSkinButton3.Radius = 10;
-            this.dSkinButton3.ShowButtonBorder = true;
-            this.dSkinButton3.Size = new System.Drawing.Size(96, 36);
-            this.dSkinButton3.TabIndex = 8;
-            this.dSkinButton3.Text = "REC";
-            this.dSkinButton3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.dSkinButton3.TextPadding = 0;
-            this.dSkinButton3.Click += new System.EventHandler(this.dSkinButton3_Click);
             // 
             // pictureBox1
             // 
@@ -422,46 +431,308 @@
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.Text = "dSkinPictureBox1";
             // 
-            // dSkinButton4
+            // dSkinButton3
             // 
-            this.dSkinButton4.BaseColor = System.Drawing.Color.SkyBlue;
-            this.dSkinButton4.ButtonBorderWidth = 1;
-            this.dSkinButton4.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.dSkinButton4.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dSkinButton4.ForeColor = System.Drawing.Color.White;
-            this.dSkinButton4.HoverColor = System.Drawing.Color.Empty;
-            this.dSkinButton4.HoverImage = null;
-            this.dSkinButton4.Location = new System.Drawing.Point(3, 94);
-            this.dSkinButton4.Name = "dSkinButton4";
-            this.dSkinButton4.NormalImage = null;
-            this.dSkinButton4.PressColor = System.Drawing.Color.Empty;
-            this.dSkinButton4.PressedImage = null;
-            this.dSkinButton4.Radius = 10;
-            this.dSkinButton4.ShowButtonBorder = true;
-            this.dSkinButton4.Size = new System.Drawing.Size(98, 34);
-            this.dSkinButton4.TabIndex = 7;
-            this.dSkinButton4.Text = "Get WPs";
-            this.dSkinButton4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.dSkinButton4.TextPadding = 0;
-            this.dSkinButton4.Click += new System.EventHandler(this.dSkinButton4_Click);
+            this.dSkinButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dSkinButton3.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButton3.ButtonBorderWidth = 1;
+            this.dSkinButton3.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButton3.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton3.ForeColor = System.Drawing.Color.White;
+            this.dSkinButton3.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButton3.HoverImage = null;
+            this.dSkinButton3.Location = new System.Drawing.Point(148, 376);
+            this.dSkinButton3.Name = "dSkinButton3";
+            this.dSkinButton3.NormalImage = null;
+            this.dSkinButton3.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButton3.PressedImage = null;
+            this.dSkinButton3.Radius = 10;
+            this.dSkinButton3.ShowButtonBorder = true;
+            this.dSkinButton3.Size = new System.Drawing.Size(68, 36);
+            this.dSkinButton3.TabIndex = 8;
+            this.dSkinButton3.Text = "REC";
+            this.dSkinButton3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButton3.TextPadding = 0;
+            this.dSkinButton3.Click += new System.EventHandler(this.dSkinButton3_Click);
+            // 
+            // dSkinTableLayoutPanelGimbal
+            // 
+            this.dSkinTableLayoutPanelGimbal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dSkinTableLayoutPanelGimbal.BackColor = System.Drawing.Color.Transparent;
+            this.dSkinTableLayoutPanelGimbal.BitmapCache = false;
+            this.dSkinTableLayoutPanelGimbal.ColumnCount = 3;
+            this.dSkinTableLayoutPanelGimbal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.dSkinTableLayoutPanelGimbal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.dSkinTableLayoutPanelGimbal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.dSkinTableLayoutPanelGimbal.Controls.Add(this.dSkinButton5, 1, 0);
+            this.dSkinTableLayoutPanelGimbal.Controls.Add(this.dSkinButton6, 1, 2);
+            this.dSkinTableLayoutPanelGimbal.Controls.Add(this.dSkinButton7, 0, 1);
+            this.dSkinTableLayoutPanelGimbal.Controls.Add(this.dSkinButton8, 2, 1);
+            this.dSkinTableLayoutPanelGimbal.Controls.Add(this.dSkinButton9, 1, 1);
+            this.dSkinTableLayoutPanelGimbal.Controls.Add(this.dSkinButton3, 2, 4);
+            this.dSkinTableLayoutPanelGimbal.Controls.Add(this.dSkinButton2, 2, 5);
+            this.dSkinTableLayoutPanelGimbal.Controls.Add(this.dSkinButton11, 2, 0);
+            this.dSkinTableLayoutPanelGimbal.Controls.Add(this.dSkinButton12, 0, 2);
+            this.dSkinTableLayoutPanelGimbal.Controls.Add(this.dSkinButton10, 2, 6);
+            this.dSkinTableLayoutPanelGimbal.Controls.Add(this.dSkinButton13, 2, 2);
+            this.dSkinTableLayoutPanelGimbal.Location = new System.Drawing.Point(784, 12);
+            this.dSkinTableLayoutPanelGimbal.Name = "dSkinTableLayoutPanelGimbal";
+            this.dSkinTableLayoutPanelGimbal.RightBottom = ((System.Drawing.Image)(resources.GetObject("dSkinTableLayoutPanelGimbal.RightBottom")));
+            this.dSkinTableLayoutPanelGimbal.RowCount = 7;
+            this.dSkinTableLayoutPanelGimbal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.dSkinTableLayoutPanelGimbal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.dSkinTableLayoutPanelGimbal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.dSkinTableLayoutPanelGimbal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.dSkinTableLayoutPanelGimbal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.dSkinTableLayoutPanelGimbal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.dSkinTableLayoutPanelGimbal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.dSkinTableLayoutPanelGimbal.Size = new System.Drawing.Size(219, 581);
+            this.dSkinTableLayoutPanelGimbal.TabIndex = 9;
+            this.dSkinTableLayoutPanelGimbal.Visible = false;
+            // 
+            // dSkinButton5
+            // 
+            this.dSkinButton5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dSkinButton5.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButton5.ButtonBorderWidth = 1;
+            this.dSkinButton5.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButton5.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton5.ForeColor = System.Drawing.Color.White;
+            this.dSkinButton5.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButton5.HoverImage = null;
+            this.dSkinButton5.Location = new System.Drawing.Point(75, 44);
+            this.dSkinButton5.Name = "dSkinButton5";
+            this.dSkinButton5.NormalImage = null;
+            this.dSkinButton5.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButton5.PressedImage = null;
+            this.dSkinButton5.Radius = 10;
+            this.dSkinButton5.ShowButtonBorder = true;
+            this.dSkinButton5.Size = new System.Drawing.Size(67, 36);
+            this.dSkinButton5.TabIndex = 9;
+            this.dSkinButton5.Text = "Up";
+            this.dSkinButton5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButton5.TextPadding = 0;
+            this.dSkinButton5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dSkinButton5_MouseDown);
+            this.dSkinButton5.MouseUp += new System.Windows.Forms.MouseEventHandler(this.StopMove_MouseUp);
+            // 
+            // dSkinButton6
+            // 
+            this.dSkinButton6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dSkinButton6.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButton6.ButtonBorderWidth = 1;
+            this.dSkinButton6.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButton6.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton6.ForeColor = System.Drawing.Color.White;
+            this.dSkinButton6.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButton6.HoverImage = null;
+            this.dSkinButton6.Location = new System.Drawing.Point(75, 210);
+            this.dSkinButton6.Name = "dSkinButton6";
+            this.dSkinButton6.NormalImage = null;
+            this.dSkinButton6.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButton6.PressedImage = null;
+            this.dSkinButton6.Radius = 10;
+            this.dSkinButton6.ShowButtonBorder = true;
+            this.dSkinButton6.Size = new System.Drawing.Size(67, 36);
+            this.dSkinButton6.TabIndex = 10;
+            this.dSkinButton6.Text = "Down";
+            this.dSkinButton6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButton6.TextPadding = 0;
+            this.dSkinButton6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dSkinButton6_MouseDown);
+            this.dSkinButton6.MouseUp += new System.Windows.Forms.MouseEventHandler(this.StopMove_MouseUp);
+            // 
+            // dSkinButton7
+            // 
+            this.dSkinButton7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dSkinButton7.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButton7.ButtonBorderWidth = 1;
+            this.dSkinButton7.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButton7.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton7.ForeColor = System.Drawing.Color.White;
+            this.dSkinButton7.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButton7.HoverImage = null;
+            this.dSkinButton7.Location = new System.Drawing.Point(3, 127);
+            this.dSkinButton7.Name = "dSkinButton7";
+            this.dSkinButton7.NormalImage = null;
+            this.dSkinButton7.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButton7.PressedImage = null;
+            this.dSkinButton7.Radius = 10;
+            this.dSkinButton7.ShowButtonBorder = true;
+            this.dSkinButton7.Size = new System.Drawing.Size(66, 36);
+            this.dSkinButton7.TabIndex = 11;
+            this.dSkinButton7.Text = "Left";
+            this.dSkinButton7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButton7.TextPadding = 0;
+            this.dSkinButton7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dSkinButton7_MouseDown);
+            this.dSkinButton7.MouseUp += new System.Windows.Forms.MouseEventHandler(this.StopMove_MouseUp);
+            // 
+            // dSkinButton8
+            // 
+            this.dSkinButton8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dSkinButton8.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButton8.ButtonBorderWidth = 1;
+            this.dSkinButton8.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButton8.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton8.ForeColor = System.Drawing.Color.White;
+            this.dSkinButton8.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButton8.HoverImage = null;
+            this.dSkinButton8.Location = new System.Drawing.Point(149, 127);
+            this.dSkinButton8.Name = "dSkinButton8";
+            this.dSkinButton8.NormalImage = null;
+            this.dSkinButton8.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButton8.PressedImage = null;
+            this.dSkinButton8.Radius = 10;
+            this.dSkinButton8.ShowButtonBorder = true;
+            this.dSkinButton8.Size = new System.Drawing.Size(67, 36);
+            this.dSkinButton8.TabIndex = 12;
+            this.dSkinButton8.Text = "Right";
+            this.dSkinButton8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButton8.TextPadding = 0;
+            this.dSkinButton8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dSkinButton8_MouseDown);
+            this.dSkinButton8.MouseUp += new System.Windows.Forms.MouseEventHandler(this.StopMove_MouseUp);
+            // 
+            // dSkinButton9
+            // 
+            this.dSkinButton9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dSkinButton9.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButton9.ButtonBorderWidth = 1;
+            this.dSkinButton9.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButton9.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton9.ForeColor = System.Drawing.Color.White;
+            this.dSkinButton9.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButton9.HoverImage = null;
+            this.dSkinButton9.Location = new System.Drawing.Point(75, 127);
+            this.dSkinButton9.Name = "dSkinButton9";
+            this.dSkinButton9.NormalImage = null;
+            this.dSkinButton9.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButton9.PressedImage = null;
+            this.dSkinButton9.Radius = 10;
+            this.dSkinButton9.ShowButtonBorder = true;
+            this.dSkinButton9.Size = new System.Drawing.Size(67, 36);
+            this.dSkinButton9.TabIndex = 13;
+            this.dSkinButton9.Text = "Center";
+            this.dSkinButton9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButton9.TextPadding = 0;
+            this.dSkinButton9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dSkinButton9_MouseDown);
+            this.dSkinButton9.MouseUp += new System.Windows.Forms.MouseEventHandler(this.StopMove_MouseUp);
+            // 
+            // dSkinButton10
+            // 
+            this.dSkinButton10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dSkinButton10.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButton10.ButtonBorderWidth = 1;
+            this.dSkinButton10.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButton10.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton10.ForeColor = System.Drawing.Color.White;
+            this.dSkinButton10.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButton10.HoverImage = null;
+            this.dSkinButton10.Location = new System.Drawing.Point(148, 542);
+            this.dSkinButton10.Name = "dSkinButton10";
+            this.dSkinButton10.NormalImage = null;
+            this.dSkinButton10.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButton10.PressedImage = null;
+            this.dSkinButton10.Radius = 10;
+            this.dSkinButton10.ShowButtonBorder = true;
+            this.dSkinButton10.Size = new System.Drawing.Size(66, 36);
+            this.dSkinButton10.TabIndex = 14;
+            this.dSkinButton10.Text = "Get Url";
+            this.dSkinButton10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButton10.TextPadding = 0;
+            this.dSkinButton10.Click += new System.EventHandler(this.dSkinButton10_Click);
+            // 
+            // dSkinButton11
+            // 
+            this.dSkinButton11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dSkinButton11.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButton11.ButtonBorderWidth = 1;
+            this.dSkinButton11.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButton11.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton11.ForeColor = System.Drawing.Color.White;
+            this.dSkinButton11.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButton11.HoverImage = null;
+            this.dSkinButton11.Location = new System.Drawing.Point(148, 44);
+            this.dSkinButton11.Name = "dSkinButton11";
+            this.dSkinButton11.NormalImage = null;
+            this.dSkinButton11.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButton11.PressedImage = null;
+            this.dSkinButton11.Radius = 10;
+            this.dSkinButton11.ShowButtonBorder = true;
+            this.dSkinButton11.Size = new System.Drawing.Size(66, 36);
+            this.dSkinButton11.TabIndex = 15;
+            this.dSkinButton11.Text = "Conn";
+            this.dSkinButton11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButton11.TextPadding = 0;
+            this.dSkinButton11.Click += new System.EventHandler(this.dSkinButton11_Click);
+            // 
+            // dSkinButton12
+            // 
+            this.dSkinButton12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dSkinButton12.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButton12.ButtonBorderWidth = 1;
+            this.dSkinButton12.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButton12.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton12.ForeColor = System.Drawing.Color.White;
+            this.dSkinButton12.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButton12.HoverImage = null;
+            this.dSkinButton12.Location = new System.Drawing.Point(3, 210);
+            this.dSkinButton12.Name = "dSkinButton12";
+            this.dSkinButton12.NormalImage = null;
+            this.dSkinButton12.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButton12.PressedImage = null;
+            this.dSkinButton12.Radius = 10;
+            this.dSkinButton12.ShowButtonBorder = true;
+            this.dSkinButton12.Size = new System.Drawing.Size(66, 36);
+            this.dSkinButton12.TabIndex = 16;
+            this.dSkinButton12.Text = "Zoom In";
+            this.dSkinButton12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButton12.TextPadding = 0;
+            this.dSkinButton12.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dSkinButton12_MouseDown);
+            this.dSkinButton12.MouseUp += new System.Windows.Forms.MouseEventHandler(this.StopMove_MouseUp);
+            // 
+            // dSkinButton13
+            // 
+            this.dSkinButton13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dSkinButton13.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButton13.ButtonBorderWidth = 1;
+            this.dSkinButton13.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButton13.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton13.ForeColor = System.Drawing.Color.White;
+            this.dSkinButton13.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButton13.HoverImage = null;
+            this.dSkinButton13.Location = new System.Drawing.Point(150, 210);
+            this.dSkinButton13.Name = "dSkinButton13";
+            this.dSkinButton13.NormalImage = null;
+            this.dSkinButton13.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButton13.PressedImage = null;
+            this.dSkinButton13.Radius = 10;
+            this.dSkinButton13.ShowButtonBorder = true;
+            this.dSkinButton13.Size = new System.Drawing.Size(66, 36);
+            this.dSkinButton13.TabIndex = 17;
+            this.dSkinButton13.Text = "Zoom Out";
+            this.dSkinButton13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButton13.TextPadding = 0;
+            this.dSkinButton13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dSkinButton13_MouseDown);
+            this.dSkinButton13.MouseUp += new System.Windows.Forms.MouseEventHandler(this.StopMove_MouseUp);
             // 
             // DockDetailPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.dSkinTableLayoutPanelGimbal);
             this.Controls.Add(this.dSkinTabControl1);
-            this.Controls.Add(this.dSkinTableLayoutPanel1);
-            this.Controls.Add(this.dSkinGroupBox1);
+            this.Controls.Add(this.dSkinTableLayoutPanelDroneCMD);
+            this.Controls.Add(this.dSkinGroupBoxDroneStatus);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DockDetailPanel";
             this.Size = new System.Drawing.Size(1006, 599);
-            this.dSkinGroupBox1.ResumeLayout(false);
-            this.dSkinGroupBox1.PerformLayout();
-            this.dSkinTableLayoutPanel1.ResumeLayout(false);
+            this.dSkinGroupBoxDroneStatus.ResumeLayout(false);
+            this.dSkinGroupBoxDroneStatus.PerformLayout();
+            this.dSkinTableLayoutPanelDroneCMD.ResumeLayout(false);
             this.dSkinTabControl1.ResumeLayout(false);
             this.dSkinTabPage1.ResumeLayout(false);
             this.dSkinTabPage2.ResumeLayout(false);
+            this.dSkinTableLayoutPanelGimbal.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -471,8 +742,8 @@
         private GMap.NET.WindowsForms.GMapControl gMapControl1;
         private HUDControl hudControl1;
         private DSkin.Controls.DSkinButton dSkinButton1;
-        private DSkin.Controls.DSkinGroupBox dSkinGroupBox1;
-        private DSkin.Controls.DSkinTableLayoutPanel dSkinTableLayoutPanel1;
+        private DSkin.Controls.DSkinGroupBox dSkinGroupBoxDroneStatus;
+        private DSkin.Controls.DSkinTableLayoutPanel dSkinTableLayoutPanelDroneCMD;
         private DSkin.Controls.DSkinButton dSkinButton2;
         private DSkin.Controls.DSkinLabel dSkinLabel5;
         private DSkin.Controls.DSkinLabel dSkinLabel4;
@@ -488,5 +759,15 @@
         private DSkin.Controls.DSkinButton dSkinButtonRTL;
         private DSkin.Controls.DSkinButton dSkinButton3;
         private DSkin.Controls.DSkinButton dSkinButton4;
+        private DSkin.Controls.DSkinTableLayoutPanel dSkinTableLayoutPanelGimbal;
+        private DSkin.Controls.DSkinButton dSkinButton5;
+        private DSkin.Controls.DSkinButton dSkinButton6;
+        private DSkin.Controls.DSkinButton dSkinButton7;
+        private DSkin.Controls.DSkinButton dSkinButton8;
+        private DSkin.Controls.DSkinButton dSkinButton9;
+        private DSkin.Controls.DSkinButton dSkinButton10;
+        private DSkin.Controls.DSkinButton dSkinButton11;
+        private DSkin.Controls.DSkinButton dSkinButton12;
+        private DSkin.Controls.DSkinButton dSkinButton13;
     }
 }

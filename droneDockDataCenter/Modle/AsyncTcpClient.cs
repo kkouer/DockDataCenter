@@ -30,13 +30,15 @@ namespace droneDockDataCenter.Modle
             {
                 client.Close();
                 client = null;
+                ISConnected?.Invoke(this, false);
+
             }
         }
 
 
 
         public event EventHandler<byte[]> DataReceived;
-        public event EventHandler ISConnected;
+        public event EventHandler<bool> ISConnected;
 
         public void Connect(string ipAddress, int port)
         {
@@ -50,7 +52,7 @@ namespace droneDockDataCenter.Modle
             {
                 client.EndConnect(ar);
                 stream = client.GetStream();
-                ISConnected?.Invoke(this, null);
+                ISConnected?.Invoke(this, true);
                 WaitForData();
             }
             catch (Exception e)

@@ -24,6 +24,15 @@ namespace droneDockDataCenter.Modle
         [JsonProperty("route_data")]
         public List<route_data> Routes { get; set; }
 
+        [JsonProperty("RTSPAddress")]
+        public string RTSPAddress { get; set; }
+
+        [JsonProperty("ControlTCPAddress")]
+        public string ControlIP { get; set; } = string.Empty;
+        [JsonProperty("ControlTCPPort")]
+        public int ControlPort { get; set; }
+
+
         public void UpdateFromJson(string json)
         {
             var root = JsonConvert.DeserializeObject<ResponseJsonRoot>(json);
@@ -37,6 +46,9 @@ namespace droneDockDataCenter.Modle
                     this.Message = root.Data.Message;
                     this.Routes = root.Data.Routes;
                     this.Id = root.Data.Id;
+                    this.RTSPAddress = root.Data.RTSPAddress;
+                    this.ControlPort = root.Data.ControlPort;
+                    this.ControlIP = root.Data.ControlIP;
                 }
             }
         }
