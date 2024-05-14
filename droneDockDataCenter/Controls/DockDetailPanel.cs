@@ -89,7 +89,6 @@ namespace droneDockDataCenter.Controls
 
 
         RtspPlayer videoPlayer;
-        Thread thPlayer;
 
         //初始化云台相关
         private void initGimbalControl()

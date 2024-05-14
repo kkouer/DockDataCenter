@@ -60,10 +60,14 @@
             this.dSkinButton7 = new DSkin.Controls.DSkinButton();
             this.dSkinButton8 = new DSkin.Controls.DSkinButton();
             this.dSkinButton9 = new DSkin.Controls.DSkinButton();
-            this.dSkinButton10 = new DSkin.Controls.DSkinButton();
             this.dSkinButton11 = new DSkin.Controls.DSkinButton();
             this.dSkinButton12 = new DSkin.Controls.DSkinButton();
+            this.dSkinButton10 = new DSkin.Controls.DSkinButton();
             this.dSkinButton13 = new DSkin.Controls.DSkinButton();
+            this.dSkinButton14 = new DSkin.Controls.DSkinButton();
+            this.dSkinButton15 = new DSkin.Controls.DSkinButton();
+            this.dSkinButton16 = new DSkin.Controls.DSkinButton();
+            this.dSkinButton17 = new DSkin.Controls.DSkinButton();
             this.dSkinGroupBoxDroneStatus.SuspendLayout();
             this.dSkinTableLayoutPanelDroneCMD.SuspendLayout();
             this.dSkinTabControl1.SuspendLayout();
@@ -106,7 +110,7 @@
             this.dSkinButton2.BaseColor = System.Drawing.Color.SkyBlue;
             this.dSkinButton2.ButtonBorderWidth = 1;
             this.dSkinButton2.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.dSkinButton2.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton2.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.dSkinButton2.ForeColor = System.Drawing.Color.White;
             this.dSkinButton2.HoverColor = System.Drawing.Color.Empty;
             this.dSkinButton2.HoverImage = null;
@@ -129,7 +133,7 @@
             this.dSkinButton1.BaseColor = System.Drawing.Color.SkyBlue;
             this.dSkinButton1.ButtonBorderWidth = 1;
             this.dSkinButton1.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.dSkinButton1.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton1.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.dSkinButton1.ForeColor = System.Drawing.Color.White;
             this.dSkinButton1.HoverColor = System.Drawing.Color.Empty;
             this.dSkinButton1.HoverImage = null;
@@ -256,10 +260,14 @@
             this.dSkinTableLayoutPanelDroneCMD.ColumnCount = 2;
             this.dSkinTableLayoutPanelDroneCMD.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.dSkinTableLayoutPanelDroneCMD.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.dSkinTableLayoutPanelDroneCMD.Controls.Add(this.dSkinButton17, 0, 3);
             this.dSkinTableLayoutPanelDroneCMD.Controls.Add(this.dSkinButton1, 1, 3);
             this.dSkinTableLayoutPanelDroneCMD.Controls.Add(this.dSkinButtonRTL, 1, 0);
             this.dSkinTableLayoutPanelDroneCMD.Controls.Add(this.dSkinButtonTkoff, 0, 0);
             this.dSkinTableLayoutPanelDroneCMD.Controls.Add(this.dSkinButton4, 0, 1);
+            this.dSkinTableLayoutPanelDroneCMD.Controls.Add(this.dSkinButton14, 1, 1);
+            this.dSkinTableLayoutPanelDroneCMD.Controls.Add(this.dSkinButton15, 0, 2);
+            this.dSkinTableLayoutPanelDroneCMD.Controls.Add(this.dSkinButton16, 1, 2);
             this.dSkinTableLayoutPanelDroneCMD.Location = new System.Drawing.Point(784, 229);
             this.dSkinTableLayoutPanelDroneCMD.Name = "dSkinTableLayoutPanelDroneCMD";
             this.dSkinTableLayoutPanelDroneCMD.RightBottom = ((System.Drawing.Image)(resources.GetObject("dSkinTableLayoutPanelDroneCMD.RightBottom")));
@@ -277,7 +285,7 @@
             this.dSkinButtonRTL.BaseColor = System.Drawing.Color.SkyBlue;
             this.dSkinButtonRTL.ButtonBorderWidth = 1;
             this.dSkinButtonRTL.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.dSkinButtonRTL.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButtonRTL.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.dSkinButtonRTL.ForeColor = System.Drawing.Color.White;
             this.dSkinButtonRTL.HoverColor = System.Drawing.Color.Empty;
             this.dSkinButtonRTL.HoverImage = null;
@@ -300,7 +308,7 @@
             this.dSkinButtonTkoff.BaseColor = System.Drawing.Color.SkyBlue;
             this.dSkinButtonTkoff.ButtonBorderWidth = 1;
             this.dSkinButtonTkoff.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.dSkinButtonTkoff.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButtonTkoff.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.dSkinButtonTkoff.ForeColor = System.Drawing.Color.White;
             this.dSkinButtonTkoff.HoverColor = System.Drawing.Color.Empty;
             this.dSkinButtonTkoff.HoverImage = null;
@@ -323,7 +331,7 @@
             this.dSkinButton4.BaseColor = System.Drawing.Color.SkyBlue;
             this.dSkinButton4.ButtonBorderWidth = 1;
             this.dSkinButton4.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.dSkinButton4.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton4.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.dSkinButton4.ForeColor = System.Drawing.Color.White;
             this.dSkinButton4.HoverColor = System.Drawing.Color.Empty;
             this.dSkinButton4.HoverImage = null;
@@ -437,7 +445,7 @@
             this.dSkinButton3.BaseColor = System.Drawing.Color.SkyBlue;
             this.dSkinButton3.ButtonBorderWidth = 1;
             this.dSkinButton3.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.dSkinButton3.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton3.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.dSkinButton3.ForeColor = System.Drawing.Color.White;
             this.dSkinButton3.HoverColor = System.Drawing.Color.Empty;
             this.dSkinButton3.HoverImage = null;
@@ -497,18 +505,18 @@
             this.dSkinButton5.BaseColor = System.Drawing.Color.SkyBlue;
             this.dSkinButton5.ButtonBorderWidth = 1;
             this.dSkinButton5.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.dSkinButton5.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton5.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.dSkinButton5.ForeColor = System.Drawing.Color.White;
             this.dSkinButton5.HoverColor = System.Drawing.Color.Empty;
             this.dSkinButton5.HoverImage = null;
-            this.dSkinButton5.Location = new System.Drawing.Point(75, 44);
+            this.dSkinButton5.Location = new System.Drawing.Point(92, 30);
             this.dSkinButton5.Name = "dSkinButton5";
             this.dSkinButton5.NormalImage = null;
             this.dSkinButton5.PressColor = System.Drawing.Color.Empty;
             this.dSkinButton5.PressedImage = null;
-            this.dSkinButton5.Radius = 10;
+            this.dSkinButton5.Radius = 50;
             this.dSkinButton5.ShowButtonBorder = true;
-            this.dSkinButton5.Size = new System.Drawing.Size(67, 36);
+            this.dSkinButton5.Size = new System.Drawing.Size(50, 50);
             this.dSkinButton5.TabIndex = 9;
             this.dSkinButton5.Text = "Up";
             this.dSkinButton5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -522,18 +530,18 @@
             this.dSkinButton6.BaseColor = System.Drawing.Color.SkyBlue;
             this.dSkinButton6.ButtonBorderWidth = 1;
             this.dSkinButton6.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.dSkinButton6.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton6.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.dSkinButton6.ForeColor = System.Drawing.Color.White;
             this.dSkinButton6.HoverColor = System.Drawing.Color.Empty;
             this.dSkinButton6.HoverImage = null;
-            this.dSkinButton6.Location = new System.Drawing.Point(75, 210);
+            this.dSkinButton6.Location = new System.Drawing.Point(92, 196);
             this.dSkinButton6.Name = "dSkinButton6";
             this.dSkinButton6.NormalImage = null;
             this.dSkinButton6.PressColor = System.Drawing.Color.Empty;
             this.dSkinButton6.PressedImage = null;
-            this.dSkinButton6.Radius = 10;
+            this.dSkinButton6.Radius = 50;
             this.dSkinButton6.ShowButtonBorder = true;
-            this.dSkinButton6.Size = new System.Drawing.Size(67, 36);
+            this.dSkinButton6.Size = new System.Drawing.Size(50, 50);
             this.dSkinButton6.TabIndex = 10;
             this.dSkinButton6.Text = "Down";
             this.dSkinButton6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -547,18 +555,18 @@
             this.dSkinButton7.BaseColor = System.Drawing.Color.SkyBlue;
             this.dSkinButton7.ButtonBorderWidth = 1;
             this.dSkinButton7.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.dSkinButton7.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton7.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.dSkinButton7.ForeColor = System.Drawing.Color.White;
             this.dSkinButton7.HoverColor = System.Drawing.Color.Empty;
             this.dSkinButton7.HoverImage = null;
-            this.dSkinButton7.Location = new System.Drawing.Point(3, 127);
+            this.dSkinButton7.Location = new System.Drawing.Point(19, 113);
             this.dSkinButton7.Name = "dSkinButton7";
             this.dSkinButton7.NormalImage = null;
             this.dSkinButton7.PressColor = System.Drawing.Color.Empty;
             this.dSkinButton7.PressedImage = null;
-            this.dSkinButton7.Radius = 10;
+            this.dSkinButton7.Radius = 50;
             this.dSkinButton7.ShowButtonBorder = true;
-            this.dSkinButton7.Size = new System.Drawing.Size(66, 36);
+            this.dSkinButton7.Size = new System.Drawing.Size(50, 50);
             this.dSkinButton7.TabIndex = 11;
             this.dSkinButton7.Text = "Left";
             this.dSkinButton7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -572,18 +580,18 @@
             this.dSkinButton8.BaseColor = System.Drawing.Color.SkyBlue;
             this.dSkinButton8.ButtonBorderWidth = 1;
             this.dSkinButton8.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.dSkinButton8.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton8.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.dSkinButton8.ForeColor = System.Drawing.Color.White;
             this.dSkinButton8.HoverColor = System.Drawing.Color.Empty;
             this.dSkinButton8.HoverImage = null;
-            this.dSkinButton8.Location = new System.Drawing.Point(149, 127);
+            this.dSkinButton8.Location = new System.Drawing.Point(166, 113);
             this.dSkinButton8.Name = "dSkinButton8";
             this.dSkinButton8.NormalImage = null;
             this.dSkinButton8.PressColor = System.Drawing.Color.Empty;
             this.dSkinButton8.PressedImage = null;
-            this.dSkinButton8.Radius = 10;
+            this.dSkinButton8.Radius = 50;
             this.dSkinButton8.ShowButtonBorder = true;
-            this.dSkinButton8.Size = new System.Drawing.Size(67, 36);
+            this.dSkinButton8.Size = new System.Drawing.Size(50, 50);
             this.dSkinButton8.TabIndex = 12;
             this.dSkinButton8.Text = "Right";
             this.dSkinButton8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -597,18 +605,18 @@
             this.dSkinButton9.BaseColor = System.Drawing.Color.SkyBlue;
             this.dSkinButton9.ButtonBorderWidth = 1;
             this.dSkinButton9.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.dSkinButton9.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton9.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.dSkinButton9.ForeColor = System.Drawing.Color.White;
             this.dSkinButton9.HoverColor = System.Drawing.Color.Empty;
             this.dSkinButton9.HoverImage = null;
-            this.dSkinButton9.Location = new System.Drawing.Point(75, 127);
+            this.dSkinButton9.Location = new System.Drawing.Point(82, 113);
             this.dSkinButton9.Name = "dSkinButton9";
             this.dSkinButton9.NormalImage = null;
             this.dSkinButton9.PressColor = System.Drawing.Color.Empty;
             this.dSkinButton9.PressedImage = null;
-            this.dSkinButton9.Radius = 10;
+            this.dSkinButton9.Radius = 30;
             this.dSkinButton9.ShowButtonBorder = true;
-            this.dSkinButton9.Size = new System.Drawing.Size(67, 36);
+            this.dSkinButton9.Size = new System.Drawing.Size(60, 50);
             this.dSkinButton9.TabIndex = 13;
             this.dSkinButton9.Text = "Center";
             this.dSkinButton9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -616,37 +624,13 @@
             this.dSkinButton9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dSkinButton9_MouseDown);
             this.dSkinButton9.MouseUp += new System.Windows.Forms.MouseEventHandler(this.StopMove_MouseUp);
             // 
-            // dSkinButton10
-            // 
-            this.dSkinButton10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.dSkinButton10.BaseColor = System.Drawing.Color.SkyBlue;
-            this.dSkinButton10.ButtonBorderWidth = 1;
-            this.dSkinButton10.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.dSkinButton10.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dSkinButton10.ForeColor = System.Drawing.Color.White;
-            this.dSkinButton10.HoverColor = System.Drawing.Color.Empty;
-            this.dSkinButton10.HoverImage = null;
-            this.dSkinButton10.Location = new System.Drawing.Point(148, 542);
-            this.dSkinButton10.Name = "dSkinButton10";
-            this.dSkinButton10.NormalImage = null;
-            this.dSkinButton10.PressColor = System.Drawing.Color.Empty;
-            this.dSkinButton10.PressedImage = null;
-            this.dSkinButton10.Radius = 10;
-            this.dSkinButton10.ShowButtonBorder = true;
-            this.dSkinButton10.Size = new System.Drawing.Size(66, 36);
-            this.dSkinButton10.TabIndex = 14;
-            this.dSkinButton10.Text = "Get Url";
-            this.dSkinButton10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.dSkinButton10.TextPadding = 0;
-            this.dSkinButton10.Click += new System.EventHandler(this.dSkinButton10_Click);
-            // 
             // dSkinButton11
             // 
             this.dSkinButton11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.dSkinButton11.BaseColor = System.Drawing.Color.SkyBlue;
             this.dSkinButton11.ButtonBorderWidth = 1;
             this.dSkinButton11.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.dSkinButton11.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton11.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.dSkinButton11.ForeColor = System.Drawing.Color.White;
             this.dSkinButton11.HoverColor = System.Drawing.Color.Empty;
             this.dSkinButton11.HoverImage = null;
@@ -670,7 +654,7 @@
             this.dSkinButton12.BaseColor = System.Drawing.Color.SkyBlue;
             this.dSkinButton12.ButtonBorderWidth = 1;
             this.dSkinButton12.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.dSkinButton12.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton12.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.dSkinButton12.ForeColor = System.Drawing.Color.White;
             this.dSkinButton12.HoverColor = System.Drawing.Color.Empty;
             this.dSkinButton12.HoverImage = null;
@@ -689,13 +673,37 @@
             this.dSkinButton12.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dSkinButton12_MouseDown);
             this.dSkinButton12.MouseUp += new System.Windows.Forms.MouseEventHandler(this.StopMove_MouseUp);
             // 
+            // dSkinButton10
+            // 
+            this.dSkinButton10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dSkinButton10.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButton10.ButtonBorderWidth = 1;
+            this.dSkinButton10.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButton10.Font = new System.Drawing.Font("微软雅黑", 11F);
+            this.dSkinButton10.ForeColor = System.Drawing.Color.White;
+            this.dSkinButton10.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButton10.HoverImage = null;
+            this.dSkinButton10.Location = new System.Drawing.Point(148, 542);
+            this.dSkinButton10.Name = "dSkinButton10";
+            this.dSkinButton10.NormalImage = null;
+            this.dSkinButton10.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButton10.PressedImage = null;
+            this.dSkinButton10.Radius = 10;
+            this.dSkinButton10.ShowButtonBorder = true;
+            this.dSkinButton10.Size = new System.Drawing.Size(66, 36);
+            this.dSkinButton10.TabIndex = 14;
+            this.dSkinButton10.Text = "Get Url";
+            this.dSkinButton10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButton10.TextPadding = 0;
+            this.dSkinButton10.Click += new System.EventHandler(this.dSkinButton10_Click);
+            // 
             // dSkinButton13
             // 
             this.dSkinButton13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.dSkinButton13.BaseColor = System.Drawing.Color.SkyBlue;
             this.dSkinButton13.ButtonBorderWidth = 1;
             this.dSkinButton13.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.dSkinButton13.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinButton13.Font = new System.Drawing.Font("微软雅黑", 11F);
             this.dSkinButton13.ForeColor = System.Drawing.Color.White;
             this.dSkinButton13.HoverColor = System.Drawing.Color.Empty;
             this.dSkinButton13.HoverImage = null;
@@ -714,14 +722,102 @@
             this.dSkinButton13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dSkinButton13_MouseDown);
             this.dSkinButton13.MouseUp += new System.Windows.Forms.MouseEventHandler(this.StopMove_MouseUp);
             // 
+            // dSkinButton14
+            // 
+            this.dSkinButton14.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButton14.ButtonBorderWidth = 1;
+            this.dSkinButton14.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButton14.Font = new System.Drawing.Font("微软雅黑", 11F);
+            this.dSkinButton14.ForeColor = System.Drawing.Color.White;
+            this.dSkinButton14.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButton14.HoverImage = null;
+            this.dSkinButton14.Location = new System.Drawing.Point(112, 94);
+            this.dSkinButton14.Name = "dSkinButton14";
+            this.dSkinButton14.NormalImage = null;
+            this.dSkinButton14.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButton14.PressedImage = null;
+            this.dSkinButton14.Radius = 10;
+            this.dSkinButton14.ShowButtonBorder = true;
+            this.dSkinButton14.Size = new System.Drawing.Size(98, 34);
+            this.dSkinButton14.TabIndex = 8;
+            this.dSkinButton14.Text = "Star Mission";
+            this.dSkinButton14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButton14.TextPadding = 0;
+            // 
+            // dSkinButton15
+            // 
+            this.dSkinButton15.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButton15.ButtonBorderWidth = 1;
+            this.dSkinButton15.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButton15.Font = new System.Drawing.Font("微软雅黑", 11F);
+            this.dSkinButton15.ForeColor = System.Drawing.Color.White;
+            this.dSkinButton15.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButton15.HoverImage = null;
+            this.dSkinButton15.Location = new System.Drawing.Point(3, 185);
+            this.dSkinButton15.Name = "dSkinButton15";
+            this.dSkinButton15.NormalImage = null;
+            this.dSkinButton15.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButton15.PressedImage = null;
+            this.dSkinButton15.Radius = 10;
+            this.dSkinButton15.ShowButtonBorder = true;
+            this.dSkinButton15.Size = new System.Drawing.Size(98, 34);
+            this.dSkinButton15.TabIndex = 9;
+            this.dSkinButton15.Text = "Pause Mission";
+            this.dSkinButton15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButton15.TextPadding = 0;
+            // 
+            // dSkinButton16
+            // 
+            this.dSkinButton16.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButton16.ButtonBorderWidth = 1;
+            this.dSkinButton16.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButton16.Font = new System.Drawing.Font("微软雅黑", 11F);
+            this.dSkinButton16.ForeColor = System.Drawing.Color.White;
+            this.dSkinButton16.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButton16.HoverImage = null;
+            this.dSkinButton16.Location = new System.Drawing.Point(112, 185);
+            this.dSkinButton16.Name = "dSkinButton16";
+            this.dSkinButton16.NormalImage = null;
+            this.dSkinButton16.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButton16.PressedImage = null;
+            this.dSkinButton16.Radius = 10;
+            this.dSkinButton16.ShowButtonBorder = true;
+            this.dSkinButton16.Size = new System.Drawing.Size(98, 34);
+            this.dSkinButton16.TabIndex = 10;
+            this.dSkinButton16.Text = "Continue Mission";
+            this.dSkinButton16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButton16.TextPadding = 0;
+            // 
+            // dSkinButton17
+            // 
+            this.dSkinButton17.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButton17.ButtonBorderWidth = 1;
+            this.dSkinButton17.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButton17.Font = new System.Drawing.Font("微软雅黑", 11F);
+            this.dSkinButton17.ForeColor = System.Drawing.Color.White;
+            this.dSkinButton17.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButton17.HoverImage = null;
+            this.dSkinButton17.Location = new System.Drawing.Point(3, 276);
+            this.dSkinButton17.Name = "dSkinButton17";
+            this.dSkinButton17.NormalImage = null;
+            this.dSkinButton17.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButton17.PressedImage = null;
+            this.dSkinButton17.Radius = 10;
+            this.dSkinButton17.ShowButtonBorder = true;
+            this.dSkinButton17.Size = new System.Drawing.Size(98, 34);
+            this.dSkinButton17.TabIndex = 11;
+            this.dSkinButton17.Text = "Drop";
+            this.dSkinButton17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButton17.TextPadding = 0;
+            // 
             // DockDetailPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dSkinTableLayoutPanelGimbal);
             this.Controls.Add(this.dSkinTabControl1);
             this.Controls.Add(this.dSkinTableLayoutPanelDroneCMD);
             this.Controls.Add(this.dSkinGroupBoxDroneStatus);
+            this.Controls.Add(this.dSkinTableLayoutPanelGimbal);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DockDetailPanel";
@@ -769,5 +865,9 @@
         private DSkin.Controls.DSkinButton dSkinButton11;
         private DSkin.Controls.DSkinButton dSkinButton12;
         private DSkin.Controls.DSkinButton dSkinButton13;
+        private DSkin.Controls.DSkinButton dSkinButton17;
+        private DSkin.Controls.DSkinButton dSkinButton14;
+        private DSkin.Controls.DSkinButton dSkinButton15;
+        private DSkin.Controls.DSkinButton dSkinButton16;
     }
 }

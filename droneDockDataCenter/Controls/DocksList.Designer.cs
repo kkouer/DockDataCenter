@@ -32,18 +32,24 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DocksList));
             this.listView1 = new System.Windows.Forms.ListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.dSkinPenboard = new DSkin.Controls.DSkinPen(this.components);
+            this.dSkinTableLayoutPanel1 = new DSkin.Controls.DSkinTableLayoutPanel();
+            this.dSkinButton2 = new DSkin.Controls.DSkinButton();
+            this.dSkinButton1 = new DSkin.Controls.DSkinButton();
             this.dSkinGroupBox1 = new DSkin.Controls.DSkinGroupBox();
             this.dSkinLabel5 = new DSkin.Controls.DSkinLabel();
             this.dSkinLabel4 = new DSkin.Controls.DSkinLabel();
             this.dSkinLabel3 = new DSkin.Controls.DSkinLabel();
             this.dSkinLabel2 = new DSkin.Controls.DSkinLabel();
             this.dSkinLabel1 = new DSkin.Controls.DSkinLabel();
-            this.dSkinPenboard = new DSkin.Controls.DSkinPen(this.components);
-            this.dSkinTableLayoutPanel1 = new DSkin.Controls.DSkinTableLayoutPanel();
-            this.dSkinButton2 = new DSkin.Controls.DSkinButton();
-            this.dSkinButton1 = new DSkin.Controls.DSkinButton();
-            this.dSkinGroupBox1.SuspendLayout();
+            this.valueModControl1 = new droneDockDataCenter.Controls.ValueModControl();
+            this.valueModControl2 = new droneDockDataCenter.Controls.ValueModControl();
+            this.valueModControl3 = new droneDockDataCenter.Controls.ValueModControl();
+            this.valueModControl4 = new droneDockDataCenter.Controls.ValueModControl();
+            this.dSkinButtonSetValue = new DSkin.Controls.DSkinButton();
+            this.dSkinButton3 = new DSkin.Controls.DSkinButton();
             this.dSkinTableLayoutPanel1.SuspendLayout();
+            this.dSkinGroupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // listView1
@@ -72,6 +78,100 @@
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageList1.ImageSize = new System.Drawing.Size(64, 64);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // dSkinPenboard
+            // 
+            this.dSkinPenboard.Color = System.Drawing.Color.White;
+            this.dSkinPenboard.CompoundArray = new float[0];
+            this.dSkinPenboard.DashPattern = new float[0];
+            this.dSkinPenboard.EndCap = System.Drawing.Drawing2D.LineCap.Flat;
+            // 
+            // dSkinTableLayoutPanel1
+            // 
+            this.dSkinTableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dSkinTableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.dSkinTableLayoutPanel1.BitmapCache = false;
+            this.dSkinTableLayoutPanel1.Borders.AllColor = System.Drawing.Color.White;
+            this.dSkinTableLayoutPanel1.Borders.BottomColor = System.Drawing.Color.White;
+            this.dSkinTableLayoutPanel1.Borders.LeftColor = System.Drawing.Color.White;
+            this.dSkinTableLayoutPanel1.Borders.LeftWidth = 0;
+            this.dSkinTableLayoutPanel1.Borders.RightColor = System.Drawing.Color.White;
+            this.dSkinTableLayoutPanel1.Borders.RightWidth = 0;
+            this.dSkinTableLayoutPanel1.Borders.TopColor = System.Drawing.Color.White;
+            this.dSkinTableLayoutPanel1.Borders.TopWidth = 0;
+            this.dSkinTableLayoutPanel1.ColumnCount = 3;
+            this.dSkinTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.dSkinTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.dSkinTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.dSkinTableLayoutPanel1.Controls.Add(this.dSkinButton2, 0, 0);
+            this.dSkinTableLayoutPanel1.Controls.Add(this.dSkinButton1, 1, 0);
+            this.dSkinTableLayoutPanel1.Controls.Add(this.valueModControl1, 0, 2);
+            this.dSkinTableLayoutPanel1.Controls.Add(this.valueModControl2, 0, 3);
+            this.dSkinTableLayoutPanel1.Controls.Add(this.valueModControl3, 0, 4);
+            this.dSkinTableLayoutPanel1.Controls.Add(this.valueModControl4, 0, 5);
+            this.dSkinTableLayoutPanel1.Controls.Add(this.dSkinButtonSetValue, 2, 5);
+            this.dSkinTableLayoutPanel1.Controls.Add(this.dSkinButton3, 0, 1);
+            this.dSkinTableLayoutPanel1.Location = new System.Drawing.Point(531, 222);
+            this.dSkinTableLayoutPanel1.Name = "dSkinTableLayoutPanel1";
+            this.dSkinTableLayoutPanel1.RightBottom = ((System.Drawing.Image)(resources.GetObject("dSkinTableLayoutPanel1.RightBottom")));
+            this.dSkinTableLayoutPanel1.RowCount = 6;
+            this.dSkinTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.dSkinTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.dSkinTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.dSkinTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.dSkinTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.dSkinTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.dSkinTableLayoutPanel1.Size = new System.Drawing.Size(212, 297);
+            this.dSkinTableLayoutPanel1.TabIndex = 3;
+            // 
+            // dSkinButton2
+            // 
+            this.dSkinButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dSkinButton2.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButton2.ButtonBorderWidth = 1;
+            this.dSkinButton2.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButton2.Font = new System.Drawing.Font("微软雅黑", 11F);
+            this.dSkinButton2.ForeColor = System.Drawing.Color.White;
+            this.dSkinButton2.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButton2.HoverImage = null;
+            this.dSkinButton2.Location = new System.Drawing.Point(3, 3);
+            this.dSkinButton2.Name = "dSkinButton2";
+            this.dSkinButton2.NormalImage = null;
+            this.dSkinButton2.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButton2.PressedImage = null;
+            this.dSkinButton2.Radius = 10;
+            this.dSkinButton2.ShowButtonBorder = true;
+            this.dSkinButton2.Size = new System.Drawing.Size(64, 43);
+            this.dSkinButton2.TabIndex = 7;
+            this.dSkinButton2.Text = "Cover open";
+            this.dSkinButton2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButton2.TextPadding = 0;
+            this.dSkinButton2.Click += new System.EventHandler(this.dSkinButton2_Click);
+            // 
+            // dSkinButton1
+            // 
+            this.dSkinButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dSkinButton1.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButton1.ButtonBorderWidth = 1;
+            this.dSkinButton1.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButton1.Font = new System.Drawing.Font("微软雅黑", 11F);
+            this.dSkinButton1.ForeColor = System.Drawing.Color.White;
+            this.dSkinButton1.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButton1.HoverImage = null;
+            this.dSkinButton1.Location = new System.Drawing.Point(73, 3);
+            this.dSkinButton1.Name = "dSkinButton1";
+            this.dSkinButton1.NormalImage = null;
+            this.dSkinButton1.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButton1.PressedImage = null;
+            this.dSkinButton1.Radius = 10;
+            this.dSkinButton1.ShowButtonBorder = true;
+            this.dSkinButton1.Size = new System.Drawing.Size(64, 43);
+            this.dSkinButton1.TabIndex = 8;
+            this.dSkinButton1.Text = "Cover close";
+            this.dSkinButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButton1.TextPadding = 0;
+            this.dSkinButton1.Click += new System.EventHandler(this.dSkinButton1_Click);
             // 
             // dSkinGroupBox1
             // 
@@ -159,90 +259,107 @@
             this.dSkinLabel1.Text = "ID:";
             this.dSkinLabel1.TextEffect = DSkin.DirectUI.TextEffects.Shadow;
             // 
-            // dSkinPenboard
+            // valueModControl1
             // 
-            this.dSkinPenboard.Color = System.Drawing.Color.White;
-            this.dSkinPenboard.CompoundArray = new float[0];
-            this.dSkinPenboard.DashPattern = new float[0];
-            this.dSkinPenboard.EndCap = System.Drawing.Drawing2D.LineCap.Flat;
+            this.valueModControl1.BackColor = System.Drawing.Color.Transparent;
+            this.valueModControl1.BitmapCache = false;
+            this.dSkinTableLayoutPanel1.SetColumnSpan(this.valueModControl1, 2);
+            this.valueModControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.valueModControl1.InfoValue = "Rain:";
+            this.valueModControl1.Location = new System.Drawing.Point(4, 102);
+            this.valueModControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.valueModControl1.Name = "valueModControl1";
+            this.valueModControl1.RightBottom = ((System.Drawing.Image)(resources.GetObject("valueModControl1.RightBottom")));
+            this.valueModControl1.Size = new System.Drawing.Size(132, 41);
+            this.valueModControl1.TabIndex = 9;
             // 
-            // dSkinTableLayoutPanel1
+            // valueModControl2
             // 
-            this.dSkinTableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dSkinTableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.dSkinTableLayoutPanel1.BitmapCache = false;
-            this.dSkinTableLayoutPanel1.Borders.AllColor = System.Drawing.Color.White;
-            this.dSkinTableLayoutPanel1.Borders.BottomColor = System.Drawing.Color.White;
-            this.dSkinTableLayoutPanel1.Borders.LeftColor = System.Drawing.Color.White;
-            this.dSkinTableLayoutPanel1.Borders.LeftWidth = 0;
-            this.dSkinTableLayoutPanel1.Borders.RightColor = System.Drawing.Color.White;
-            this.dSkinTableLayoutPanel1.Borders.RightWidth = 0;
-            this.dSkinTableLayoutPanel1.Borders.TopColor = System.Drawing.Color.White;
-            this.dSkinTableLayoutPanel1.Borders.TopWidth = 0;
-            this.dSkinTableLayoutPanel1.ColumnCount = 2;
-            this.dSkinTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.dSkinTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.dSkinTableLayoutPanel1.Controls.Add(this.dSkinButton2, 0, 0);
-            this.dSkinTableLayoutPanel1.Controls.Add(this.dSkinButton1, 1, 0);
-            this.dSkinTableLayoutPanel1.Location = new System.Drawing.Point(531, 222);
-            this.dSkinTableLayoutPanel1.Name = "dSkinTableLayoutPanel1";
-            this.dSkinTableLayoutPanel1.RightBottom = ((System.Drawing.Image)(resources.GetObject("dSkinTableLayoutPanel1.RightBottom")));
-            this.dSkinTableLayoutPanel1.RowCount = 4;
-            this.dSkinTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.dSkinTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.dSkinTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.dSkinTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.dSkinTableLayoutPanel1.Size = new System.Drawing.Size(212, 297);
-            this.dSkinTableLayoutPanel1.TabIndex = 3;
+            this.valueModControl2.BackColor = System.Drawing.Color.Transparent;
+            this.valueModControl2.BitmapCache = false;
+            this.dSkinTableLayoutPanel1.SetColumnSpan(this.valueModControl2, 2);
+            this.valueModControl2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.valueModControl2.InfoValue = "Temperature:";
+            this.valueModControl2.Location = new System.Drawing.Point(4, 151);
+            this.valueModControl2.Margin = new System.Windows.Forms.Padding(4);
+            this.valueModControl2.Name = "valueModControl2";
+            this.valueModControl2.RightBottom = ((System.Drawing.Image)(resources.GetObject("valueModControl2.RightBottom")));
+            this.valueModControl2.Size = new System.Drawing.Size(132, 41);
+            this.valueModControl2.TabIndex = 9;
             // 
-            // dSkinButton2
+            // valueModControl3
             // 
-            this.dSkinButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.dSkinButton2.BaseColor = System.Drawing.Color.SkyBlue;
-            this.dSkinButton2.ButtonBorderWidth = 1;
-            this.dSkinButton2.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.dSkinButton2.Font = new System.Drawing.Font("微软雅黑", 14.25F);
-            this.dSkinButton2.ForeColor = System.Drawing.Color.White;
-            this.dSkinButton2.HoverColor = System.Drawing.Color.Empty;
-            this.dSkinButton2.HoverImage = null;
-            this.dSkinButton2.Location = new System.Drawing.Point(3, 3);
-            this.dSkinButton2.Name = "dSkinButton2";
-            this.dSkinButton2.NormalImage = null;
-            this.dSkinButton2.PressColor = System.Drawing.Color.Empty;
-            this.dSkinButton2.PressedImage = null;
-            this.dSkinButton2.Radius = 10;
-            this.dSkinButton2.ShowButtonBorder = true;
-            this.dSkinButton2.Size = new System.Drawing.Size(100, 68);
-            this.dSkinButton2.TabIndex = 7;
-            this.dSkinButton2.Text = "Cover open";
-            this.dSkinButton2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.dSkinButton2.TextPadding = 0;
-            this.dSkinButton2.Click += new System.EventHandler(this.dSkinButton2_Click);
+            this.valueModControl3.BackColor = System.Drawing.Color.Transparent;
+            this.valueModControl3.BitmapCache = false;
+            this.dSkinTableLayoutPanel1.SetColumnSpan(this.valueModControl3, 2);
+            this.valueModControl3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.valueModControl3.InfoValue = "WInd:";
+            this.valueModControl3.Location = new System.Drawing.Point(4, 200);
+            this.valueModControl3.Margin = new System.Windows.Forms.Padding(4);
+            this.valueModControl3.Name = "valueModControl3";
+            this.valueModControl3.RightBottom = ((System.Drawing.Image)(resources.GetObject("valueModControl3.RightBottom")));
+            this.valueModControl3.Size = new System.Drawing.Size(132, 41);
+            this.valueModControl3.TabIndex = 9;
             // 
-            // dSkinButton1
+            // valueModControl4
             // 
-            this.dSkinButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.dSkinButton1.BaseColor = System.Drawing.Color.SkyBlue;
-            this.dSkinButton1.ButtonBorderWidth = 1;
-            this.dSkinButton1.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.dSkinButton1.Font = new System.Drawing.Font("微软雅黑", 14.25F);
-            this.dSkinButton1.ForeColor = System.Drawing.Color.White;
-            this.dSkinButton1.HoverColor = System.Drawing.Color.Empty;
-            this.dSkinButton1.HoverImage = null;
-            this.dSkinButton1.Location = new System.Drawing.Point(109, 3);
-            this.dSkinButton1.Name = "dSkinButton1";
-            this.dSkinButton1.NormalImage = null;
-            this.dSkinButton1.PressColor = System.Drawing.Color.Empty;
-            this.dSkinButton1.PressedImage = null;
-            this.dSkinButton1.Radius = 10;
-            this.dSkinButton1.ShowButtonBorder = true;
-            this.dSkinButton1.Size = new System.Drawing.Size(100, 68);
-            this.dSkinButton1.TabIndex = 8;
-            this.dSkinButton1.Text = "Cover close";
-            this.dSkinButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.dSkinButton1.TextPadding = 0;
-            this.dSkinButton1.Click += new System.EventHandler(this.dSkinButton1_Click);
+            this.valueModControl4.BackColor = System.Drawing.Color.Transparent;
+            this.valueModControl4.BitmapCache = false;
+            this.dSkinTableLayoutPanel1.SetColumnSpan(this.valueModControl4, 2);
+            this.valueModControl4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.valueModControl4.InfoValue = "Humidity:";
+            this.valueModControl4.Location = new System.Drawing.Point(4, 249);
+            this.valueModControl4.Margin = new System.Windows.Forms.Padding(4);
+            this.valueModControl4.Name = "valueModControl4";
+            this.valueModControl4.RightBottom = ((System.Drawing.Image)(resources.GetObject("valueModControl4.RightBottom")));
+            this.valueModControl4.Size = new System.Drawing.Size(132, 41);
+            this.valueModControl4.TabIndex = 10;
+            // 
+            // dSkinButtonSetValue
+            // 
+            this.dSkinButtonSetValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dSkinButtonSetValue.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButtonSetValue.ButtonBorderWidth = 1;
+            this.dSkinButtonSetValue.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButtonSetValue.Font = new System.Drawing.Font("微软雅黑", 11F);
+            this.dSkinButtonSetValue.ForeColor = System.Drawing.Color.White;
+            this.dSkinButtonSetValue.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButtonSetValue.HoverImage = null;
+            this.dSkinButtonSetValue.Location = new System.Drawing.Point(145, 251);
+            this.dSkinButtonSetValue.Name = "dSkinButtonSetValue";
+            this.dSkinButtonSetValue.NormalImage = null;
+            this.dSkinButtonSetValue.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButtonSetValue.PressedImage = null;
+            this.dSkinButtonSetValue.Radius = 10;
+            this.dSkinButtonSetValue.ShowButtonBorder = true;
+            this.dSkinButtonSetValue.Size = new System.Drawing.Size(64, 43);
+            this.dSkinButtonSetValue.TabIndex = 11;
+            this.dSkinButtonSetValue.Text = "SET";
+            this.dSkinButtonSetValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButtonSetValue.TextPadding = 0;
+            // 
+            // dSkinButton3
+            // 
+            this.dSkinButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dSkinButton3.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButton3.ButtonBorderWidth = 1;
+            this.dSkinButton3.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButton3.Font = new System.Drawing.Font("微软雅黑", 11F);
+            this.dSkinButton3.ForeColor = System.Drawing.Color.White;
+            this.dSkinButton3.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButton3.HoverImage = null;
+            this.dSkinButton3.Location = new System.Drawing.Point(3, 52);
+            this.dSkinButton3.Name = "dSkinButton3";
+            this.dSkinButton3.NormalImage = null;
+            this.dSkinButton3.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButton3.PressedImage = null;
+            this.dSkinButton3.Radius = 10;
+            this.dSkinButton3.ShowButtonBorder = true;
+            this.dSkinButton3.Size = new System.Drawing.Size(64, 43);
+            this.dSkinButton3.TabIndex = 12;
+            this.dSkinButton3.Text = "Homing";
+            this.dSkinButton3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButton3.TextPadding = 0;
             // 
             // DocksList
             // 
@@ -256,9 +373,9 @@
             this.Name = "DocksList";
             this.Size = new System.Drawing.Size(747, 523);
             this.Load += new System.EventHandler(this.DocksList_Load);
+            this.dSkinTableLayoutPanel1.ResumeLayout(false);
             this.dSkinGroupBox1.ResumeLayout(false);
             this.dSkinGroupBox1.PerformLayout();
-            this.dSkinTableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -276,5 +393,11 @@
         private DSkin.Controls.DSkinTableLayoutPanel dSkinTableLayoutPanel1;
         private DSkin.Controls.DSkinButton dSkinButton2;
         private DSkin.Controls.DSkinButton dSkinButton1;
+        private ValueModControl valueModControl1;
+        private ValueModControl valueModControl2;
+        private ValueModControl valueModControl3;
+        private ValueModControl valueModControl4;
+        private DSkin.Controls.DSkinButton dSkinButtonSetValue;
+        private DSkin.Controls.DSkinButton dSkinButton3;
     }
 }

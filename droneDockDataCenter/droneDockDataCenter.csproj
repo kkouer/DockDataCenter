@@ -134,6 +134,12 @@
     <Compile Include="Controls\SystemSettingPage.Designer.cs">
       <DependentUpon>SystemSettingPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ValueModControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ValueModControl.Designer.cs">
+      <DependentUpon>ValueModControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modle\DockCommandGenerator.cs" />
     <Compile Include="Modle\Response.cs" />
     <Compile Include="Modle\UAVCommandGenerator.cs" />
@@ -168,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\SystemSettingPage.resx">
       <DependentUpon>SystemSettingPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ValueModControl.resx">
+      <DependentUpon>ValueModControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

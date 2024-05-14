@@ -191,5 +191,6 @@ namespace droneDockDataCenter.Controls
             logger.Info("DockCoverCloseCommand");
 
         }
+
     }
 }
