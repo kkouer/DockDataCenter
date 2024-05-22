@@ -16,8 +16,12 @@ namespace droneDockDataCenter.Controls
     {
         private static readonly ILog logger = LogManager.GetLogger(typeof(SystemSettingPage));
 
+        public delegate void ConfigDelegateHandler(object sender, AppSettingInfo appSetting);
 
-        public event EventHandler SaveConfigRequested;
+        public event ConfigDelegateHandler SaveConfigRequested;
+
+
+        AppSettingInfo currentSettings = new AppSettingInfo();
 
         public SystemSettingPage()
         {
@@ -48,8 +52,14 @@ namespace droneDockDataCenter.Controls
 
         private void dSkinButtonSaveConfig_Click(object sender, EventArgs e)
         {
-            // 触发DeleteRequested事件
-            SaveConfigRequested?.Invoke(this, EventArgs.Empty);
+            logger.Info("initConfig");
+
+            currentSettings.MQTTServerAddress = dSkinTextBox1.Text;
+            currentSettings.MQTTServerPort = dSkinTextBox2.Text;
+            currentSettings.MQTTServerUserName = dSkinTextBox3.Text;
+            currentSettings.MQTTServerPassword = dSkinTextBox4.Text;
+            // 触发SaveRequested事件
+            SaveConfigRequested?.Invoke(this, currentSettings);
             logger.Info("SaveConfigRequested");
         }
     }

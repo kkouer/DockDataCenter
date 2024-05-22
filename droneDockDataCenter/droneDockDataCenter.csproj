@@ -349,6 +349,18 @@
     <Content Include="FFmpeg\include\libswscale\swscale.h" />
     <Content Include="FFmpeg\include\libswscale\version.h" />
     <None Include="Resources\welcome.jpg" />
+    <None Include="Resources\down-arrow.png" />
+    <None Include="Resources\down-arrow_hover.png" />
+    <None Include="Resources\left-arrow.png" />
+    <None Include="Resources\left-arrow_hover.png" />
+    <None Include="Resources\right-arrow _hover.png" />
+    <None Include="Resources\right-arrow.png" />
+    <None Include="Resources\up-arrow.png" />
+    <None Include="Resources\up-arrow_hover.png" />
+    <None Include="Resources\zoom out_hover.png" />
+    <None Include="Resources\zoom-in.png" />
+    <None Include="Resources\zoom-out.png" />
+    <None Include="Resources\zoom in_hover.png" />
     <Content Include="zh.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

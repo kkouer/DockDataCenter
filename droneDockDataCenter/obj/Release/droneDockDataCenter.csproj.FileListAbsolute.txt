@@ -37,4 +37,5 @@ D:\droneDock\droneDockDataCenter\droneDockDataCenter\bin\Release\EntityFramework
 D:\droneDock\droneDockDataCenter\droneDockDataCenter\bin\Release\log4net.xml
 D:\droneDock\droneDockDataCenter\droneDockDataCenter\bin\Release\System.Data.SQLite.xml
 D:\droneDock\droneDockDataCenter\droneDockDataCenter\obj\Release\droneDockDataCenter.Controls.SystemSettingPage.resources
-D:\droneDock\droneDockDataCenter\droneDockDataCenter\bin\Release\log4net.config
+D:\droneDock\droneDockDataCenter\droneDockDataCenter\obj\Release\droneDockDataCenter.Controls.ValueModControl.resources
+D:\droneDock\droneDockDataCenter\droneDockDataCenter\obj\Release\droneDockDataCenter.welcomeForm.resources

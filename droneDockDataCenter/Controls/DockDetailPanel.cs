@@ -33,6 +33,13 @@ namespace droneDockDataCenter.Controls
         public event EventHandler TakeoffCommand;
         public event EventHandler GetWPsCommand;
         public event EventHandler RTLCommand;
+
+        public event EventHandler DropCommand;
+        public event EventHandler StartMissionCommand;
+        public event EventHandler PauseMissionCommand;
+        public event EventHandler ContinueMissionCommand;
+
+
         public event EventHandler GetRTSPUrlCommand;
         public event GotoCommandHandler GotoCommand;
 
@@ -494,6 +501,26 @@ namespace droneDockDataCenter.Controls
         {
             gimbal.ControlZoomOut();
             logger.Info("gimbal zoom out");
+        }
+
+        private void dSkinButton17_Click(object sender, EventArgs e)
+        {
+            DropCommand?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void dSkinButton14_Click(object sender, EventArgs e)
+        {
+            StartMissionCommand?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void dSkinButton15_Click(object sender, EventArgs e)
+        {
+            PauseMissionCommand?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void dSkinButton16_Click(object sender, EventArgs e)
+        {
+            ContinueMissionCommand?.Invoke(this, EventArgs.Empty);
         }
     }
 }

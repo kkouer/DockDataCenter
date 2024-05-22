@@ -36,18 +36,18 @@
             this.dSkinTableLayoutPanel1 = new DSkin.Controls.DSkinTableLayoutPanel();
             this.dSkinButton2 = new DSkin.Controls.DSkinButton();
             this.dSkinButton1 = new DSkin.Controls.DSkinButton();
-            this.dSkinGroupBox1 = new DSkin.Controls.DSkinGroupBox();
-            this.dSkinLabel5 = new DSkin.Controls.DSkinLabel();
-            this.dSkinLabel4 = new DSkin.Controls.DSkinLabel();
-            this.dSkinLabel3 = new DSkin.Controls.DSkinLabel();
-            this.dSkinLabel2 = new DSkin.Controls.DSkinLabel();
-            this.dSkinLabel1 = new DSkin.Controls.DSkinLabel();
             this.valueModControl1 = new droneDockDataCenter.Controls.ValueModControl();
             this.valueModControl2 = new droneDockDataCenter.Controls.ValueModControl();
             this.valueModControl3 = new droneDockDataCenter.Controls.ValueModControl();
             this.valueModControl4 = new droneDockDataCenter.Controls.ValueModControl();
             this.dSkinButtonSetValue = new DSkin.Controls.DSkinButton();
             this.dSkinButton3 = new DSkin.Controls.DSkinButton();
+            this.dSkinGroupBox1 = new DSkin.Controls.DSkinGroupBox();
+            this.dSkinLabel5 = new DSkin.Controls.DSkinLabel();
+            this.dSkinLabel4 = new DSkin.Controls.DSkinLabel();
+            this.dSkinLabel3 = new DSkin.Controls.DSkinLabel();
+            this.dSkinLabel2 = new DSkin.Controls.DSkinLabel();
+            this.dSkinLabel1 = new DSkin.Controls.DSkinLabel();
             this.dSkinTableLayoutPanel1.SuspendLayout();
             this.dSkinGroupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -173,6 +173,110 @@
             this.dSkinButton1.TextPadding = 0;
             this.dSkinButton1.Click += new System.EventHandler(this.dSkinButton1_Click);
             // 
+            // valueModControl1
+            // 
+            this.valueModControl1.BackColor = System.Drawing.Color.Transparent;
+            this.valueModControl1.BitmapCache = false;
+            this.dSkinTableLayoutPanel1.SetColumnSpan(this.valueModControl1, 2);
+            this.valueModControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.valueModControl1.InfoValue = "Rain:";
+            this.valueModControl1.Location = new System.Drawing.Point(4, 102);
+            this.valueModControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.valueModControl1.Name = "valueModControl1";
+            this.valueModControl1.RightBottom = ((System.Drawing.Image)(resources.GetObject("valueModControl1.RightBottom")));
+            this.valueModControl1.Size = new System.Drawing.Size(132, 41);
+            this.valueModControl1.TabIndex = 9;
+            // 
+            // valueModControl2
+            // 
+            this.valueModControl2.BackColor = System.Drawing.Color.Transparent;
+            this.valueModControl2.BitmapCache = false;
+            this.dSkinTableLayoutPanel1.SetColumnSpan(this.valueModControl2, 2);
+            this.valueModControl2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.valueModControl2.InfoValue = "Temperature:";
+            this.valueModControl2.Location = new System.Drawing.Point(4, 151);
+            this.valueModControl2.Margin = new System.Windows.Forms.Padding(4);
+            this.valueModControl2.Name = "valueModControl2";
+            this.valueModControl2.RightBottom = ((System.Drawing.Image)(resources.GetObject("valueModControl2.RightBottom")));
+            this.valueModControl2.Size = new System.Drawing.Size(132, 41);
+            this.valueModControl2.TabIndex = 9;
+            // 
+            // valueModControl3
+            // 
+            this.valueModControl3.BackColor = System.Drawing.Color.Transparent;
+            this.valueModControl3.BitmapCache = false;
+            this.dSkinTableLayoutPanel1.SetColumnSpan(this.valueModControl3, 2);
+            this.valueModControl3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.valueModControl3.InfoValue = "WInd:";
+            this.valueModControl3.Location = new System.Drawing.Point(4, 200);
+            this.valueModControl3.Margin = new System.Windows.Forms.Padding(4);
+            this.valueModControl3.Name = "valueModControl3";
+            this.valueModControl3.RightBottom = ((System.Drawing.Image)(resources.GetObject("valueModControl3.RightBottom")));
+            this.valueModControl3.Size = new System.Drawing.Size(132, 41);
+            this.valueModControl3.TabIndex = 9;
+            // 
+            // valueModControl4
+            // 
+            this.valueModControl4.BackColor = System.Drawing.Color.Transparent;
+            this.valueModControl4.BitmapCache = false;
+            this.dSkinTableLayoutPanel1.SetColumnSpan(this.valueModControl4, 2);
+            this.valueModControl4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.valueModControl4.InfoValue = "Humidity:";
+            this.valueModControl4.Location = new System.Drawing.Point(4, 249);
+            this.valueModControl4.Margin = new System.Windows.Forms.Padding(4);
+            this.valueModControl4.Name = "valueModControl4";
+            this.valueModControl4.RightBottom = ((System.Drawing.Image)(resources.GetObject("valueModControl4.RightBottom")));
+            this.valueModControl4.Size = new System.Drawing.Size(132, 41);
+            this.valueModControl4.TabIndex = 10;
+            // 
+            // dSkinButtonSetValue
+            // 
+            this.dSkinButtonSetValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dSkinButtonSetValue.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButtonSetValue.ButtonBorderWidth = 1;
+            this.dSkinButtonSetValue.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButtonSetValue.Font = new System.Drawing.Font("微软雅黑", 11F);
+            this.dSkinButtonSetValue.ForeColor = System.Drawing.Color.White;
+            this.dSkinButtonSetValue.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButtonSetValue.HoverImage = null;
+            this.dSkinButtonSetValue.Location = new System.Drawing.Point(145, 251);
+            this.dSkinButtonSetValue.Name = "dSkinButtonSetValue";
+            this.dSkinButtonSetValue.NormalImage = null;
+            this.dSkinButtonSetValue.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButtonSetValue.PressedImage = null;
+            this.dSkinButtonSetValue.Radius = 10;
+            this.dSkinButtonSetValue.ShowButtonBorder = true;
+            this.dSkinButtonSetValue.Size = new System.Drawing.Size(64, 43);
+            this.dSkinButtonSetValue.TabIndex = 11;
+            this.dSkinButtonSetValue.Text = "SET";
+            this.dSkinButtonSetValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButtonSetValue.TextPadding = 0;
+            this.dSkinButtonSetValue.Click += new System.EventHandler(this.dSkinButtonSetValue_Click);
+            // 
+            // dSkinButton3
+            // 
+            this.dSkinButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dSkinButton3.BaseColor = System.Drawing.Color.SkyBlue;
+            this.dSkinButton3.ButtonBorderWidth = 1;
+            this.dSkinButton3.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dSkinButton3.Font = new System.Drawing.Font("微软雅黑", 11F);
+            this.dSkinButton3.ForeColor = System.Drawing.Color.White;
+            this.dSkinButton3.HoverColor = System.Drawing.Color.Empty;
+            this.dSkinButton3.HoverImage = null;
+            this.dSkinButton3.Location = new System.Drawing.Point(3, 52);
+            this.dSkinButton3.Name = "dSkinButton3";
+            this.dSkinButton3.NormalImage = null;
+            this.dSkinButton3.PressColor = System.Drawing.Color.Empty;
+            this.dSkinButton3.PressedImage = null;
+            this.dSkinButton3.Radius = 10;
+            this.dSkinButton3.ShowButtonBorder = true;
+            this.dSkinButton3.Size = new System.Drawing.Size(64, 43);
+            this.dSkinButton3.TabIndex = 12;
+            this.dSkinButton3.Text = "Homing";
+            this.dSkinButton3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dSkinButton3.TextPadding = 0;
+            this.dSkinButton3.Click += new System.EventHandler(this.dSkinButton3_Click);
+            // 
             // dSkinGroupBox1
             // 
             this.dSkinGroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -258,108 +362,6 @@
             this.dSkinLabel1.TabIndex = 0;
             this.dSkinLabel1.Text = "ID:";
             this.dSkinLabel1.TextEffect = DSkin.DirectUI.TextEffects.Shadow;
-            // 
-            // valueModControl1
-            // 
-            this.valueModControl1.BackColor = System.Drawing.Color.Transparent;
-            this.valueModControl1.BitmapCache = false;
-            this.dSkinTableLayoutPanel1.SetColumnSpan(this.valueModControl1, 2);
-            this.valueModControl1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.valueModControl1.InfoValue = "Rain:";
-            this.valueModControl1.Location = new System.Drawing.Point(4, 102);
-            this.valueModControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.valueModControl1.Name = "valueModControl1";
-            this.valueModControl1.RightBottom = ((System.Drawing.Image)(resources.GetObject("valueModControl1.RightBottom")));
-            this.valueModControl1.Size = new System.Drawing.Size(132, 41);
-            this.valueModControl1.TabIndex = 9;
-            // 
-            // valueModControl2
-            // 
-            this.valueModControl2.BackColor = System.Drawing.Color.Transparent;
-            this.valueModControl2.BitmapCache = false;
-            this.dSkinTableLayoutPanel1.SetColumnSpan(this.valueModControl2, 2);
-            this.valueModControl2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.valueModControl2.InfoValue = "Temperature:";
-            this.valueModControl2.Location = new System.Drawing.Point(4, 151);
-            this.valueModControl2.Margin = new System.Windows.Forms.Padding(4);
-            this.valueModControl2.Name = "valueModControl2";
-            this.valueModControl2.RightBottom = ((System.Drawing.Image)(resources.GetObject("valueModControl2.RightBottom")));
-            this.valueModControl2.Size = new System.Drawing.Size(132, 41);
-            this.valueModControl2.TabIndex = 9;
-            // 
-            // valueModControl3
-            // 
-            this.valueModControl3.BackColor = System.Drawing.Color.Transparent;
-            this.valueModControl3.BitmapCache = false;
-            this.dSkinTableLayoutPanel1.SetColumnSpan(this.valueModControl3, 2);
-            this.valueModControl3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.valueModControl3.InfoValue = "WInd:";
-            this.valueModControl3.Location = new System.Drawing.Point(4, 200);
-            this.valueModControl3.Margin = new System.Windows.Forms.Padding(4);
-            this.valueModControl3.Name = "valueModControl3";
-            this.valueModControl3.RightBottom = ((System.Drawing.Image)(resources.GetObject("valueModControl3.RightBottom")));
-            this.valueModControl3.Size = new System.Drawing.Size(132, 41);
-            this.valueModControl3.TabIndex = 9;
-            // 
-            // valueModControl4
-            // 
-            this.valueModControl4.BackColor = System.Drawing.Color.Transparent;
-            this.valueModControl4.BitmapCache = false;
-            this.dSkinTableLayoutPanel1.SetColumnSpan(this.valueModControl4, 2);
-            this.valueModControl4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.valueModControl4.InfoValue = "Humidity:";
-            this.valueModControl4.Location = new System.Drawing.Point(4, 249);
-            this.valueModControl4.Margin = new System.Windows.Forms.Padding(4);
-            this.valueModControl4.Name = "valueModControl4";
-            this.valueModControl4.RightBottom = ((System.Drawing.Image)(resources.GetObject("valueModControl4.RightBottom")));
-            this.valueModControl4.Size = new System.Drawing.Size(132, 41);
-            this.valueModControl4.TabIndex = 10;
-            // 
-            // dSkinButtonSetValue
-            // 
-            this.dSkinButtonSetValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.dSkinButtonSetValue.BaseColor = System.Drawing.Color.SkyBlue;
-            this.dSkinButtonSetValue.ButtonBorderWidth = 1;
-            this.dSkinButtonSetValue.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.dSkinButtonSetValue.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.dSkinButtonSetValue.ForeColor = System.Drawing.Color.White;
-            this.dSkinButtonSetValue.HoverColor = System.Drawing.Color.Empty;
-            this.dSkinButtonSetValue.HoverImage = null;
-            this.dSkinButtonSetValue.Location = new System.Drawing.Point(145, 251);
-            this.dSkinButtonSetValue.Name = "dSkinButtonSetValue";
-            this.dSkinButtonSetValue.NormalImage = null;
-            this.dSkinButtonSetValue.PressColor = System.Drawing.Color.Empty;
-            this.dSkinButtonSetValue.PressedImage = null;
-            this.dSkinButtonSetValue.Radius = 10;
-            this.dSkinButtonSetValue.ShowButtonBorder = true;
-            this.dSkinButtonSetValue.Size = new System.Drawing.Size(64, 43);
-            this.dSkinButtonSetValue.TabIndex = 11;
-            this.dSkinButtonSetValue.Text = "SET";
-            this.dSkinButtonSetValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.dSkinButtonSetValue.TextPadding = 0;
-            // 
-            // dSkinButton3
-            // 
-            this.dSkinButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.dSkinButton3.BaseColor = System.Drawing.Color.SkyBlue;
-            this.dSkinButton3.ButtonBorderWidth = 1;
-            this.dSkinButton3.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.dSkinButton3.Font = new System.Drawing.Font("微软雅黑", 11F);
-            this.dSkinButton3.ForeColor = System.Drawing.Color.White;
-            this.dSkinButton3.HoverColor = System.Drawing.Color.Empty;
-            this.dSkinButton3.HoverImage = null;
-            this.dSkinButton3.Location = new System.Drawing.Point(3, 52);
-            this.dSkinButton3.Name = "dSkinButton3";
-            this.dSkinButton3.NormalImage = null;
-            this.dSkinButton3.PressColor = System.Drawing.Color.Empty;
-            this.dSkinButton3.PressedImage = null;
-            this.dSkinButton3.Radius = 10;
-            this.dSkinButton3.ShowButtonBorder = true;
-            this.dSkinButton3.Size = new System.Drawing.Size(64, 43);
-            this.dSkinButton3.TabIndex = 12;
-            this.dSkinButton3.Text = "Homing";
-            this.dSkinButton3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.dSkinButton3.TextPadding = 0;
             // 
             // DocksList
             // 

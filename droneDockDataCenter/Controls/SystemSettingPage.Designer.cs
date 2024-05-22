@@ -58,7 +58,7 @@
             this.dSkinTextBox2.BorderColor = System.Drawing.Color.Gainsboro;
             this.dSkinTextBox2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.dSkinTextBox2.ForeColor = System.Drawing.Color.White;
-            this.dSkinTextBox2.Location = new System.Drawing.Point(243, 39);
+            this.dSkinTextBox2.Location = new System.Drawing.Point(243, 78);
             this.dSkinTextBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dSkinTextBox2.Name = "dSkinTextBox2";
             this.dSkinTextBox2.Size = new System.Drawing.Size(406, 29);
@@ -99,7 +99,7 @@
             this.dSkinTextBox1.BorderColor = System.Drawing.Color.Gainsboro;
             this.dSkinTextBox1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.dSkinTextBox1.ForeColor = System.Drawing.Color.White;
-            this.dSkinTextBox1.Location = new System.Drawing.Point(243, 78);
+            this.dSkinTextBox1.Location = new System.Drawing.Point(243, 39);
             this.dSkinTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dSkinTextBox1.Name = "dSkinTextBox1";
             this.dSkinTextBox1.Size = new System.Drawing.Size(406, 29);

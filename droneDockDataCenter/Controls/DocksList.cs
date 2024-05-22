@@ -15,6 +15,7 @@ namespace droneDockDataCenter.Controls
 
         public event EventHandler DockCoverCloseCommand;
         public event EventHandler DockCoverOpenCommand;
+        public event EventHandler DockHomingCommand;
         public DocksList()
         {
             InitializeComponent();
@@ -192,5 +193,15 @@ namespace droneDockDataCenter.Controls
 
         }
 
+        private void dSkinButton3_Click(object sender, EventArgs e)
+        {
+            DockHomingCommand?.Invoke(this, EventArgs.Empty);
+            logger.Info("DockHomingCommand");
+        }
+
+        private void dSkinButtonSetValue_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

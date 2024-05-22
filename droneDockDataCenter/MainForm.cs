@@ -179,9 +179,9 @@ namespace droneDockDataCenter
         {
             SetWelcomeformVisible(true);
             InitializeComponent();
+            readAppConfig();
             initMqttClient();
             initDockList();
-            readAppConfig();
             logger.Info("MainForm init");
         }
         welcomeForm wf;
@@ -214,6 +214,17 @@ namespace droneDockDataCenter
             docksList1.DockItemClick += DocksList1_DockItemClick;
             docksList1.DockCoverCloseCommand += DocksList1_DockCoverCloseCommand;
             docksList1.DockCoverOpenCommand += DocksList1_DockCoverOpenCommand;
+            docksList1.DockHomingCommand += DocksList1_DockHomingCommand;
+        }
+
+        private void DocksList1_DockHomingCommand(object sender, EventArgs e)
+        {
+            if (dockManager.CurrentDock == null)
+                return;
+            string payload = DockCommandGenerator.GenerateCommand(dockManager.CurrentDock.Id, "homing", "start");
+            string topic = "dock/" + dockManager.CurrentDock.Id + "/command";
+
+            publishCommand(topic, payload);
         }
 
         private void DocksList1_DockCoverOpenCommand(object sender, EventArgs e)
@@ -265,7 +276,54 @@ namespace droneDockDataCenter
             dockDetailPanel.GetWPsCommand += DockDetailPanel_GetWPsCommand;
             dockDetailPanel.GotoCommand += DockDetailPanel_GotoCommand;
             dockDetailPanel.GetRTSPUrlCommand += DockDetailPanel_GetRTSPUrlCommand;
+
+            dockDetailPanel.DropCommand += DockDetailPanel_DropCommand;
+            dockDetailPanel.StartMissionCommand += DockDetailPanel_StartMissionCommand;
+            dockDetailPanel.ContinueMissionCommand += DockDetailPanel_ContinueMissionCommand;
+            dockDetailPanel.PauseMissionCommand += DockDetailPanel_PauseMissionCommand;
+
+
             this.panel1.Controls.Add(dockDetailPanel);
+        }
+
+        private void DockDetailPanel_PauseMissionCommand(object sender, EventArgs e)
+        {
+            if (droneManager.CurrentDrone == null)
+                return;
+            string payload = UAVCommandGenerator.GenerateCommand(droneManager.CurrentDrone.Id, "pauseMission", 0, 0, 0);
+            string topic = "drone/" + droneManager.CurrentDrone.Id + "/command";
+
+            publishCommand(topic, payload);
+        }
+
+        private void DockDetailPanel_ContinueMissionCommand(object sender, EventArgs e)
+        {
+            if (droneManager.CurrentDrone == null)
+                return;
+            string payload = UAVCommandGenerator.GenerateCommand(droneManager.CurrentDrone.Id, "continueMission", 0, 0, 0);
+            string topic = "drone/" + droneManager.CurrentDrone.Id + "/command";
+
+            publishCommand(topic, payload);
+        }
+
+        private void DockDetailPanel_StartMissionCommand(object sender, EventArgs e)
+        {
+            if (droneManager.CurrentDrone == null)
+                return;
+            string payload = UAVCommandGenerator.GenerateCommand(droneManager.CurrentDrone.Id, "startMission", 0, 0, 0);
+            string topic = "drone/" + droneManager.CurrentDrone.Id + "/command";
+
+            publishCommand(topic, payload);
+        }
+
+        private void DockDetailPanel_DropCommand(object sender, EventArgs e)
+        {
+            if (droneManager.CurrentDrone == null)
+                return;
+            string payload = UAVCommandGenerator.GenerateCommand(droneManager.CurrentDrone.Id, "drop", 0, 0, 0);
+            string topic = "drone/" + droneManager.CurrentDrone.Id + "/command";
+
+            publishCommand(topic, payload);
         }
 
         private void DockDetailPanel_GetRTSPUrlCommand(object sender, EventArgs e)
@@ -366,18 +424,18 @@ namespace droneDockDataCenter
             mqttFactory = new MqttFactory();
             mqttClient = mqttFactory.CreateMqttClient();
 
-            var tlsOptions = new MqttClientTlsOptions
-            {
-                UseTls = true,
-                IgnoreCertificateChainErrors = true,
-                IgnoreCertificateRevocationErrors = true
-            };
+            //var tlsOptions = new MqttClientTlsOptions
+            //{
+            //    UseTls = true,
+            //    IgnoreCertificateChainErrors = true,
+            //    IgnoreCertificateRevocationErrors = true
+            //};
 
             mqttClientOptions = new MqttClientOptionsBuilder()
                 .WithClientId("dataCenter")
                 .WithTcpServer(MqttServerAddress, int.Parse(MqttServerPort)) // 这里替换成你的broker地址和端口
                 .WithCredentials(MqttServerUserName, MqttServerPassword)   // 如果需要用户名和密码认证
-                .WithTlsOptions(tlsOptions)
+                //.WithTlsOptions(tlsOptions)
                 .Build();
 
             mqttClient.ConnectedAsync += MqttClient_ConnectedAsync;
@@ -632,9 +690,12 @@ namespace droneDockDataCenter
             }
         }
 
-        private void SettingPage_SaveConfigRequested(object sender, EventArgs e)
+        private void SettingPage_SaveConfigRequested(object sender, AppSettingInfo info)
         {
-            saveAppConfig();
+            MqttServerAddress = info.MQTTServerAddress;
+            MqttServerPort = info.MQTTServerPort ;
+            MqttServerUserName = info.MQTTServerUserName;
+            MqttServerPassword = info.MQTTServerPassword;
             DSkinMessageBox.Show("Setting saved successfully");
             settingPage.Visible = false;
             settingPage.SendToBack();
