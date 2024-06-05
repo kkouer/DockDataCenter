@@ -72,6 +72,14 @@ namespace droneDockDataCenter.Modle
             byte[] data = new byte[] { 0xeb, 0x90, 0x14, 0x55, 0xAA, 0xDC, 0x11, 0x30, 0x01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 0x20, 0x3d };
             AsyncTcpClient1.SendHex(data);
         }
+
+        public void ControlStopZoom()
+        {
+            byte[] data = new byte[] { 0xeb, 0x90, 0x14, 0x55, 0xAA, 0xDC, 0x11, 0x30, 0x0F, 00, 00, 00, 00, 00, 00, 00, 00, 00, 0x40, 00, 00, 00, 0x6E, 0xd9 };
+
+
+            AsyncTcpClient1.SendHex(data);
+        }
         public void ControlZoomIn()
         {
             byte[] data = new byte[] { 0xeb, 0x90, 0x14, 0x55, 0xAA, 0xDC, 0x11, 0x30, 0x0F, 00, 00, 00, 00, 00, 00, 00, 00, 0x02, 0x78, 00, 00, 00, 0x54, 0xf9 };

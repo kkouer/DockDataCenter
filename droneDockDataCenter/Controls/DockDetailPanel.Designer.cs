@@ -49,7 +49,6 @@
             this.dSkinButton13 = new DSkin.Controls.DSkinButton();
             this.dSkinTabControl1 = new DSkin.Controls.DSkinTabControl();
             this.dSkinTabPage1 = new DSkin.Controls.DSkinTabPage();
-            this.hudControl1 = new droneDockDataCenter.Controls.HUDControl();
             this.gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
             this.dSkinTabPage2 = new DSkin.Controls.DSkinTabPage();
             this.pictureBox1 = new DSkin.Controls.DSkinPictureBox();
@@ -68,6 +67,8 @@
             this.dSkinLabel3 = new DSkin.Controls.DSkinLabel();
             this.dSkinLabel2 = new DSkin.Controls.DSkinLabel();
             this.dSkinLabel1 = new DSkin.Controls.DSkinLabel();
+            this.dSkinCheckBoxFollowDrone = new DSkin.Controls.DSkinCheckBox();
+            this.hudControl1 = new droneDockDataCenter.Controls.HUDControl();
             this.dSkinTableLayoutPanelGimbal.SuspendLayout();
             this.dSkinTabControl1.SuspendLayout();
             this.dSkinTabPage1.SuspendLayout();
@@ -334,7 +335,7 @@
             this.dSkinButton12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.dSkinButton12.TextPadding = 0;
             this.dSkinButton12.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dSkinButton12_MouseDown);
-            this.dSkinButton12.MouseUp += new System.Windows.Forms.MouseEventHandler(this.StopMove_MouseUp);
+            this.dSkinButton12.MouseUp += new System.Windows.Forms.MouseEventHandler(this.StopZoom_MouseUp);
             // 
             // dSkinButton10
             // 
@@ -382,7 +383,7 @@
             this.dSkinButton13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.dSkinButton13.TextPadding = 0;
             this.dSkinButton13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dSkinButton13_MouseDown);
-            this.dSkinButton13.MouseUp += new System.Windows.Forms.MouseEventHandler(this.StopMove_MouseUp);
+            this.dSkinButton13.MouseUp += new System.Windows.Forms.MouseEventHandler(this.StopZoom_MouseUp);
             // 
             // dSkinTabControl1
             // 
@@ -422,6 +423,7 @@
             // dSkinTabPage1
             // 
             this.dSkinTabPage1.BackColor = System.Drawing.Color.Transparent;
+            this.dSkinTabPage1.Controls.Add(this.dSkinCheckBoxFollowDrone);
             this.dSkinTabPage1.Controls.Add(this.hudControl1);
             this.dSkinTabPage1.Controls.Add(this.gMapControl1);
             this.dSkinTabPage1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -432,20 +434,6 @@
             this.dSkinTabPage1.TabIndex = 0;
             this.dSkinTabPage1.TabItemImage = null;
             this.dSkinTabPage1.Text = "Map";
-            // 
-            // hudControl1
-            // 
-            this.hudControl1.Airspeed = 0;
-            this.hudControl1.Altitude = 0;
-            this.hudControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.hudControl1.Location = new System.Drawing.Point(575, 3);
-            this.hudControl1.Name = "hudControl1";
-            this.hudControl1.PitchAngle = 0F;
-            this.hudControl1.RollAngle = 0F;
-            this.hudControl1.Size = new System.Drawing.Size(200, 200);
-            this.hudControl1.TabIndex = 0;
-            this.hudControl1.Text = "hudControl1";
-            this.hudControl1.YawAngle = 0F;
             // 
             // gMapControl1
             // 
@@ -808,14 +796,55 @@
             this.dSkinLabel1.Text = "ID:";
             this.dSkinLabel1.TextEffect = DSkin.DirectUI.TextEffects.Shadow;
             // 
+            // dSkinCheckBoxFollowDrone
+            // 
+            this.dSkinCheckBoxFollowDrone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dSkinCheckBoxFollowDrone.CheckAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dSkinCheckBoxFollowDrone.Checked = false;
+            this.dSkinCheckBoxFollowDrone.CheckFlagColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(151)))), ((int)(((byte)(2)))));
+            this.dSkinCheckBoxFollowDrone.CheckFlagColorDisabled = System.Drawing.Color.Gray;
+            this.dSkinCheckBoxFollowDrone.CheckRectBackColorDisabled = System.Drawing.Color.Silver;
+            this.dSkinCheckBoxFollowDrone.CheckRectBackColorHighLight = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(239)))), ((int)(((byte)(219)))));
+            this.dSkinCheckBoxFollowDrone.CheckRectBackColorNormal = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(239)))), ((int)(((byte)(219)))));
+            this.dSkinCheckBoxFollowDrone.CheckRectBackColorPressed = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(226)))), ((int)(((byte)(188)))));
+            this.dSkinCheckBoxFollowDrone.CheckRectColor = System.Drawing.Color.DodgerBlue;
+            this.dSkinCheckBoxFollowDrone.CheckRectColorDisabled = System.Drawing.Color.Gray;
+            this.dSkinCheckBoxFollowDrone.CheckRectWidth = 14;
+            this.dSkinCheckBoxFollowDrone.CheckState = System.Windows.Forms.CheckState.Unchecked;
+            this.dSkinCheckBoxFollowDrone.ForeColor = System.Drawing.Color.Black;
+            this.dSkinCheckBoxFollowDrone.InnerPaddingWidth = 2;
+            this.dSkinCheckBoxFollowDrone.InnerRectInflate = 3;
+            this.dSkinCheckBoxFollowDrone.Location = new System.Drawing.Point(3, 539);
+            this.dSkinCheckBoxFollowDrone.Name = "dSkinCheckBoxFollowDrone";
+            this.dSkinCheckBoxFollowDrone.Size = new System.Drawing.Size(109, 21);
+            this.dSkinCheckBoxFollowDrone.SpaceBetweenCheckMarkAndText = 3;
+            this.dSkinCheckBoxFollowDrone.TabIndex = 4;
+            this.dSkinCheckBoxFollowDrone.Text = "Drone Center";
+            this.dSkinCheckBoxFollowDrone.TextColorDisabled = System.Drawing.Color.Gray;
+            this.dSkinCheckBoxFollowDrone.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            // 
+            // hudControl1
+            // 
+            this.hudControl1.Airspeed = 0;
+            this.hudControl1.Altitude = 0;
+            this.hudControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.hudControl1.Location = new System.Drawing.Point(575, 3);
+            this.hudControl1.Name = "hudControl1";
+            this.hudControl1.PitchAngle = 0F;
+            this.hudControl1.RollAngle = 0F;
+            this.hudControl1.Size = new System.Drawing.Size(200, 200);
+            this.hudControl1.TabIndex = 0;
+            this.hudControl1.Text = "hudControl1";
+            this.hudControl1.YawAngle = 0F;
+            // 
             // DockDetailPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.dSkinTableLayoutPanelGimbal);
             this.Controls.Add(this.dSkinTabControl1);
             this.Controls.Add(this.dSkinTableLayoutPanelDroneCMD);
             this.Controls.Add(this.dSkinGroupBoxDroneStatus);
-            this.Controls.Add(this.dSkinTableLayoutPanelGimbal);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DockDetailPanel";
@@ -823,6 +852,7 @@
             this.dSkinTableLayoutPanelGimbal.ResumeLayout(false);
             this.dSkinTabControl1.ResumeLayout(false);
             this.dSkinTabPage1.ResumeLayout(false);
+            this.dSkinTabPage1.PerformLayout();
             this.dSkinTabPage2.ResumeLayout(false);
             this.dSkinTableLayoutPanelDroneCMD.ResumeLayout(false);
             this.dSkinGroupBoxDroneStatus.ResumeLayout(false);
@@ -867,5 +897,6 @@
         private DSkin.Controls.DSkinButton dSkinButton14;
         private DSkin.Controls.DSkinButton dSkinButton15;
         private DSkin.Controls.DSkinButton dSkinButton16;
+        private DSkin.Controls.DSkinCheckBox dSkinCheckBoxFollowDrone;
     }
 }

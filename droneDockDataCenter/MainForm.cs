@@ -424,18 +424,18 @@ namespace droneDockDataCenter
             mqttFactory = new MqttFactory();
             mqttClient = mqttFactory.CreateMqttClient();
 
-            //var tlsOptions = new MqttClientTlsOptions
-            //{
-            //    UseTls = true,
-            //    IgnoreCertificateChainErrors = true,
-            //    IgnoreCertificateRevocationErrors = true
-            //};
+            var tlsOptions = new MqttClientTlsOptions
+            {
+                //UseTls = true,
+                IgnoreCertificateChainErrors = true,
+                IgnoreCertificateRevocationErrors = true
+            };
 
             mqttClientOptions = new MqttClientOptionsBuilder()
                 .WithClientId("dataCenter")
                 .WithTcpServer(MqttServerAddress, int.Parse(MqttServerPort)) // 这里替换成你的broker地址和端口
                 .WithCredentials(MqttServerUserName, MqttServerPassword)   // 如果需要用户名和密码认证
-                //.WithTlsOptions(tlsOptions)
+                .WithTlsOptions(tlsOptions)
                 .Build();
 
             mqttClient.ConnectedAsync += MqttClient_ConnectedAsync;

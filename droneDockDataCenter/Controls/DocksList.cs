@@ -59,7 +59,7 @@ namespace droneDockDataCenter.Controls
 
         private void initListView()
         {
-            listView1.Columns.Add("Dock ID", 100, HorizontalAlignment.Center);
+            listView1.Columns.Add("Dock ID", 150, HorizontalAlignment.Center);
             listView1.Columns.Add("Alive", 100, HorizontalAlignment.Center);
 
             // 添加图标到 ImageList
@@ -95,7 +95,7 @@ namespace droneDockDataCenter.Controls
                 TBDockCover = "Cover: " + manager.CurrentDock.CoverStatus;
                 TBDockTime = "Time: " + manager.CurrentDock.LastUpdated.ToString();
                 TBDockWeaterWindSpeed = "Wind speed: " + manager.CurrentDock.WeatherData.WindSpeed.ToString();
-                TBDockWeaterTemperature = "Temperature: " + manager.CurrentDock.WeatherData.Temperature.ToString();
+                TBDockWeaterTemperature = "Temp inside: " + manager.CurrentDock.WeatherData.TemperatureInside.ToString("0.0℃");
             }
         }
 

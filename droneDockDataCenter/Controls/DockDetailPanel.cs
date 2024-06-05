@@ -306,7 +306,8 @@ namespace droneDockDataCenter.Controls
             //droneIcon.Tag = dronePoint.Lng.ToString("0.000000") + " " + dronePoint.Lat.ToString("0.000000");
             marksOverlay.Markers.Clear();
             marksOverlay.Markers.Add(droneIcon);
-            gMapControl1.ZoomAndCenterMarkers("marks");
+            if(dSkinCheckBoxFollowDrone.Checked)
+                gMapControl1.ZoomAndCenterMarkers("marks");
 
             logger.Info("UpdateDroneInfoOnView");
 
@@ -445,6 +446,12 @@ namespace droneDockDataCenter.Controls
             gimbal.ControlStop();
             logger.Info("gimbal stop");
 
+        }
+
+        private void StopZoom_MouseUp(object sender, MouseEventArgs e)
+        {
+            gimbal.ControlStopZoom();
+            logger.Info("gimbal stop zooom");
         }
 
         private void dSkinButton8_MouseDown(object sender, MouseEventArgs e)

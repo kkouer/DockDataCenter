@@ -35,7 +35,7 @@ namespace droneDockDataCenter.Modle
                 {
                     this.Id = root.Data.Id;
                     this.FirmwareVersion = root.Data.FirmwareVersion;
-                    this.LastUpdated = DateTime.Parse(root.Data.LastUpdated.ToString("yyyy-MM-ddTHH:mm:ssZ"));
+                    this.LastUpdated = root.Data.LastUpdated;
                     this.CoverStatus = root.Data.CoverStatus;
                     this.ChargingStatus = root.Data.ChargingStatus;
                     this.WeatherData = root.Data.WeatherData;
@@ -46,10 +46,10 @@ namespace droneDockDataCenter.Modle
         public bool IsOnLine()
         {
             // 获取当前时间
-            DateTime currentTime = DateTime.UtcNow;
+            DateTime currentTime = DateTime.Now;
 
             // 计算时间差
-            TimeSpan timeDifference = currentTime - LastUpdated.ToUniversalTime();
+            TimeSpan timeDifference = currentTime - LastUpdated;
 
             // 判断时间差是否超过5秒
             return timeDifference.TotalSeconds <= 5;
@@ -58,8 +58,11 @@ namespace droneDockDataCenter.Modle
 
     public class WeatherData
     {
-        [JsonProperty("temperature")]
-        public double Temperature { get; set; }
+        [JsonProperty("temperatureOutside")]
+        public double TemperatureOutside { get; set; }
+
+        [JsonProperty("temperatureInside")]
+        public double TemperatureInside { get; set; }
 
         [JsonProperty("humidity")]
         public double Humidity { get; set; }
