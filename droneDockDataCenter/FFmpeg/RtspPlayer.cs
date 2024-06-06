@@ -43,6 +43,9 @@ namespace droneDockDataCenter.FFMpeg
             ffmpeg.avcodec_register_all();
             ffmpeg.avformat_network_init();
 
+            
+
+
             Debug.WriteLine($"FFmpeg version info: {ffmpeg.av_version_info()}");
             #endregion
 
@@ -70,10 +73,17 @@ namespace droneDockDataCenter.FFMpeg
             // 分配音视频格式上下文
             var pFormatContext = ffmpeg.avformat_alloc_context();
 
+            // 设置输入缓冲区大小
+            AVDictionary* options = null;
+            ffmpeg.av_dict_set(&options, "buffer_size", "1024000", 0); // 增加缓冲区大小
+            //ffmpeg.avformat_open_input(&pFormatContext, url, null, &options);
+            //ffmpeg.av_dict_free(&options);
+
+
             int error;
 
             //打开流
-            error = ffmpeg.avformat_open_input(&pFormatContext, url, null, null);
+            error = ffmpeg.avformat_open_input(&pFormatContext, url, null, &options);
             if (error != 0) throw new ApplicationException(GetErrorMessage(error));
 
             // 读取媒体流信息

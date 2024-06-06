@@ -27,7 +27,8 @@ namespace droneDockDataCenter.Controls
     {
         private static readonly ILog logger = LogManager.GetLogger(typeof(DockDetailPanel));
 
-        public string rtspAddress { get; set; } = @"rtmp://liteavapp.qcloud.com/live/liteavdemoplayerstreamid";
+        //public string rtspAddress { get; set; } = @"rtmp://liteavapp.qcloud.com/live/liteavdemoplayerstreamid";
+        public string rtspAddress { get; set; } = @"rtsp://192.168.2.119:554/";
         //public string rtspAddress = @"rtmp://liteavapp.qcloud.com/live/liteavdemop";
         public event EventHandler DeleteRequested;
         public event EventHandler TakeoffCommand;
@@ -178,7 +179,7 @@ namespace droneDockDataCenter.Controls
                         videoPlayer.Start(rtspAddress);
                     }, cancellationTokenSource.Token);
                     dSkinButton2.Text = "Stop";
-                    logger.Info("Play rtsp video");
+                    logger.Info($"Play rtsp video address: {rtspAddress}");
                 }
                 else
                 {
@@ -209,10 +210,10 @@ namespace droneDockDataCenter.Controls
                         SetBitmap(bitmap);
                     }));
                 }
-                else
-                {
-                    SetBitmap(bitmap);
-                }
+                //else
+                //{
+                //    SetBitmap(bitmap);
+                //}
             }
             catch (ObjectDisposedException)
             {
