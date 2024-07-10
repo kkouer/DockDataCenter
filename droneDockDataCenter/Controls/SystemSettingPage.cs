@@ -46,6 +46,21 @@ namespace droneDockDataCenter.Controls
             {
                 dSkinTextBox4.Text = appSetting.MQTTServerPassword;
             }
+
+
+            if (!string.IsNullOrEmpty(appSetting.FtpServerAddress))
+            {
+                dSkinTextBox7.Text = appSetting.FtpServerAddress;
+            }
+            if (!string.IsNullOrEmpty(appSetting.FtpServerUserName))
+            {
+                dSkinTextBox6.Text = appSetting.FtpServerUserName;
+            }
+            if (!string.IsNullOrEmpty(appSetting.FtpServerPassword))
+            {
+                dSkinTextBox5.Text = appSetting.FtpServerPassword;
+            }
+
             logger.Info("initConfig");
 
         }
@@ -58,6 +73,10 @@ namespace droneDockDataCenter.Controls
             currentSettings.MQTTServerPort = dSkinTextBox2.Text;
             currentSettings.MQTTServerUserName = dSkinTextBox3.Text;
             currentSettings.MQTTServerPassword = dSkinTextBox4.Text;
+
+            currentSettings.FtpServerAddress = dSkinTextBox7.Text;
+            currentSettings.FtpServerUserName = dSkinTextBox6.Text;
+            currentSettings.FtpServerPassword = dSkinTextBox5.Text;
             // 触发SaveRequested事件
             SaveConfigRequested?.Invoke(this, currentSettings);
             logger.Info("SaveConfigRequested");

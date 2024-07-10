@@ -12,6 +12,7 @@ using System.Xml;
 using System.IO;
 using DSkin.Forms;
 using log4net;
+using Newtonsoft.Json;
 
 namespace droneDockDataCenter
 {
@@ -37,6 +38,10 @@ namespace droneDockDataCenter
         public string MqttServerUserName { get; set; } = "admin";
         public string MqttServerPassword { get; set; } = "123456";
 
+        public string FTPServerAddress { get; set; } = "127.0.0.1";
+        public string FTPServerUserName { get; set; } = "admin";
+        public string FTPServerPassword { get; set; } = "123456";
+
         AppSettingInfo appSetting = new AppSettingInfo();
 
 
@@ -45,6 +50,7 @@ namespace droneDockDataCenter
             //读取配置
             xmlConfigFile(false, System.AppDomain.CurrentDomain.BaseDirectory + "config.xml");
 
+            //mqtt
             if (!string.IsNullOrEmpty(appSetting.MQTTServerAddress))
             {
                 MqttServerAddress = appSetting.MQTTServerAddress;
@@ -61,6 +67,21 @@ namespace droneDockDataCenter
             {
                 MqttServerPassword = appSetting.MQTTServerPassword;
             }
+
+            //ftp
+            if (!string.IsNullOrEmpty(appSetting.FtpServerAddress))
+            {
+                FTPServerAddress = appSetting.FtpServerAddress;
+            }
+            if (!string.IsNullOrEmpty(appSetting.FtpServerUserName))
+            {
+                FTPServerUserName = appSetting.FtpServerUserName;
+            }
+            if (!string.IsNullOrEmpty(appSetting.FtpServerPassword))
+            {
+                FTPServerPassword = appSetting.FtpServerPassword;
+            }
+
             logger.Info("read app config");
         }
 
@@ -70,6 +91,10 @@ namespace droneDockDataCenter
             appSetting.MQTTServerPort = MqttServerPort;
             appSetting.MQTTServerUserName = MqttServerUserName;
             appSetting.MQTTServerPassword = MqttServerPassword;
+
+            appSetting.FtpServerAddress = FTPServerAddress;
+            appSetting.FtpServerUserName = FTPServerUserName;
+            appSetting.FtpServerPassword = FTPServerPassword;
 
             xmlConfigFile(true, System.AppDomain.CurrentDomain.BaseDirectory + "config.xml");
             logger.Info("save app config");
@@ -83,7 +108,7 @@ namespace droneDockDataCenter
                 try
                 {
                     XmlTextWriter xmlwriter = new XmlTextWriter(filename, Encoding.UTF8);
-                    xmlwriter.Formatting = Formatting.Indented;
+                    xmlwriter.Formatting = System.Xml.Formatting.Indented;
 
                     xmlwriter.WriteStartDocument();
 
@@ -95,6 +120,10 @@ namespace droneDockDataCenter
                         xmlwriter.WriteElementString("MQTTServerPort", appSetting.MQTTServerPort);
                         xmlwriter.WriteElementString("MQTTServerUserName", appSetting.MQTTServerUserName);
                         xmlwriter.WriteElementString("MQTTServerPassword", appSetting.MQTTServerPassword);
+
+                        xmlwriter.WriteElementString("FtpServerAddress", appSetting.FtpServerAddress);
+                        xmlwriter.WriteElementString("FtpServerUserName", appSetting.FtpServerUserName);
+                        xmlwriter.WriteElementString("FtpServerPassword", appSetting.FtpServerPassword);
 
 
                         xmlwriter.WriteEndElement();
@@ -143,6 +172,16 @@ namespace droneDockDataCenter
                                                         break;
                                                     case "MQTTServerPassword":
                                                         settingInfo.MQTTServerPassword = xmlreader.ReadString();
+                                                        break;
+
+                                                    case "FtpServerAddress":
+                                                        settingInfo.FtpServerAddress = xmlreader.ReadString();
+                                                        break;
+                                                    case "FtpServerUserName":
+                                                        settingInfo.FtpServerUserName = xmlreader.ReadString();
+                                                        break;
+                                                    case "FtpServerPassword":
+                                                        settingInfo.FtpServerPassword = xmlreader.ReadString();
                                                         break;
 
                                                     case "Config":
@@ -215,6 +254,79 @@ namespace droneDockDataCenter
             docksList1.DockCoverCloseCommand += DocksList1_DockCoverCloseCommand;
             docksList1.DockCoverOpenCommand += DocksList1_DockCoverOpenCommand;
             docksList1.DockHomingCommand += DocksList1_DockHomingCommand;
+            docksList1.DockRestartCommand += DocksList1_DockRestartCommand;
+            docksList1.FormatDataCommand += DocksList1_FormatDataCommand;
+            docksList1.GridDebugCommand += DocksList1_GridDebugCommand;
+            docksList1.WeaterSettingCommand += DocksList1_WeaterSettingCommand;
+
+            docksList1.FTPUploadCommand += DocksList1_FTPUploadCommand;
+            docksList1.DockUseRequestCommand += DocksList1_DockUseRequestCommand;
+        }
+
+        bool dockUse = false;
+        private void DocksList1_DockUseRequestCommand(object sender, EventArgs e)
+        {
+            if (dockManager.CurrentDock == null)
+                return;
+
+            string payload = DockCommandGenerator.GenerateCommand(dockManager.CurrentDock.Id, "DockUse", dockUse?"use":"cancel");
+            string topic = "dock/" + dockManager.CurrentDock.Id + "/command";
+
+            publishCommand(topic, payload);
+            logger.Info("dock: DockUse:" + (dockUse ? "use" : "cancel"));
+
+            dockUse = !dockUse;
+        }
+
+        private void DocksList1_FTPUploadCommand(object sender, EventArgs e)
+        {
+            FTPClient.UploadFile(FTPServerAddress, FTPServerUserName, FTPServerPassword, System.Environment.CurrentDirectory + "\\logs\\logfile.log");
+            
+        }
+
+        private void DocksList1_WeaterSettingCommand(object sender, EventArgs e)
+        {
+            if (dockManager.CurrentDock == null)
+                return;
+
+            string payload = DockCommandGenerator.GenerateWeatherCommand(dockManager.CurrentDock.Id, "WeaterSetting", docksList1);
+            string topic = "dock/" + dockManager.CurrentDock.Id + "/command";
+
+            publishCommand(topic, payload);
+            logger.Info("dock: WeaterSetting");
+        }
+
+        private void DocksList1_GridDebugCommand(object sender, EventArgs e)
+        {
+            if (dockManager.CurrentDock == null)
+                return;
+            string payload = DockCommandGenerator.GenerateCommand(dockManager.CurrentDock.Id, "GridDebug", "");
+            string topic = "dock/" + dockManager.CurrentDock.Id + "/command";
+
+            publishCommand(topic, payload);
+            logger.Info("dock: GridDebug");
+        }
+
+        private void DocksList1_FormatDataCommand(object sender, EventArgs e)
+        {
+            if (dockManager.CurrentDock == null)
+                return;
+            string payload = DockCommandGenerator.GenerateCommand(dockManager.CurrentDock.Id, "FormatData", "");
+            string topic = "dock/" + dockManager.CurrentDock.Id + "/command";
+
+            publishCommand(topic, payload);
+            logger.Info("dock: FormatData");
+        }
+
+        private void DocksList1_DockRestartCommand(object sender, EventArgs e)
+        {
+            if (dockManager.CurrentDock == null)
+                return;
+            string payload = DockCommandGenerator.GenerateCommand(dockManager.CurrentDock.Id, "Restart", "");
+            string topic = "dock/" + dockManager.CurrentDock.Id + "/command";
+
+            publishCommand(topic, payload);
+            logger.Info("dock: restart");
         }
 
         private void DocksList1_DockHomingCommand(object sender, EventArgs e)
@@ -225,6 +337,7 @@ namespace droneDockDataCenter
             string topic = "dock/" + dockManager.CurrentDock.Id + "/command";
 
             publishCommand(topic, payload);
+            logger.Info("dock Homing: start");
         }
 
         private void DocksList1_DockCoverOpenCommand(object sender, EventArgs e)
@@ -235,6 +348,7 @@ namespace droneDockDataCenter
             string topic = "dock/" + dockManager.CurrentDock.Id + "/command";
 
             publishCommand(topic, payload);
+            logger.Info("dock Cover: open");
         }
 
         private void DocksList1_DockCoverCloseCommand(object sender, EventArgs e)
@@ -245,6 +359,7 @@ namespace droneDockDataCenter
             string topic = "dock/" + dockManager.CurrentDock.Id + "/command";
 
             publishCommand(topic, payload);
+            logger.Info("dock Cover: close");
         }
 
         private void DocksList1_DockItemClick(Dock obj)
@@ -274,6 +389,7 @@ namespace droneDockDataCenter
             dockDetailPanel.TakeoffCommand += DockDetailPanel_TakeoffCommand;
             dockDetailPanel.RTLCommand += DockDetailPanel_RTLCommand;
             dockDetailPanel.GetWPsCommand += DockDetailPanel_GetWPsCommand;
+            dockDetailPanel.SendWPsCommand += DockDetailPanel_SendWPsCommand;
             dockDetailPanel.GotoCommand += DockDetailPanel_GotoCommand;
             dockDetailPanel.GetRTSPUrlCommand += DockDetailPanel_GetRTSPUrlCommand;
 
@@ -281,28 +397,94 @@ namespace droneDockDataCenter
             dockDetailPanel.StartMissionCommand += DockDetailPanel_StartMissionCommand;
             dockDetailPanel.ContinueMissionCommand += DockDetailPanel_ContinueMissionCommand;
             dockDetailPanel.PauseMissionCommand += DockDetailPanel_PauseMissionCommand;
+            dockDetailPanel.AbortMissionCommand += DockDetailPanel_AbortMissionCommand;
+            dockDetailPanel.SwitchOnOffCommand += DockDetailPanel_DroneSwitchOnOffCommand;
+            dockDetailPanel.RequestLandingDockCommand += DockDetailPanel_RequestLandingDockCommand;
+            dockDetailPanel.CommandFlightCommand += DockDetailPanel_CommandFlightCommand;
+
+
 
 
             this.panel1.Controls.Add(dockDetailPanel);
+        }
+
+        private void DockDetailPanel_CommandFlightCommand(object sender, EventArgs e)
+        {
+            if (droneManager.CurrentDrone == null)
+                return;
+            string payload = UAVCommandGenerator.GenerateCommCommand(droneManager.CurrentDrone.Id, "CommandFlight", dockDetailPanel.CommandFlight?"start":"stop");
+            string topic = "drone/" + droneManager.CurrentDrone.Id + "/command";
+
+            publishCommand(topic, payload);
+            logger.Info($"CommandFlight "+ (dockDetailPanel.CommandFlight ? "start" : "stop"));
+        }
+
+        private void DockDetailPanel_RequestLandingDockCommand(object sender, EventArgs e)
+        {
+            if (droneManager.CurrentDrone == null)
+                return;
+            string payload = UAVCommandGenerator.GenerateCommCommand(droneManager.CurrentDrone.Id, "RequestLandingDock", "");
+            string topic = "drone/" + droneManager.CurrentDrone.Id + "/command";
+
+            publishCommand(topic, payload);
+            logger.Info($"RequestLandingDock");
+        }
+
+        private void DockDetailPanel_DroneSwitchOnOffCommand(object sender, EventArgs e)
+        {
+            if (droneManager.CurrentDrone == null)
+                return;
+            string payload = UAVCommandGenerator.GenerateCommCommand(droneManager.CurrentDrone.Id,"DroneSwitch" , dockDetailPanel.DroneSwitchOn?"On": "Off");
+            string topic = "drone/" + droneManager.CurrentDrone.Id + "/command";
+            dockDetailPanel.DroneSwitchOn = !dockDetailPanel.DroneSwitchOn;
+            publishCommand(topic, payload);
+            logger.Info($"DroneSwitch:{dockDetailPanel.DroneSwitchOn}");
+        }
+
+
+        //发送航线
+        private void DockDetailPanel_SendWPsCommand(object sender, EventArgs e)
+        {
+            if (droneManager.CurrentDrone == null)
+                return;
+            string payload = UAVCommandGenerator.GenerateWPListCommand(droneManager.CurrentDrone.Id, "SendWPs", dockDetailPanel.FlightWPs, dockDetailPanel.DefaultAlt);
+            string topic = "drone/" + droneManager.CurrentDrone.Id + "/command";
+
+            publishCommand(topic, payload);
+
+            logger.Info($"SendWPs");
+        }
+
+        private void DockDetailPanel_AbortMissionCommand(object sender, EventArgs e)
+        {
+            if (droneManager.CurrentDrone == null)
+                return;
+            string payload = UAVCommandGenerator.GenerateCommCommand(droneManager.CurrentDrone.Id, "Mission", "abort");
+            string topic = "drone/" + droneManager.CurrentDrone.Id + "/command";
+
+            publishCommand(topic, payload);
+            logger.Info($"Mission:abort");
         }
 
         private void DockDetailPanel_PauseMissionCommand(object sender, EventArgs e)
         {
             if (droneManager.CurrentDrone == null)
                 return;
-            string payload = UAVCommandGenerator.GenerateCommand(droneManager.CurrentDrone.Id, "pauseMission", 0, 0, 0);
+            string payload = UAVCommandGenerator.GenerateCommCommand(droneManager.CurrentDrone.Id, "Mission", "pause");
             string topic = "drone/" + droneManager.CurrentDrone.Id + "/command";
 
             publishCommand(topic, payload);
+            logger.Info($"Mission:pause");
         }
 
         private void DockDetailPanel_ContinueMissionCommand(object sender, EventArgs e)
         {
             if (droneManager.CurrentDrone == null)
                 return;
-            string payload = UAVCommandGenerator.GenerateCommand(droneManager.CurrentDrone.Id, "continueMission", 0, 0, 0);
+            string payload = UAVCommandGenerator.GenerateCommCommand(droneManager.CurrentDrone.Id, "Mission", "continue");
             string topic = "drone/" + droneManager.CurrentDrone.Id + "/command";
 
+            logger.Info($"Mission:continue");
             publishCommand(topic, payload);
         }
 
@@ -310,59 +492,65 @@ namespace droneDockDataCenter
         {
             if (droneManager.CurrentDrone == null)
                 return;
-            string payload = UAVCommandGenerator.GenerateCommand(droneManager.CurrentDrone.Id, "startMission", 0, 0, 0);
+            string payload = UAVCommandGenerator.GenerateCommCommand(droneManager.CurrentDrone.Id, "Mission", "start");
             string topic = "drone/" + droneManager.CurrentDrone.Id + "/command";
 
             publishCommand(topic, payload);
+            logger.Info($"Mission:start");
         }
 
         private void DockDetailPanel_DropCommand(object sender, EventArgs e)
         {
             if (droneManager.CurrentDrone == null)
                 return;
-            string payload = UAVCommandGenerator.GenerateCommand(droneManager.CurrentDrone.Id, "drop", 0, 0, 0);
+            string payload = UAVCommandGenerator.GenerateCommCommand(droneManager.CurrentDrone.Id, "drop", "");
             string topic = "drone/" + droneManager.CurrentDrone.Id + "/command";
 
             publishCommand(topic, payload);
+            logger.Info($"drop");
         }
 
         private void DockDetailPanel_GetRTSPUrlCommand(object sender, EventArgs e)
         {
             if (droneManager.CurrentDrone == null)
                 return;
-            string payload = UAVCommandGenerator.GenerateCommand(droneManager.CurrentDrone.Id, "Get_Gimbal_Info", 0, 0, 0);
+            string payload = UAVCommandGenerator.GenerateCommCommand(droneManager.CurrentDrone.Id, "Get_Gimbal_Info", "");
             string topic = "drone/" + droneManager.CurrentDrone.Id + "/command";
 
             publishCommand(topic, payload);
+            logger.Info($"Get_Gimbal_Info");
         }
 
         private void DockDetailPanel_GetWPsCommand(object sender, EventArgs e)
         {
             if (droneManager.CurrentDrone == null)
                 return;
-            string payload = UAVCommandGenerator.GenerateCommand(droneManager.CurrentDrone.Id, "get_route", 0, 0, 0);
+            string payload = UAVCommandGenerator.GenerateCommCommand(droneManager.CurrentDrone.Id, "get_route", "");
             string topic = "drone/" + droneManager.CurrentDrone.Id + "/command";
 
             publishCommand(topic, payload);
+            logger.Info($"get_route");
         }
 
         private void DockDetailPanel_GotoCommand(object sender, DockDetailPanel.GotoCommandEventArgs e)
         {
             if (droneManager.CurrentDrone == null)
                 return;
-            string payload = UAVCommandGenerator.GenerateCommand(droneManager.CurrentDrone.Id, "goto", e.Long, e.Lat,e.Alt);
+            string payload = UAVCommandGenerator.GenerateGotoCommand(droneManager.CurrentDrone.Id, "goto", e.Long, e.Lat,e.Alt);
             string topic = "drone/" + droneManager.CurrentDrone.Id + "/command";
 
             publishCommand(topic, payload);
+            logger.Info($"goto command: +Lng:{e.Long}  Lat:{e.Lat}  Alt:{e.Alt}");
         }
 
         private void DockDetailPanel_RTLCommand(object sender, EventArgs e)
         {
             if (droneManager.CurrentDrone == null)
                 return;
-            string payload = UAVCommandGenerator.GenerateCommand(droneManager.CurrentDrone.Id, "rtl", 0, 0, 0);
+            string payload = UAVCommandGenerator.GenerateCommCommand(droneManager.CurrentDrone.Id, "rtl", "");
             string topic = "drone/" + droneManager.CurrentDrone.Id + "/command";
 
+            logger.Info($"rtl");
             publishCommand(topic, payload);
         }
 
@@ -370,10 +558,11 @@ namespace droneDockDataCenter
         {
             if (droneManager.CurrentDrone == null)
                 return;
-            string payload = UAVCommandGenerator.GenerateCommand(droneManager.CurrentDrone.Id, "takeoff", 0, 0, 0);
+            string payload = UAVCommandGenerator.GenerateCommCommand(droneManager.CurrentDrone.Id, "takeoff","");
             string topic = "drone/" + droneManager.CurrentDrone.Id + "/command";
 
             publishCommand(topic, payload);
+            logger.Info($"takeoff");
         }
 
         private void DockDetailPanel_DeleteRequested(object sender, EventArgs e)
@@ -451,8 +640,8 @@ namespace droneDockDataCenter
             {
                 if (arg.ClientWasConnected)
                 {
-                    this.textBoxStatus.Text = "Disconnected";
-                    button1.Text = "Connect";
+                    this.textBoxStatus.Text = "已断开";
+                    button1.Text = "连接";
                 }
             }));
             return Task.CompletedTask;
@@ -577,6 +766,19 @@ namespace droneDockDataCenter
                 switch (type)
                 {
                     case "dock":
+                        switch (currentResponse.Command)
+                        {
+                            case "mission":
+                                DSkinMessageBox.Show(currentResponse.Message,"mission");
+                                logger.Info($"getResponse:Mission"+currentResponse.Message);
+                                break;
+                            case "dockWarning":
+                                DSkinMessageBox.Show(currentResponse.Message, "DockWrning");
+                                logger.Info($"getResponse:dockWarning" + currentResponse.Message);
+                                break;
+                            default:
+                                break;
+                        }
                         break;
                     case "drone":
 
@@ -585,7 +787,10 @@ namespace droneDockDataCenter
                             case "get_route":
                                 //droneManager.CurrentDrone.Routes = currentResponse.Routes;
                                 if (dockDetailPanel != null)
+                                {
                                     this.dockDetailPanel.UpdateDroneRouterOnMap(currentResponse.Routes);
+                                    logger.Info($"getResponse:get_route" + currentResponse.Message);
+                                }
                                 break;
 
                             case "Get_Gimbal_Info":
@@ -593,7 +798,8 @@ namespace droneDockDataCenter
                                 {
                                     this.dockDetailPanel.gimbal.ControlPort = currentResponse.ControlPort;
                                     this.dockDetailPanel.gimbal.ControlIP = currentResponse.ControlIP;
-                                    this.dockDetailPanel.rtspAddress = currentResponse.RTSPAddress; 
+                                    this.dockDetailPanel.rtspAddress = currentResponse.RTSPAddress;
+                                    logger.Info($"getResponse:Get_Gimbal_Info" + currentResponse.Message);
                                 }
                                 break;
                             default:
@@ -619,8 +825,8 @@ namespace droneDockDataCenter
         {
             this.BeginInvoke(new Action(() =>
             {
-                this.textBoxStatus.Text = "Connected";//arg.ConnectResult.ResultCode.ToString();
-                button1.Text = "Disconnect";
+                this.textBoxStatus.Text = "已连接";//arg.ConnectResult.ResultCode.ToString();
+                button1.Text = "断开";
             }));
             return Task.CompletedTask;
         }
@@ -663,7 +869,7 @@ namespace droneDockDataCenter
             logger.Info($"subscribe topic:{topic}");
         }
 
-        
+
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -696,9 +902,14 @@ namespace droneDockDataCenter
             MqttServerPort = info.MQTTServerPort ;
             MqttServerUserName = info.MQTTServerUserName;
             MqttServerPassword = info.MQTTServerPassword;
-            DSkinMessageBox.Show("Setting saved successfully");
+            FTPServerAddress = info.FtpServerAddress;
+            FTPServerUserName = info.FtpServerUserName;
+            FTPServerPassword = info.FtpServerPassword;
+            DSkinMessageBox.Show("参数设置成功");
             settingPage.Visible = false;
             settingPage.SendToBack();
         }
+
+
     }
 }

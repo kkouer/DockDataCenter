@@ -82,7 +82,7 @@
       <HintPath>..\packages\System.Data.Common.4.3.0\lib\net451\System.Data.Common.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.SqlClient, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SqlClient.4.8.3\lib\net46\System.Data.SqlClient.dll</HintPath>
+      <HintPath>..\packages\System.Data.SqlClient.4.8.6\lib\net46\System.Data.SqlClient.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.SQLite, Version=1.0.115.5, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\lib\net46\System.Data.SQLite.dll</HintPath>
@@ -93,6 +93,10 @@
     <Reference Include="System.Data.SQLite.Linq, Version=1.0.115.5, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.115.5\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Security.Claims, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Claims.4.3.0\lib\net46\System.Security.Claims.dll</HintPath>
     </Reference>
@@ -141,6 +145,7 @@
       <DependentUpon>ValueModControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Modle\DockCommandGenerator.cs" />
+    <Compile Include="Modle\FTPClient.cs" />
     <Compile Include="Modle\Response.cs" />
     <Compile Include="Modle\UAVCommandGenerator.cs" />
     <Compile Include="FFmpeg\FFmpegBinariesHelper.cs" />

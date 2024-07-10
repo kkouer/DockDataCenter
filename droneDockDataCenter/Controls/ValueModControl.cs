@@ -29,6 +29,18 @@ namespace droneDockDataCenter.Controls
                 this.dSkinLabel2.Text = value;
             }
         }
+        [Browsable(true)]
+        public String Unit
+        {
+            get
+            {
+                return this.dSkinLabel1.Text;
+            }
+            set
+            {
+                this.dSkinLabel1.Text = value;
+            }
+        }
         public DSkin.Controls.DSkinNumericUpDown NumMinValue
         {
             get

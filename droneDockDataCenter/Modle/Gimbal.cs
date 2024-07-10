@@ -46,12 +46,12 @@ namespace droneDockDataCenter.Modle
 
             }
         }
-        public void ControlUp()
+        public void ControlDown()
         {
             byte[] data = new byte[] { 0xeb, 0x90, 0x14, 0x55, 0xAA, 0xDC, 0x11, 0x30, 0x01, 00, 00, 0xFC, 0x18, 00, 00, 00, 00, 00, 00, 00, 00, 00, 0xC4, 0xf5 };
             AsyncTcpClient1.SendHex(data);
         }
-        public void ControlDown()
+        public void ControlUp()
         {
             byte[] data = new byte[] { 0xeb, 0x90, 0x14, 0x55, 0xAA, 0xDC, 0x11, 0x30, 0x01, 00, 00, 0x03, 0xE8, 00, 00, 00, 00, 00, 00, 00, 00, 00, 0xCB, 0xd3 };
             AsyncTcpClient1.SendHex(data);

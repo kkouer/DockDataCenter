@@ -79,3 +79,4 @@ C:\Users\Kkoue\source\repos\DockDataCenter\droneDockDataCenter\obj\Debug\droneDo
 C:\Users\Kkoue\source\repos\DockDataCenter\droneDockDataCenter\obj\Debug\droneDockDataCenter.pdb
 D:\droneDock\droneDockDataCenter\droneDockDataCenter\obj\Debug\droneDockDataCenter.welcomeForm.resources
 D:\droneDock\droneDockDataCenter\droneDockDataCenter\obj\Debug\droneDockDataCenter.Controls.ValueModControl.resources
+D:\droneDock\droneDockDataCenter\droneDockDataCenter\bin\Debug\System.IO.Compression.dll

@@ -215,7 +215,7 @@ namespace droneDockDataCenter.Controls
             using (Font font = new Font("微软雅黑", 10))
             {
                 // 绘制 Pitch 数值
-                string pitchText = $"Pitch: {pitchAngle:F2}°";
+                string pitchText = $"俯仰: {pitchAngle:F2}°";
                 SizeF pitchTextSize = g.MeasureString(pitchText, font);
                 PointF pitchTextLocation = new PointF(centerX - pitchTextSize.Width / 2, (float)(centerY - pitchTextSize.Height * 1.5));
 
@@ -229,7 +229,7 @@ namespace droneDockDataCenter.Controls
                 g.DrawString(pitchText, font, Brushes.White, pitchTextLocation);
 
                 // 绘制 Roll 数值
-                string rollText = $"Roll: {rollAngle:F2}°";
+                string rollText = $"横滚: {rollAngle:F2}°";
                 SizeF rollTextSize = g.MeasureString(rollText, font);
                 PointF rollTextLocation = new PointF(centerX - rollTextSize.Width / 2, (float)(centerY + rollTextSize.Height * 1.5));  // 调整位置
 
@@ -247,8 +247,8 @@ namespace droneDockDataCenter.Controls
         private void DrawAirspeedAltitude(Graphics g)
         {
             // 获取空速和高度数值文本
-            string airspeedText = $"AS: {airspeed} m/s";
-            string altitudeText = $"Alt: {altitude} m";
+            string airspeedText = $"空速: {airspeed} m/s";
+            string altitudeText = $"高度: {altitude} m";
 
             // 使用相同的字体
             using (Font font = new Font("微软雅黑", 10))

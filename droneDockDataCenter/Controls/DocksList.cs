@@ -16,6 +16,14 @@ namespace droneDockDataCenter.Controls
         public event EventHandler DockCoverCloseCommand;
         public event EventHandler DockCoverOpenCommand;
         public event EventHandler DockHomingCommand;
+        public event EventHandler DockRestartCommand;
+        public event EventHandler SendDockParamsCommand;
+        public event EventHandler GridDebugCommand;
+        public event EventHandler WeaterSettingCommand;
+        public event EventHandler FTPUploadCommand;
+        public event EventHandler DockUseRequestCommand;
+
+        public event EventHandler FormatDataCommand;
         public DocksList()
         {
             InitializeComponent();
@@ -92,10 +100,10 @@ namespace droneDockDataCenter.Controls
             if(manager != null && manager.CurrentDock != null)
             {
                 TBDockId = "ID: " + manager.CurrentDock.Id;
-                TBDockCover = "Cover: " + manager.CurrentDock.CoverStatus;
-                TBDockTime = "Time: " + manager.CurrentDock.LastUpdated.ToString();
-                TBDockWeaterWindSpeed = "Wind speed: " + manager.CurrentDock.WeatherData.WindSpeed.ToString();
-                TBDockWeaterTemperature = "Temp inside: " + manager.CurrentDock.WeatherData.TemperatureInside.ToString("0.0℃");
+                TBDockCover = "舱盖状态: " + manager.CurrentDock.CoverStatus;
+                TBDockTime = "时间: " + manager.CurrentDock.LastUpdated.ToString();
+                TBDockWeaterWindSpeed = "风速: " + manager.CurrentDock.WeatherData.WindSpeed.ToString();
+                TBDockWeaterTemperature = "温度: " + manager.CurrentDock.WeatherData.TemperatureInside.ToString("0.0℃");
             }
         }
 
@@ -182,26 +190,48 @@ namespace droneDockDataCenter.Controls
         private void dSkinButton2_Click(object sender, EventArgs e)
         {
             DockCoverOpenCommand?.Invoke(this, EventArgs.Empty);
-            logger.Info("DockCoverOpenCommand");
 
         }
 
         private void dSkinButton1_Click(object sender, EventArgs e)
         {
             DockCoverCloseCommand?.Invoke(this, EventArgs.Empty);
-            logger.Info("DockCoverCloseCommand");
 
         }
 
         private void dSkinButton3_Click(object sender, EventArgs e)
         {
             DockHomingCommand?.Invoke(this, EventArgs.Empty);
-            logger.Info("DockHomingCommand");
         }
 
         private void dSkinButtonSetValue_Click(object sender, EventArgs e)
         {
+            WeaterSettingCommand?.Invoke(this, EventArgs.Empty);
+        }
 
+        private void dSkinButton5_Click(object sender, EventArgs e)
+        {
+            DockRestartCommand?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void dSkinButton4_Click(object sender, EventArgs e)
+        {
+            FormatDataCommand?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void dSkinButton6_Click(object sender, EventArgs e)
+        {
+            GridDebugCommand?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void dSkinButton7_Click(object sender, EventArgs e)
+        {
+            FTPUploadCommand?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void dSkinButton8_Click(object sender, EventArgs e)
+        {
+            DockUseRequestCommand?.Invoke(this, EventArgs.Empty);
         }
     }
 }

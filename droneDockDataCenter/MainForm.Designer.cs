@@ -114,7 +114,7 @@ namespace droneDockDataCenter
             this.dSkinGroupBox1.RightBottom = ((System.Drawing.Image)(resources.GetObject("dSkinGroupBox1.RightBottom")));
             this.dSkinGroupBox1.Size = new System.Drawing.Size(135, 530);
             this.dSkinGroupBox1.TabIndex = 7;
-            this.dSkinGroupBox1.Text = "Control Panel";
+            this.dSkinGroupBox1.Text = "控制面板";
             // 
             // dSkinButton2
             // 
@@ -135,7 +135,7 @@ namespace droneDockDataCenter
             this.dSkinButton2.ShowButtonBorder = true;
             this.dSkinButton2.Size = new System.Drawing.Size(121, 34);
             this.dSkinButton2.TabIndex = 6;
-            this.dSkinButton2.Text = "Settings";
+            this.dSkinButton2.Text = "平台设置";
             this.dSkinButton2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.dSkinButton2.TextPadding = 0;
             this.dSkinButton2.Click += new System.EventHandler(this.dSkinButton2_Click);
@@ -159,7 +159,7 @@ namespace droneDockDataCenter
             this.button1.ShowButtonBorder = true;
             this.button1.Size = new System.Drawing.Size(121, 34);
             this.button1.TabIndex = 4;
-            this.button1.Text = "Connect";
+            this.button1.Text = "连接";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.button1.TextPadding = 0;
             this.button1.Click += new System.EventHandler(this.buttonConnAndSubscribe_Click);

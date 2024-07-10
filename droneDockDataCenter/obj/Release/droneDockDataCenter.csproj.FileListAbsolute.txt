@@ -39,3 +39,4 @@ D:\droneDock\droneDockDataCenter\droneDockDataCenter\bin\Release\System.Data.SQL
 D:\droneDock\droneDockDataCenter\droneDockDataCenter\obj\Release\droneDockDataCenter.Controls.SystemSettingPage.resources
 D:\droneDock\droneDockDataCenter\droneDockDataCenter\obj\Release\droneDockDataCenter.Controls.ValueModControl.resources
 D:\droneDock\droneDockDataCenter\droneDockDataCenter\obj\Release\droneDockDataCenter.welcomeForm.resources
+D:\droneDock\droneDockDataCenter\droneDockDataCenter\bin\Release\System.IO.Compression.dll

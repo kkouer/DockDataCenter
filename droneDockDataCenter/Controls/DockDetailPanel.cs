@@ -27,18 +27,26 @@ namespace droneDockDataCenter.Controls
     {
         private static readonly ILog logger = LogManager.GetLogger(typeof(DockDetailPanel));
 
-        //public string rtspAddress { get; set; } = @"rtmp://liteavapp.qcloud.com/live/liteavdemoplayerstreamid";
-        public string rtspAddress { get; set; } = @"rtsp://192.168.2.119:554/";
+        public string rtspAddress { get; set; } = @"rtmp://liteavapp.qcloud.com/live/liteavdemoplayerstreamid";
+        //public string rtspAddress { get; set; } = @"rtsp://192.168.2.119:554/";
         //public string rtspAddress = @"rtmp://liteavapp.qcloud.com/live/liteavdemop";
         public event EventHandler DeleteRequested;
         public event EventHandler TakeoffCommand;
         public event EventHandler GetWPsCommand;
+        public event EventHandler SendWPsCommand;
         public event EventHandler RTLCommand;
+        public event EventHandler SwitchOnOffCommand;
+
+        //申请降落机场
+        public event EventHandler RequestLandingDockCommand;
+        //指令飞行
+        public event EventHandler CommandFlightCommand;
 
         public event EventHandler DropCommand;
         public event EventHandler StartMissionCommand;
         public event EventHandler PauseMissionCommand;
         public event EventHandler ContinueMissionCommand;
+        public event EventHandler AbortMissionCommand;
 
 
         public event EventHandler GetRTSPUrlCommand;
@@ -79,6 +87,9 @@ namespace droneDockDataCenter.Controls
         GMapOverlay marksOverlay = new GMapOverlay("marks");
 
         GMapOverlay linesOverlay = new GMapOverlay("lines");
+        public GMapRoute FlightWPs { get { return flightlines; } set { flightlines = value; } }
+
+        public int DefaultAlt { get; set; } = 20;
 
         GMapRoute flightlines = new GMapRoute("flightlines");
         List<PointLatLng> WPPoints = new List<PointLatLng>();
@@ -124,9 +135,16 @@ namespace droneDockDataCenter.Controls
             gMapControl1.Overlays.Add(marksOverlay);
             gMapControl1.Overlays.Add(linesOverlay);
             DSkinContextMenuStrip = new DSkin.Controls.DSkinContextMenuStrip();
-            DSkinContextMenuStrip.Items.Add("Fly to here");
+            DSkinContextMenuStrip.Items.Add("飞到这里");
+            DSkinContextMenuStrip.Items.Add("开始规划");
+            DSkinContextMenuStrip.Items.Add("停止规划");
+            DSkinContextMenuStrip.Items.Add("清除任务");
             DSkinContextMenuStrip.Items[0].Click += FlyToHereCommand_Click;
+            DSkinContextMenuStrip.Items[1].Click += StartPlanningCommand_Click;
+            DSkinContextMenuStrip.Items[2].Click += StopPlanningCommand_Click;
+            DSkinContextMenuStrip.Items[3].Click += CleanMission_Click;
             gMapControl1.MouseDown += GMapControl1_MouseDown;
+            gMapControl1.MouseUp += GMapControl1_MouseUp;
 
             //规划路线
             flightlines = new GMapRoute(WPPoints, "flightlines");
@@ -135,6 +153,49 @@ namespace droneDockDataCenter.Controls
 
             logger.Info("init map");
         }
+
+
+        int WPIndex = 1;
+        private void GMapControl1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (isPlannMode && e.Button == MouseButtons.Left)
+            {
+                PointLatLng point = gMapControl1.FromLocalToLatLng(e.X, e.Y);
+
+                areaMarker = new GMapMarkerPoint(new PointLatLng(point.Lat, point.Lng),
+                        GMap.NET.WindowsForms.Markers.GMarkerGoogleType.yellow, WPIndex.ToString()); ;
+                linesOverlay.Markers.Add(areaMarker);
+                flightlines.Points.Add(new PointLatLng(point.Lat, point.Lng));
+
+                gMapControl1.Zoom++;
+                gMapControl1.Zoom--;
+                WPIndex++;
+            }
+        }
+
+        private void CleanMission_Click(object sender, EventArgs e)
+        {
+            WPIndex = 1;
+            linesOverlay.Markers.Clear();
+            flightlines.Points.Clear();
+            gMapControl1.Zoom++;
+            gMapControl1.Zoom--;
+        }
+
+        //是否规划航点
+        bool isPlannMode = false;
+
+        private void StartPlanningCommand_Click(object sender, EventArgs e)
+        {
+            isPlannMode = true;
+            DSkinMessageBox.Show("在地图点击绘制航点。");
+        }
+
+        private void StopPlanningCommand_Click(object sender, EventArgs e)
+        {
+            isPlannMode = false;
+        }
+
         PointLatLng GotoCommandLocation;
         private void GMapControl1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -285,10 +346,10 @@ namespace droneDockDataCenter.Controls
                 return;
             }
             TBDroneId = "ID: " + droneManager.CurrentDrone.Id;
-            TBDroneBattery = "Battery: " + droneManager.CurrentDrone.Battery;
-            TBDroneMode = "Flight mode: " + droneManager.CurrentDrone.Mode;
-            TBDroneThrottle = "Throttle: " + droneManager.CurrentDrone.Throttle;
-            TBDroneGroundSpeed = "Ground Speed: " + droneManager.CurrentDrone.GroundSpeed;
+            TBDroneBattery = "电量: " + droneManager.CurrentDrone.Battery;
+            TBDroneMode = "飞行模式: " + droneManager.CurrentDrone.Mode;
+            TBDroneThrottle = "油门: " + droneManager.CurrentDrone.Throttle;
+            TBDroneGroundSpeed = "地速: " + droneManager.CurrentDrone.GroundSpeed;
 
             this.hudControl1.Airspeed = (int)droneManager.CurrentDrone.AirSpeed;
             this.hudControl1.RollAngle = droneManager.CurrentDrone.Attitude.Roll;
@@ -529,6 +590,35 @@ namespace droneDockDataCenter.Controls
         private void dSkinButton16_Click(object sender, EventArgs e)
         {
             ContinueMissionCommand?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void dSkinButton18_Click(object sender, EventArgs e)
+        {
+            AbortMissionCommand?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void dSkinButton19_Click(object sender, EventArgs e)
+        {
+            SendWPsCommand?.Invoke(this, EventArgs.Empty);
+            isPlannMode = false;
+        }
+        public bool DroneSwitchOn { get; set; }
+
+        public bool CommandFlight { get; set; }
+        private void dSkinButton20_Click(object sender, EventArgs e)
+        {
+            SwitchOnOffCommand?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void dSkinButton21_Click(object sender, EventArgs e)
+        {
+            RequestLandingDockCommand?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void dSkinButton23_Click(object sender, EventArgs e)
+        {
+            CommandFlightCommand?.Invoke(this, EventArgs.Empty);
+            CommandFlight = !CommandFlight;
         }
     }
 }
