@@ -51,6 +51,8 @@ namespace droneDockDataCenter.Modle
             byte[] data = new byte[] { 0xeb, 0x90, 0x14, 0x55, 0xAA, 0xDC, 0x11, 0x30, 0x01, 00, 00, 0xFC, 0x18, 00, 00, 00, 00, 00, 00, 00, 00, 00, 0xC4, 0xf5 };
             AsyncTcpClient1.SendHex(data);
         }
+
+
         public void ControlUp()
         {
             byte[] data = new byte[] { 0xeb, 0x90, 0x14, 0x55, 0xAA, 0xDC, 0x11, 0x30, 0x01, 00, 00, 0x03, 0xE8, 00, 00, 00, 00, 00, 00, 00, 00, 00, 0xCB, 0xd3 };
@@ -109,6 +111,17 @@ namespace droneDockDataCenter.Modle
             byte[] data = new byte[] { 0xeb, 0x90, 0x07, 0x55, 0xAA, 0xDC, 0x04, 0x10, 0x00, 0x14, 0x03 };
             AsyncTcpClient1.SendHex(data);
 
+        }
+
+        public void SwitchIR()
+        {
+            byte[] data = new byte[] { 0xeb, 0x90, 0x14, 0x55, 0xAA, 0xDC };
+            AsyncTcpClient1.SendHex(data);
+        }
+        public void TackPic()
+        {
+            byte[] data = new byte[] { 0xeb, 0x90, 0x14, 0x55, 0xAA, 0xDC };
+            AsyncTcpClient1.SendHex(data);
         }
 
 

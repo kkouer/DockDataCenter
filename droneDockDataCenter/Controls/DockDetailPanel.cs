@@ -215,10 +215,10 @@ namespace droneDockDataCenter.Controls
         {
             if (GotoCommandLocation != null)
             {
-                if (DSkinMessageBox.Show("Fly to Lng:" + GotoCommandLocation.Lng + " Lat:" + GotoCommandLocation.Lat + " ?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (DSkinMessageBox.Show("飞到位置 经度:" + GotoCommandLocation.Lng + " 纬度:" + GotoCommandLocation.Lat + " 高度:"+DefaultAlt+ "米 ?", "指点飞行", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     // 触发DeleteRequested事件
-                    GotoCommand?.Invoke(this, new GotoCommandEventArgs(GotoCommandLocation.Lat, GotoCommandLocation.Lng, 20));
+                    GotoCommand?.Invoke(this, new GotoCommandEventArgs(GotoCommandLocation.Lat, GotoCommandLocation.Lng, DefaultAlt));
                     logger.Info("Fly to here click");
                 }
             }
@@ -599,6 +599,11 @@ namespace droneDockDataCenter.Controls
 
         private void dSkinButton19_Click(object sender, EventArgs e)
         {
+            if (FlightWPs.Points.Count == 0)
+            {
+                DSkinMessageBox.Show("请先绘制航线.");
+                return;
+            }
             SendWPsCommand?.Invoke(this, EventArgs.Empty);
             isPlannMode = false;
         }
@@ -619,6 +624,23 @@ namespace droneDockDataCenter.Controls
         {
             CommandFlightCommand?.Invoke(this, EventArgs.Empty);
             CommandFlight = !CommandFlight;
+        }
+
+        private void dSkinButton25_Click(object sender, EventArgs e)
+        {
+            gimbal.SwitchIR();
+            logger.Info("gimbal switch IR");
+        }
+
+        private void dSkinButton24_Click(object sender, EventArgs e)
+        {
+            gimbal.TackPic();
+            logger.Info("gimbal take picture");
+        }
+
+        private void dSkinNumericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+            DefaultAlt = int.Parse(dSkinNumericUpDown2.Value.ToString());
         }
     }
 }

@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ValueModControl));
             this.dSkinNumericUpDown1 = new DSkin.Controls.DSkinNumericUpDown();
             this.dSkinLabel2 = new DSkin.Controls.DSkinLabel();
             this.dSkinNumericUpDown2 = new DSkin.Controls.DSkinNumericUpDown();
             this.dSkinLabel1 = new DSkin.Controls.DSkinLabel();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.SuspendLayout();
             // 
             // dSkinNumericUpDown1
@@ -112,6 +114,11 @@
             this.dSkinLabel1.Text = "U";
             this.dSkinLabel1.TextEffect = DSkin.DirectUI.TextEffects.Shadow;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
             // ValueModControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -134,5 +141,6 @@
         private DSkin.Controls.DSkinLabel dSkinLabel2;
         private DSkin.Controls.DSkinNumericUpDown dSkinNumericUpDown2;
         private DSkin.Controls.DSkinLabel dSkinLabel1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }
