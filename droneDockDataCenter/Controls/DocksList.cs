@@ -104,6 +104,7 @@ namespace droneDockDataCenter.Controls
                 TBDockTime = "时间: " + manager.CurrentDock.LastUpdated.ToString();
                 TBDockWeaterWindSpeed = "风速: " + manager.CurrentDock.WeatherData.WindSpeed.ToString();
                 TBDockWeaterTemperature = "温度: " + manager.CurrentDock.WeatherData.TemperatureInside.ToString("0.0℃");
+                TBDockStatus = "机场状态:" + manager.CurrentDock.Status;
             }
         }
 
@@ -137,6 +138,10 @@ namespace droneDockDataCenter.Controls
 
             set { dSkinLabel5.Text = value; }
 
+        }
+        public string TBDockStatus
+        {
+            set { dSkinLabel6.Text = value; }
         }
 
 

@@ -19,6 +19,8 @@ namespace droneDockDataCenter.Modle
         public string CoverStatus { get; set; }
         [JsonProperty("charging_status")]
         public string ChargingStatus { get; set; }
+        [JsonProperty("status")]
+        public string Status { get; set; }
         [JsonProperty("weather_data")]
         public WeatherData WeatherData { get; set; }
 
@@ -39,6 +41,7 @@ namespace droneDockDataCenter.Modle
                     this.CoverStatus = root.Data.CoverStatus;
                     this.ChargingStatus = root.Data.ChargingStatus;
                     this.WeatherData = root.Data.WeatherData;
+                    this.Status = root.Data.Status;
                 }
             }
         }
@@ -63,6 +66,7 @@ namespace droneDockDataCenter.Modle
 
         [JsonProperty("temperatureInside")]
         public double TemperatureInside { get; set; }
+
 
         [JsonProperty("humidity")]
         public double Humidity { get; set; }

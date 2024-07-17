@@ -37,19 +37,28 @@ namespace droneDockDataCenter.Modle
                 {
                     id = id,
                     command = command,
-                    Weather = new
+                    alerts = new
                     {
-                        RainMax = docksList1.valueModControl1.NumMaxValue.Value,
-                        RainMin = docksList1.valueModControl1.NumMinValue.Value,
-
-                        TemptureMax = docksList1.valueModControl2.NumMaxValue.Value,
-                        TemptureMin = docksList1.valueModControl2.NumMinValue.Value,
-
-                        WindSpeedMax = docksList1.valueModControl3.NumMaxValue.Value,
-                        WindSpeedMin = docksList1.valueModControl3.NumMinValue.Value,
-
-                        HumidityMax = docksList1.valueModControl4.NumMaxValue.Value,
-                        HumidityMin = docksList1.valueModControl4.NumMinValue.Value,
+                        temperature = new 
+                        {
+                            low = docksList1.valueModControl2.NumMinValue.Value,
+                            high = docksList1.valueModControl2.NumMaxValue.Value
+                        },
+                        rainfall = new
+                        {
+                            low = docksList1.valueModControl1.NumMinValue.Value,
+                            high = docksList1.valueModControl1.NumMaxValue.Value
+                        },
+                        wind_speed = new
+                        {
+                            low = docksList1.valueModControl3.NumMinValue.Value,
+                            high = docksList1.valueModControl3.NumMaxValue.Value
+                        },
+                        humidity = new
+                        {
+                            low = docksList1.valueModControl4.NumMinValue.Value,
+                           high = docksList1.valueModControl4.NumMaxValue.Value
+                        }
                     }
                 }
             };

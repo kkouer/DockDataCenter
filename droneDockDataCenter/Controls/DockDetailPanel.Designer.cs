@@ -51,7 +51,10 @@
             this.dSkinButton13 = new DSkin.Controls.DSkinButton();
             this.dSkinTabControl1 = new DSkin.Controls.DSkinTabControl();
             this.dSkinTabPage1 = new DSkin.Controls.DSkinTabPage();
+            this.dSkinLabel6 = new DSkin.Controls.DSkinLabel();
+            this.dSkinNumericUpDown2 = new DSkin.Controls.DSkinNumericUpDown();
             this.dSkinCheckBoxFollowDrone = new DSkin.Controls.DSkinCheckBox();
+            this.hudControl1 = new droneDockDataCenter.Controls.HUDControl();
             this.gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
             this.dSkinTabPage2 = new DSkin.Controls.DSkinTabPage();
             this.pictureBox1 = new DSkin.Controls.DSkinPictureBox();
@@ -76,9 +79,6 @@
             this.dSkinLabel3 = new DSkin.Controls.DSkinLabel();
             this.dSkinLabel2 = new DSkin.Controls.DSkinLabel();
             this.dSkinLabel1 = new DSkin.Controls.DSkinLabel();
-            this.hudControl1 = new droneDockDataCenter.Controls.HUDControl();
-            this.dSkinNumericUpDown2 = new DSkin.Controls.DSkinNumericUpDown();
-            this.dSkinLabel6 = new DSkin.Controls.DSkinLabel();
             this.dSkinTableLayoutPanelGimbal.SuspendLayout();
             this.dSkinTabControl1.SuspendLayout();
             this.dSkinTabPage1.SuspendLayout();
@@ -497,6 +497,50 @@
             this.dSkinTabPage1.TabItemImage = null;
             this.dSkinTabPage1.Text = "地图";
             // 
+            // dSkinLabel6
+            // 
+            this.dSkinLabel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dSkinLabel6.EffectValue = 1;
+            this.dSkinLabel6.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinLabel6.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.dSkinLabel6.Location = new System.Drawing.Point(3, 512);
+            this.dSkinLabel6.Name = "dSkinLabel6";
+            this.dSkinLabel6.Size = new System.Drawing.Size(37, 21);
+            this.dSkinLabel6.TabIndex = 14;
+            this.dSkinLabel6.Text = "高度:";
+            this.dSkinLabel6.TextEffect = DSkin.DirectUI.TextEffects.Shadow;
+            // 
+            // dSkinNumericUpDown2
+            // 
+            this.dSkinNumericUpDown2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dSkinNumericUpDown2.BitmapCache = false;
+            this.dSkinNumericUpDown2.Borders.AllColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(169)))), ((int)(((byte)(254)))));
+            this.dSkinNumericUpDown2.Borders.BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(169)))), ((int)(((byte)(254)))));
+            this.dSkinNumericUpDown2.Borders.LeftColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(169)))), ((int)(((byte)(254)))));
+            this.dSkinNumericUpDown2.Borders.RightColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(169)))), ((int)(((byte)(254)))));
+            this.dSkinNumericUpDown2.Borders.TopColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(169)))), ((int)(((byte)(254)))));
+            this.dSkinNumericUpDown2.ButtonBaseColor = System.Drawing.Color.Transparent;
+            this.dSkinNumericUpDown2.ButtonBorderColor = System.Drawing.Color.Gainsboro;
+            this.dSkinNumericUpDown2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dSkinNumericUpDown2.Location = new System.Drawing.Point(46, 510);
+            this.dSkinNumericUpDown2.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.dSkinNumericUpDown2.Name = "dSkinNumericUpDown2";
+            this.dSkinNumericUpDown2.Padding = new System.Windows.Forms.Padding(1);
+            this.dSkinNumericUpDown2.RightBottom = ((System.Drawing.Image)(resources.GetObject("dSkinNumericUpDown2.RightBottom")));
+            this.dSkinNumericUpDown2.Size = new System.Drawing.Size(53, 23);
+            this.dSkinNumericUpDown2.TabIndex = 13;
+            this.dSkinNumericUpDown2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.dSkinNumericUpDown2.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.dSkinNumericUpDown2.ValueChanged += new System.EventHandler(this.dSkinNumericUpDown2_ValueChanged);
+            // 
             // dSkinCheckBoxFollowDrone
             // 
             this.dSkinCheckBoxFollowDrone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -517,12 +561,26 @@
             this.dSkinCheckBoxFollowDrone.InnerRectInflate = 3;
             this.dSkinCheckBoxFollowDrone.Location = new System.Drawing.Point(3, 539);
             this.dSkinCheckBoxFollowDrone.Name = "dSkinCheckBoxFollowDrone";
-            this.dSkinCheckBoxFollowDrone.Size = new System.Drawing.Size(75, 21);
+            this.dSkinCheckBoxFollowDrone.Size = new System.Drawing.Size(75, 19);
             this.dSkinCheckBoxFollowDrone.SpaceBetweenCheckMarkAndText = 3;
             this.dSkinCheckBoxFollowDrone.TabIndex = 4;
             this.dSkinCheckBoxFollowDrone.Text = "飞机居中";
             this.dSkinCheckBoxFollowDrone.TextColorDisabled = System.Drawing.Color.Gray;
             this.dSkinCheckBoxFollowDrone.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            // 
+            // hudControl1
+            // 
+            this.hudControl1.Airspeed = 0;
+            this.hudControl1.Altitude = 0;
+            this.hudControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.hudControl1.Location = new System.Drawing.Point(575, 3);
+            this.hudControl1.Name = "hudControl1";
+            this.hudControl1.PitchAngle = 0F;
+            this.hudControl1.RollAngle = 0F;
+            this.hudControl1.Size = new System.Drawing.Size(200, 200);
+            this.hudControl1.TabIndex = 0;
+            this.hudControl1.Text = "hudControl1";
+            this.hudControl1.YawAngle = 0F;
             // 
             // gMapControl1
             // 
@@ -1029,72 +1087,14 @@
             this.dSkinLabel1.Text = "ID:";
             this.dSkinLabel1.TextEffect = DSkin.DirectUI.TextEffects.Shadow;
             // 
-            // hudControl1
-            // 
-            this.hudControl1.Airspeed = 0;
-            this.hudControl1.Altitude = 0;
-            this.hudControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.hudControl1.Location = new System.Drawing.Point(575, 3);
-            this.hudControl1.Name = "hudControl1";
-            this.hudControl1.PitchAngle = 0F;
-            this.hudControl1.RollAngle = 0F;
-            this.hudControl1.Size = new System.Drawing.Size(200, 200);
-            this.hudControl1.TabIndex = 0;
-            this.hudControl1.Text = "hudControl1";
-            this.hudControl1.YawAngle = 0F;
-            // 
-            // dSkinNumericUpDown2
-            // 
-            this.dSkinNumericUpDown2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.dSkinNumericUpDown2.BitmapCache = false;
-            this.dSkinNumericUpDown2.Borders.AllColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(169)))), ((int)(((byte)(254)))));
-            this.dSkinNumericUpDown2.Borders.BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(169)))), ((int)(((byte)(254)))));
-            this.dSkinNumericUpDown2.Borders.LeftColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(169)))), ((int)(((byte)(254)))));
-            this.dSkinNumericUpDown2.Borders.RightColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(169)))), ((int)(((byte)(254)))));
-            this.dSkinNumericUpDown2.Borders.TopColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(169)))), ((int)(((byte)(254)))));
-            this.dSkinNumericUpDown2.ButtonBaseColor = System.Drawing.Color.Transparent;
-            this.dSkinNumericUpDown2.ButtonBorderColor = System.Drawing.Color.Gainsboro;
-            this.dSkinNumericUpDown2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dSkinNumericUpDown2.Location = new System.Drawing.Point(46, 510);
-            this.dSkinNumericUpDown2.Minimum = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
-            this.dSkinNumericUpDown2.Name = "dSkinNumericUpDown2";
-            this.dSkinNumericUpDown2.Padding = new System.Windows.Forms.Padding(1);
-            this.dSkinNumericUpDown2.RightBottom = ((System.Drawing.Image)(resources.GetObject("dSkinNumericUpDown2.RightBottom")));
-            this.dSkinNumericUpDown2.Size = new System.Drawing.Size(53, 23);
-            this.dSkinNumericUpDown2.TabIndex = 13;
-            this.dSkinNumericUpDown2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.dSkinNumericUpDown2.Value = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
-            this.dSkinNumericUpDown2.ValueChanged += new System.EventHandler(this.dSkinNumericUpDown2_ValueChanged);
-            // 
-            // dSkinLabel6
-            // 
-            this.dSkinLabel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.dSkinLabel6.EffectValue = 1;
-            this.dSkinLabel6.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dSkinLabel6.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.dSkinLabel6.Location = new System.Drawing.Point(3, 512);
-            this.dSkinLabel6.Name = "dSkinLabel6";
-            this.dSkinLabel6.Size = new System.Drawing.Size(37, 21);
-            this.dSkinLabel6.TabIndex = 14;
-            this.dSkinLabel6.Text = "高度:";
-            this.dSkinLabel6.TextEffect = DSkin.DirectUI.TextEffects.Shadow;
-            // 
             // DockDetailPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.dSkinTableLayoutPanelGimbal);
             this.Controls.Add(this.dSkinTabControl1);
             this.Controls.Add(this.dSkinTableLayoutPanelDroneCMD);
             this.Controls.Add(this.dSkinGroupBoxDroneStatus);
-            this.Controls.Add(this.dSkinTableLayoutPanelGimbal);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DockDetailPanel";

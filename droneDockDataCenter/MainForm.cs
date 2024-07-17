@@ -289,7 +289,7 @@ namespace droneDockDataCenter
             if (dockManager.CurrentDock == null)
                 return;
 
-            string payload = DockCommandGenerator.GenerateWeatherCommand(dockManager.CurrentDock.Id, "WeaterSetting", docksList1);
+            string payload = DockCommandGenerator.GenerateWeatherCommand(dockManager.CurrentDock.Id, "set_alert_threshold_1", docksList1);
             string topic = "dock/" + dockManager.CurrentDock.Id + "/command";
 
             publishCommand(topic, payload);
